@@ -1,0 +1,181 @@
+package com.wray2.Fragment;
+
+import android.app.ActivityOptions;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.util.Pair;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.wray2.Class.Alert;
+import com.wray2.FragmentsActivity;
+import com.wray2.Manager.CalendarManager;
+import com.wray2.R;
+import com.wray2.RecyclerViewAdapter.CalendarRecyclerViewAdapter;
+import com.wray2.RecyclerViewAdapter.HelpListItemTouchListener;
+import com.wray2.SettingCalendarActivity;
+
+public class CalendarFragment extends Fragment
+{
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    private String mParam1;
+    private String mParam2;
+
+    private OnFragmentInteractionListener mListener;
+
+    private FragmentsActivity activity;
+
+    private RecyclerView calendarList;
+    private CalendarRecyclerViewAdapter calendarAdapter;
+
+    private CardView addCalendar;
+
+    public CalendarFragment()
+    {
+        // Required empty public constructor
+    }
+
+    public static CalendarFragment newInstance(String param1, String param2)
+    {
+        CalendarFragment fragment = new CalendarFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null)
+        {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState)
+    {
+        View view = inflater.inflate(R.layout.fragment_calendar, container, false);
+        //布局创建
+        calendarList = (RecyclerView)view.findViewById(R.id.calendar_RecycleView);
+        addCalendar = (CardView)view.findViewById(R.id.calendar_addCardView);
+
+        calendarAdapter = new CalendarRecyclerViewAdapter(activity, CalendarManager.calendarManager.getRealAlertList(), calendarList);
+        calendarList.setAdapter(calendarAdapter);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false);
+        calendarList.setLayoutManager(linearLayoutManager);
+
+        HelpListItemTouchListener helpListItemTouchListener = new HelpListItemTouchListener(activity, new HelpListItemTouchListener.OnRecyclerItemClickListener.Builder()
+        {
+            @Override
+            public void onItemClick(View view, int position)
+            {
+                Intent intent1 = new Intent(activity, SettingCalendarActivity.class);
+                Pair<View, String> pair;
+                if (calendarAdapter.getItemViewType(position) == 1)
+                {
+                    pair = Pair.create(((View)view.findViewById(R.id.addCalendarItemCardView)), "constraintLayout");
+                }
+                else
+                {
+                    intent1.putExtra("alter_date", CalendarManager.calendarManager.getRealAlertList().get(position).getDate());
+                    intent1.putExtra("alter_time", CalendarManager.calendarManager.getRealAlertList().get(position).getTime());
+                    intent1.putExtra("alter_address", CalendarManager.calendarManager.getRealAlertList().get(position).getAddress());
+                    intent1.putExtra("position", position);
+                    intent1.putExtra("key", 1);
+                    pair = Pair.create(((View)view.findViewById(R.id.calendarItemCardView)), "constraintLayout");
+                }
+                startActivityForResult(intent1, 1, ActivityOptions.makeSceneTransitionAnimation(activity, pair).toBundle());
+            }
+        });
+        calendarList.addOnItemTouchListener(helpListItemTouchListener);
+
+        //todo:删除日程的选项
+
+        return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1)
+        {
+            //修改日程
+            if (resultCode == 2)
+            {
+                Bundle bundle = data.getExtras();
+                Alert getAlert = bundle.getParcelable("Alert");
+                int positon = bundle.getInt("position");
+                CalendarManager.calendarManager.setAlert(positon, getAlert);
+            }
+            //添加日程
+            if (resultCode == 3)
+            {
+                Bundle bundle = data.getExtras();
+                Alert getAlert = bundle.getParcelable("Alert");
+                CalendarManager.calendarManager.addAlert(getAlert);
+            }
+            if (calendarList.getAdapter() != null)
+                calendarList.getAdapter().notifyDataSetChanged();
+        }
+    }
+
+    public void onButtonPressed(Uri uri)
+    {
+        if (mListener != null)
+        {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+    }
+
+    @Override
+    public void onAttach(Context context)
+    {
+        super.onAttach(context);
+        activity = (FragmentsActivity)context;
+        if (context instanceof OnFragmentInteractionListener)
+        {
+            mListener = (OnFragmentInteractionListener)context;
+        }
+        else
+        {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach()
+    {
+        super.onDetach();
+        mListener = null;
+    }
+
+    public interface OnFragmentInteractionListener
+    {
+        void onFragmentInteraction(Uri uri);
+    }
+}

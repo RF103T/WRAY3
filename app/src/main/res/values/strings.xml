@@ -1,0 +1,75 @@
+<resources>
+    <!-- -->
+    <string name="camera_shooting_info">请将物体中心对准镜头</string>
+    <string name="toolbar_title">你是什么垃圾</string>
+    <string name="app_name">WhatRubbishAreYou</string>
+    <string name="action_settings">Settings</string>
+
+    <!--权限说明对话框-->
+    <string name="permission_dialog_info">我们的应用有部分功能需要以下权限：</string>
+    <string name="camera_permission_name">相机</string>
+    <string name="camera_permission_info">相机权限用于调用摄像头拍摄照片，作为识别垃圾的依据上传到服务器，您的个人信息不会被上传。为了保障您的体验，本权限会在APP启动时申请。</string>
+    <string name="read_sdcard_permission_name">存储空间</string>
+    <string name="read_sdcard_permission_info">存储空间权限用于从相册选择需要识别的图片，作为识别垃圾的依据上传到服务器，您的个人信息不会被上传。该权限在您调用相关功能的时候才会进行授权。</string>
+
+    <!--更新UI-->
+    <string name="recyclables_info">指废纸张、废塑料、废玻璃制品、废金属、废织物等适宜回收、可循环利用的生活废弃物。</string>
+    <string name="recyclables_guide">可回收垃圾投放指导</string>
+    <string name="recyclables_throw_demand">分类投放可回收物时，应尽量保持清洁干燥，避免污染。其中：废纸应保持平整;立体包装物应清空内容物，清洁后压扁投放;废玻璃制品应轻投轻放，有尖锐边角的应包裹后投放。</string>
+    <string name="harmful_waste_info">指废电池、废灯管、废药品、废油漆及其容器等对人体健康或者自然环境造成直接或者潜在危害的生活废弃物。</string>
+    <string name="harmful_waste_guide">有害垃圾投放指导</string>
+    <string name="harmful_waste_throw_demand">分类投放有害垃圾时，应注意轻放。其中：废灯管等易破损的有害垃圾应连带包装或包裹后投放;废弃药品宜连带包装一并投放;杀虫剂等压力罐装容器，应排空内容物后投放;在公共场所产生有害垃圾且未发现对应收集容器时，应携带至有害垃圾投放点妥善投放。</string>
+    <string name="wetWaste_info">即易腐垃圾，指食材废料、剩菜剩饭、过期食品、瓜皮果核、花卉绿植、中药药渣等易腐的生物质生活废弃物。</string>
+    <string name="wetWaste_guide">湿垃圾投放指导</string>
+    <string name="wetWaste_throw_demand">湿垃圾应从产生时就与其他品种垃圾分开收集，投放前尽量沥干水分，其中：有包装物的湿垃圾应将包装物去除后分类投放，包装物应投放到对应的可回收物或干垃圾收集容器;盛放湿垃圾的容器，如塑料袋等，在投放时应予去除。</string>
+    <string name="dryWaste_info">即其它垃圾，指除可回收物、有害垃圾、湿垃圾以外的其它生活废弃物。</string>
+    <string name="dryWaste_guide">干垃圾投放指导</string>
+    <string name="dryWaste_throw_demand">干垃圾应投入干垃圾收集容器，并保持周边环境整洁。</string>
+    <string name="recycleName">可回收垃圾</string>
+    <string name="dryRubbishname">干垃圾</string>
+    <string name="wetRubbishname">湿垃圾</string>
+    <string name="harmfulRubbishname">有害垃圾</string>
+
+    <!--结果界面-->
+    <string name="feedback_overview">我们已经收到您的反馈\n并用来改进我们的应用\n垃圾分类\n我们与您同行</string>
+    <string name="feedback_title">反馈成功</string>
+
+    <string name="help_not_correct_title">还没有找到正确的结果？</string>
+    <string name="help_other_rubbish_name">XX垃圾</string>
+    <string name="help_other_name">XXXXXX</string>
+    <string name="help_title">它是？</string>
+    <string name="help_edittext_hint">请告诉我们它是什么</string>
+    <string name="help_send_button_text">发送</string>
+
+
+    <string name="result_helpme">\t协助我们改进，查看更多可能性</string>
+    <string name="result_notcorrect">这不是香蕉？</string>
+    <string name="result_dropguidance">餐厨垃圾应沥干水分后再投放。大块骨头和椰子壳、榴莲壳等不易生化降解，不宜作为餐厨垃圾，可作为干垃圾投放。纯液体（如牛奶等），可直接倒入下水口。</string>
+    <string name="result_rubbishguidance">湿垃圾投放指导</string>
+    <string name="result_RubbishIntroduce">即易腐垃圾、厨余垃圾，是指餐饮垃圾、厨余垃圾及废弃食用油脂和集贸市场有机垃圾等易腐蚀性垃圾。</string>
+    <string name="result_rubbishname">湿垃圾</string>
+    <string name="result_thingname">物品名称</string>
+    <string name="result_title">它可能是香蕉</string>
+    
+    <!--2.0更新-->
+    <string name="homepage_alert">记得\n去倒垃圾哟！</string>
+    <string name="homepage_alert_time1">2019.03.06 10:30am</string>
+    <string name="homepage_alert_address1">八角街道153号</string>
+    <string name="homepage_alert_time2">2019.03.06 9:30am</string>
+    <string name="homepage_alert_address2">鲁谷街道社区办</string>
+    <string name="homepage_card2_txt1">不知道是什么垃圾</string>
+    <string name="homepage_card2_txt2">拍照识别</string>
+    <string name="homepage_card3_txt2">搜索查找</string>
+    <string name="calendar_card_add">添加日程</string>
+    <string name="search_card_hint">Search Garbage</string>
+    <string name="search_history">最近搜索过的垃圾</string>
+    <string name="searchresult_garbage">过期药品</string>
+    <string name="searchresult_garbage_throw_guidance">投放建议</string>
+    <string name="settingcalendar_date">垃圾回收日期</string>
+    <string name="but_settingcalendar_date">设置日期</string>
+    <string name="settingcalendar_time">垃圾回收时间</string>
+    <string name="but_settingcalendar_time">设置时间</string>
+    <string name="settingcalendar_address">垃圾回收地点</string>
+    <string name="settingcalendar_affirm">确定日程</string>
+    <string name="setCalendar">还没有日程？\n点击添加吧！</string>
+</resources>

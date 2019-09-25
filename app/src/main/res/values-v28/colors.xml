@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparentColor">#00000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="transformwhite">#CCF8F8FF</color>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colortxtgreen">#0E3A11</color>
+    <color name="colorsettxtgreen">#FF0D3B11</color>
+    <color name="homepage_deepgreen">#00675B</color>
+    <color name="homepage_background_green">#B3A3D7A6</color>
+    <color name="homepage_background_transfromgreen">#43A3D7A6</color>
+    <color name="homepage_lightgreen">#228B22</color>
+    <color name="homepage_linegreen">#009688</color>
+    <color name="backgroundgreen">#FFDEEFDF</color>
+    <color name="cardView_background_green">#FFDEEFDF</color>
+</resources>

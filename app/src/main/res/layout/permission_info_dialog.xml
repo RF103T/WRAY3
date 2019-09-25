@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/permissionInfoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/permission_dialog_info"
+        android:textColor="#FF000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/infoBox"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/infoBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/permissionInfoText">
+
+        <ImageView
+            android:id="@+id/cameraPermissionImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_photo_camera_36dp" />
+
+        <ImageView
+            android:id="@+id/readSDCardPermissionImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cameraPermissionInfo"
+            app:srcCompat="@drawable/ic_folder_open" />
+
+        <TextView
+            android:id="@+id/cameraPermissionInfo"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/camera_permission_info"
+            android:textColor="#FF000000"
+            app:layout_constraintLeft_toRightOf="@id/cameraPermissionImage"
+            app:layout_constraintTop_toBottomOf="@id/cameraPermissionName" />
+
+        <TextView
+            android:id="@+id/cameraPermissionName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="7dp"
+            android:text="@string/camera_permission_name"
+            android:textColor="#FF000000"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toRightOf="@id/cameraPermissionImage"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/readSDCardPermissionName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="22dp"
+            android:text="@string/read_sdcard_permission_name"
+            android:textColor="#FF000000"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toRightOf="@id/readSDCardPermissionImage"
+            app:layout_constraintTop_toBottomOf="@id/cameraPermissionInfo" />
+
+        <TextView
+            android:id="@+id/readSDCardPermissionInfo"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/read_sdcard_permission_info"
+            android:textColor="#FF000000"
+            app:layout_constraintLeft_toRightOf="@id/readSDCardPermissionImage"
+            app:layout_constraintTop_toBottomOf="@id/readSDCardPermissionName" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

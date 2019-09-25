@@ -1,0 +1,56 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="toolbarStyle">@style/ClubToolbar</item>
+        <item name="android:windowAnimationStyle">@style/noAnimation</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="ClubToolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="contentInsetStart">0dp</item><!-- 设置该属性解决Toolbar空白部分-->
+    </style>
+
+    <style name="noAnimation">
+<!--        <item name="android:activityOpenEnterAnimation">@null</item>-->
+<!--        <item name="android:activityOpenExitAnimation">@null</item>-->
+<!--        <item name="android:activityCloseEnterAnimation">@null</item>-->
+<!--        <item name="android:activityCloseExitAnimation">@null</item>-->
+<!--        <item name="android:taskOpenEnterAnimation">@null</item>-->
+<!--        <item name="android:taskOpenExitAnimation">@null</item>-->
+<!--        <item name="android:taskCloseEnterAnimation">@null</item>-->
+<!--        <item name="android:taskCloseExitAnimation">@null</item>-->
+<!--        <item name="android:taskToFrontEnterAnimation">@null</item>-->
+<!--        <item name="android:taskToFrontExitAnimation">@null</item>-->
+<!--        <item name="android:taskToBackEnterAnimation">@null</item>-->
+<!--        <item name="android:taskToBackExitAnimation">@null</item>-->
+    </style>
+
+
+    <style name="dialog_date">
+        <!--设置header部分显示的颜色-->
+        <item name="colorPrimary">@color/homepage_background_green</item>
+        <item name="colorPrimaryDark">@color/homepage_deepgreen</item>
+        <item name="colorAccent">@color/homepage_background_green</item>
+        <!--这个说明提示框是否有边框-->
+        <item name="android:windowFrame">@null</item>
+        <!--这个说明提示框是否是浮动的 这个很重要-->
+        <item name="android:windowIsFloating">true</item>
+        <!--设置dialog不全屏 貌似没有效果-->
+        <item name="android:windowFullscreen">false</item>
+        <!--这个说明提示框是滞是透明的-->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <!--除去title，如果在代码里面有其他设置会没效果的不过完全没效果-->
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <!--<!–背景色  如果除去背景色 @null –>-->
+        <!--<item name="android:windowBackground">@color/red_F1</item>-->
+        <!--按钮字体的颜色-->
+        <!--<item name="android:textColor">@color/dark_2B</item>-->
+    </style>
+
+</resources>
