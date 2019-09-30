@@ -39,6 +39,9 @@
             android:name=".SettingCalendarActivity"
             android:screenOrientation="portrait"></activity>
 
+        <activity android:name=".SearchResultActivity"
+            android:screenOrientation="portrait"></activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.wray2"

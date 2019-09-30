@@ -23,6 +23,7 @@ public class SearchActivity extends AppCompatActivity {
     private EditText searchGarbage;
     private ImageView search;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
