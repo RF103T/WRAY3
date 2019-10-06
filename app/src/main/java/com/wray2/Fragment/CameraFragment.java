@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.net.Uri;
+import android.nfc.cardemulation.HostNfcFService;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,6 +69,18 @@ public class CameraFragment extends Fragment
     private ImageView flashLightImageView;
     private ImageView choosePhotoImageView;
     private ImageView takePhotoImageView;
+
+    private final Handler handlerInitAfterTime = new Handler(new Handler.Callback()
+    {
+        @Override
+        public boolean handleMessage(Message msg)
+        {
+            initCamera();
+            return false;
+        }
+    });
+
+    private Thread thread;
 
     public CameraFragment()
     {
@@ -136,7 +151,6 @@ public class CameraFragment extends Fragment
                 openSysAlbum();
         });
 
-        initCamera();
         return view;
     }
 
@@ -153,14 +167,17 @@ public class CameraFragment extends Fragment
     public void onResume()
     {
         activity.hideSystemBar();
-        //todo:怀疑造成内存泄漏
-        cameraView.bindToLifecycle((LifecycleOwner)this);
+        //通过添加加载延迟，让相机在界面划过时不会加载
+        thread = new Thread(new CalTimeRunnable(handlerInitAfterTime, 600));
+        thread.start();
         super.onResume();
     }
 
     @Override
     public void onPause()
     {
+        if (thread.isAlive())
+            thread.interrupt();
         activity.showSystemBar();
         super.onPause();
     }
@@ -257,5 +274,25 @@ public class CameraFragment extends Fragment
         intent.putExtra(MediaStore.EXTRA_OUTPUT, reaultUri);
 
         startActivityForResult(intent, CROP_FLAG);
+    }
+
+    class CalTimeRunnable implements Runnable
+    {
+        private Handler handler;
+
+        private int times;
+
+        public CalTimeRunnable(Handler handler, int times)
+        {
+            this.handler = handler;
+            this.times = times;
+        }
+
+        @Override
+        public void run()
+        {
+            handler.sendEmptyMessageDelayed(1, times);
+        }
+
     }
 }

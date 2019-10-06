@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -74,24 +75,6 @@ public class MyTabBar implements View.OnClickListener
         adapter = new ViewPager2Adapter(activity);
         viewPager = activity.findViewById(R.id.tabBar_viewPager);
         viewPager.setAdapter(adapter);
-
-        //页面切换效果
-//        viewPager.setPageTransformer((page, position) ->
-//        {
-//            if (position < -1 || position > 1)
-//                page.setAlpha(0);
-//            else
-//            {
-//                if (position <= -0.5 || position >= 0.5)
-//                    page.setAlpha(0);
-//                else if (position == 0)
-//                    page.setAlpha(1);
-//                else if (position > -0.5 && position < 0)
-//                    page.setAlpha(1 + position * 2);
-//                else if (position < 0.5 && position > 0)
-//                    page.setAlpha(1 - position * 2);
-//            }
-//        });
 
         //ViewPager2和TabBar的联动切换效果
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback()
@@ -179,6 +162,36 @@ public class MyTabBar implements View.OnClickListener
         return isFakeDrag || viewPager.isFakeDragging();
     }
 
+    public int getNowSelectedFragment()
+    {
+        return nowSelectedIndex;
+    }
+
+    public void setSwitchListener(FragmentPagerSwitchListener callback)
+    {
+        this.switchCallback = callback;
+    }
+
+    //直接设置Position，如果设置到预加载页面之外，TabBar动画会出错
+    public void setCurrentPosition(int position)
+    {
+        viewPager.setCurrentItem(position);
+    }
+
+    //循环递增减设置Position，避免setCurrentPosition(position:int):void的问题
+    public void fakeDragToPosition(int position)
+    {
+        isFakeDrag = true;
+        int start = viewPager.getCurrentItem();
+        if (start > position)
+            for (int i = start - 1; i >= position; i--)
+                viewPager.setCurrentItem(i);
+        else
+            for (int i = start + 1; i <= position; i++)
+                viewPager.setCurrentItem(i);
+        isFakeDrag = false;
+    }
+
     public void initTabBar()
     {
         if (!isTabBarInit)
@@ -198,31 +211,6 @@ public class MyTabBar implements View.OnClickListener
             initAnimatorList();
             isTabBarInit = true;
         }
-    }
-
-    //直接设置Position，如果设置到预加载页面之外，TabBar动画会出错
-    public void setCurrentPosition(int position)
-    {
-        viewPager.setCurrentItem(position);
-    }
-
-    //循环递增设置Position，避免setCurrentPosition(position:int):void的问题
-    public void fakeDragToPosition(int position)
-    {
-        isFakeDrag = true;
-        int start = viewPager.getCurrentItem();
-        if (start > position)
-            for (int i = start - 1; i >= position; i--)
-                viewPager.setCurrentItem(position);
-        else
-            for (int i = start + 1; i <= position; i++)
-                viewPager.setCurrentItem(position);
-        isFakeDrag = false;
-    }
-
-    public void setSwitchListener(FragmentPagerSwitchListener callback)
-    {
-        this.switchCallback = callback;
     }
 
     private void initAnimatorList()
@@ -290,6 +278,11 @@ public class MyTabBar implements View.OnClickListener
         }
     }
 
+    public void fakeClick(int index)
+    {
+        clickAnimation(viewPager.getCurrentItem(), index);
+    }
+
     private void clickAnimation(int lastSelectedIndex, int nowSelectedIndex)
     {
         //动画实现
@@ -347,7 +340,8 @@ public class MyTabBar implements View.OnClickListener
 
         isAnimationPlaying = true;
         set.start();
-        viewPager.setCurrentItem(nowSelectedIndex);
+        //viewPager.setCurrentItem(nowSelectedIndex);
+        fakeDragToPosition(nowSelectedIndex);
         lastPosition = nowSelectedIndex;
     }
 }

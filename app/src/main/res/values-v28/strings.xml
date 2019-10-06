@@ -72,4 +72,32 @@
     <string name="settingcalendar_address">垃圾回收地点</string>
     <string name="settingcalendar_affirm">确定日程</string>
     <string name="setCalendar">还没有日程？\n点击添加吧！</string>
+
+    <!--设置界面-->
+    <string-array name="day_entries">
+        <item>1天</item>
+        <item>2天</item>
+        <item>3天</item>
+        <item>4天</item>
+        <item>5天</item>
+    </string-array>
+    <string-array name="day_entries_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string name="how_to_run_background"></string>
+
+    <!--ShortCuts-->
+    <string name="shortcuts_add_calendar_short">新增日程</string>
+    <string name="shortcuts_add_calendar_long">新增垃圾倾倒日程</string>
+    <string name="shortcuts_add_calendar_disable">暂时无法新增日程</string>
+    <string name="shortcuts_camera_short">拍照识别</string>
+    <string name="shortcuts_camera_long">拍照识别</string>
+    <string name="shortcuts_camera_disable">拍照识别不可用</string>
+    <string name="shortcuts_search_short">搜索</string>
+    <string name="shortcuts_search_long">搜索</string>
+    <string name="shortcuts_search_disable">暂时无法搜索</string>
 </resources>

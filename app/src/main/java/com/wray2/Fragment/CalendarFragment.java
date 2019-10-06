@@ -87,10 +87,9 @@ public class CalendarFragment extends Fragment
             public void onItemClick(View view, int position)
             {
                 Intent intent1 = new Intent(activity, SettingCalendarActivity.class);
-                Pair<View, String> pair;
                 if (calendarAdapter.getItemViewType(position) == 1)
                 {
-                    pair = Pair.create(((View)view.findViewById(R.id.addCalendarItemCardView)), "constraintLayout");
+                    startActivityForResult(intent1, 1);
                 }
                 else
                 {
@@ -99,9 +98,9 @@ public class CalendarFragment extends Fragment
                     intent1.putExtra("alter_address", CalendarManager.calendarManager.getRealAlertList().get(position).getAddress());
                     intent1.putExtra("position", position);
                     intent1.putExtra("key", 1);
-                    pair = Pair.create(((View)view.findViewById(R.id.calendarItemCardView)), "constraintLayout");
+                    Pair<View, String> pair = Pair.create(((View)view.findViewById(R.id.calendarItemCardView)), "constraintLayout");
+                    startActivityForResult(intent1, 1, ActivityOptions.makeSceneTransitionAnimation(activity, pair).toBundle());
                 }
-                startActivityForResult(intent1, 1, ActivityOptions.makeSceneTransitionAnimation(activity, pair).toBundle());
             }
         });
         calendarList.addOnItemTouchListener(helpListItemTouchListener);

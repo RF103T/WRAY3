@@ -1,0 +1,45 @@
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <shortcut
+        android:shortcutId="addCalendar"
+        android:enabled="true"
+        android:icon="@drawable/ic_add"
+        android:shortcutShortLabel="@string/shortcuts_add_calendar_short"
+        android:shortcutLongLabel="@string/shortcuts_add_calendar_long"
+        android:shortcutDisabledMessage="@string/shortcuts_add_calendar_disable">
+        <intent
+            android:action="intent.action.shortcuts.calendar"
+            android:targetPackage="com.wray2"
+            android:targetClass="com.wray2.SettingCalendarActivity" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="camera"
+        android:enabled="true"
+        android:icon="@drawable/ic_camera_black"
+        android:shortcutShortLabel="@string/shortcuts_camera_short"
+        android:shortcutLongLabel="@string/shortcuts_camera_long"
+        android:shortcutDisabledMessage="@string/shortcuts_camera_disable">
+        <intent
+            android:action="intent.action.shortcuts.camera"
+            android:targetPackage="com.wray2"
+            android:targetClass="com.wray2.FragmentsActivity" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="search"
+        android:enabled="true"
+        android:icon="@drawable/ic_search_black"
+        android:shortcutShortLabel="@string/shortcuts_search_short"
+        android:shortcutLongLabel="@string/shortcuts_search_long"
+        android:shortcutDisabledMessage="@string/shortcuts_search_disable">
+        <intent
+            android:action="intent.action.shortcuts.search"
+            android:targetPackage="com.wray2"
+            android:targetClass="com.wray2.FragmentsActivity" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+
+</shortcuts>

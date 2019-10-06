@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.wray2.FragmentsActivity;
 import com.wray2.R;
 
 public class SettingFragment extends Fragment
@@ -20,6 +21,10 @@ public class SettingFragment extends Fragment
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private FragmentsActivity activity;
+
+    private PreferenceFragment preferenceFragment;
 
     public SettingFragment()
     {
@@ -51,8 +56,9 @@ public class SettingFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.activity_setting_calendar, container, false);
+        View view = inflater.inflate(R.layout.fragment_setting, container, false);
         //布局创建
+        preferenceFragment = (PreferenceFragment)activity.getSupportFragmentManager().findFragmentById(R.id.setting_fragment);
         return view;
     }
 
@@ -68,6 +74,7 @@ public class SettingFragment extends Fragment
     public void onAttach(Context context)
     {
         super.onAttach(context);
+        activity = (FragmentsActivity)context;
         if (context instanceof OnFragmentInteractionListener)
         {
             mListener = (OnFragmentInteractionListener)context;

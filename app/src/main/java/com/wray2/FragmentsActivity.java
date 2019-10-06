@@ -57,6 +57,21 @@ public class FragmentsActivity extends FragmentActivity
     }
 
     @Override
+    protected void onStart()
+    {
+        super.onStart();
+        Intent intent = getIntent();
+        String actionFlag = intent.getAction();
+        if (actionFlag != null)
+        {
+            if (actionFlag.equals("intent.action.shortcuts.camera"))
+                tabBar.fakeDragToPosition(2);
+            else if (actionFlag.equals("intent.action.shortcuts.search"))
+                tabBar.fakeDragToPosition(1);
+        }
+    }
+
+    @Override
     protected void onResume()
     {
         super.onResume();
@@ -79,12 +94,21 @@ public class FragmentsActivity extends FragmentActivity
     }
 
     @Override
+    public void onBackPressed()
+    {
+        if (tabBar.getNowSelectedFragment() > 0)
+            tabBar.fakeClick(0);
+        else
+            super.onBackPressed();
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == PermissionManager.PERMISSION_SETTING_FLAG)
+        if (requestCode == PermissionManager.PERMISSION_SETTING_FLAG)
         {
-            if(!PermissionManager.permissionManager.checkPermission("android.permission.CAMERA"))
+            if (!PermissionManager.permissionManager.checkPermission("android.permission.CAMERA"))
                 PermissionManager.permissionManager.askForPermission("android.permission.CAMERA", PermissionManager.CAMERA_PERMISSION, (dialog, which) -> FragmentsActivity.this.finish());
         }
     }

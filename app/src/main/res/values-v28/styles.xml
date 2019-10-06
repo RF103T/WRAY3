@@ -2,35 +2,28 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorPrimary">@color/colorPrimary</item>
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:colorAccent">@color/colorAccent</item>
+        <item name="android:colorSecondary">@color/colorSecondary</item>
         <item name="toolbarStyle">@style/ClubToolbar</item>
-        <item name="android:windowAnimationStyle">@style/noAnimation</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:navigationBarColor">#00000000</item>
         <item name="android:windowLightNavigationBar">true</item>
+
+        <item name="android:windowAnimationStyle">@style/WindowAnimation</item>
+    </style>
+
+    <style name="WindowAnimation">
+        <item name="android:activityOpenEnterAnimation">@anim/activity_open_enter_anim</item>
+        <item name="android:activityOpenExitAnimation">@anim/activity_open_exit_anim</item>
+        <item name="android:activityCloseEnterAnimation">@anim/activity_close_enter_anim</item>
+        <item name="android:activityCloseExitAnimation">@anim/activity_close_exit_anim</item>
     </style>
 
     <style name="ClubToolbar" parent="Widget.AppCompat.Toolbar">
         <item name="contentInsetStart">0dp</item><!-- 设置该属性解决Toolbar空白部分-->
     </style>
-
-    <style name="noAnimation">
-<!--        <item name="android:activityOpenEnterAnimation">@null</item>-->
-<!--        <item name="android:activityOpenExitAnimation">@null</item>-->
-<!--        <item name="android:activityCloseEnterAnimation">@null</item>-->
-<!--        <item name="android:activityCloseExitAnimation">@null</item>-->
-<!--        <item name="android:taskOpenEnterAnimation">@null</item>-->
-<!--        <item name="android:taskOpenExitAnimation">@null</item>-->
-<!--        <item name="android:taskCloseEnterAnimation">@null</item>-->
-<!--        <item name="android:taskCloseExitAnimation">@null</item>-->
-<!--        <item name="android:taskToFrontEnterAnimation">@null</item>-->
-<!--        <item name="android:taskToFrontExitAnimation">@null</item>-->
-<!--        <item name="android:taskToBackEnterAnimation">@null</item>-->
-<!--        <item name="android:taskToBackExitAnimation">@null</item>-->
-    </style>
-
 
     <style name="dialog_date">
         <!--设置header部分显示的颜色-->

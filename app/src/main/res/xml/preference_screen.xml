@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:key="function"
+        android:title="功能">
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="show_calendar"
+            android:summary="在通知栏显示最近日程"
+            android:title="启用通知" />
+
+        <ListPreference
+            android:defaultValue="3"
+            android:key="show_calendar_num"
+            android:summary="预先显示3天的日程"
+            android:title="预先显示日程的天数"
+            android:entries="@array/day_entries"
+            android:entryValues="@array/day_entries_values"/>
+
+        <Preference
+            android:key="how_calendar_background"
+            android:summary="怎么让APP尽可能在后台更新通知"
+            android:title="如何保留通知" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="appearance"
+        android:title="外观">
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="enable_launch_anim"
+            android:summary="开启APP时是否显示启动页"
+            android:title="显示启动页" />
+
+        <SwitchPreference
+            android:key="dark_mode"
+            android:summary="使用暗色主题"
+            android:title="黑暗模式" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="others"
+        android:title="其他">
+
+        <Preference
+            android:key="show_permission_explanation"
+            android:title="APP为什么要申请权限？" />
+
+        <Preference
+            android:key="show_app_info"
+            android:title="关于" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
