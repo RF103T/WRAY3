@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ic_small" tools:ignore="StateListReachable" />
+    <item android:state_selected="true"
+          android:drawable="@drawable/ic_small_choose"/>
+    <item android:state_selected="false"
+        android:drawable="@drawable/ic_small"/>
+    <item android:state_focused="true" android:drawable="@drawable/ic_small_choose"/>
+</selector>

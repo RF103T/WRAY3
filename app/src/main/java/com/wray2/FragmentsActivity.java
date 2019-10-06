@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -162,5 +163,9 @@ public class FragmentsActivity extends FragmentActivity
                 | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
         decorView.setSystemUiVisibility(option);
         this.getWindow().setStatusBarColor(Color.TRANSPARENT);
+    }
+
+    protected void onRestart(){
+        super.onRestart();
     }
 }

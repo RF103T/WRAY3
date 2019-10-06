@@ -47,7 +47,7 @@ public class mValsUtils {
 //    }
 
     //读取数据
-    public LinkedList<String> readmValsList(Context context){
+    public static LinkedList<String> readmValsList(Context context){
         LinkedList<String> mValsList = new LinkedList<>();
         SharedPreferences sp = context.getSharedPreferences("SP_mVals_List",Context.MODE_PRIVATE);
         String alertListJson = sp.getString("Number_Of_mValsList","");//取出key为第一个参数的值，并将第二个参数作为默认值
@@ -59,7 +59,7 @@ public class mValsUtils {
     }
 
     //更新数据
-    public void upDatemValsList(Context context,String getString){
+    public static void upDatemValsList(Context context,String getString){
         LinkedList<String> mValsList = new LinkedList<>();
         SharedPreferences sp = context.getSharedPreferences("SP_mVals_List",Context.MODE_PRIVATE);
         String alertListJson = sp.getString("Number_Of_mValsList","");//取出key为第一个参数的值，并将第二个参数作为默认值
@@ -95,7 +95,7 @@ public class mValsUtils {
     }
 
     //删除数据
-    public void deleteAlertList(Context context){
+    public static void deletemValsList(Context context){
         SharedPreferences sp = context.getSharedPreferences("SP_mVals_List",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.remove("Number_Of_mValsList");
@@ -103,7 +103,7 @@ public class mValsUtils {
     }
 
     //判断重复
-    public boolean isRename(String str,LinkedList<String> mVals){
+    public static boolean isRename(String str,LinkedList<String> mVals){
         for (int i = 0; i < mVals.size();i++){
             if (str.equals(mVals.get(i))){
                 return true;

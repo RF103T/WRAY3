@@ -78,6 +78,17 @@
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"/>
 
+        <ImageView
+            android:id="@+id/img_search_deletehistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:src="@drawable/ic_delete_black_24dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="15dp"/>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

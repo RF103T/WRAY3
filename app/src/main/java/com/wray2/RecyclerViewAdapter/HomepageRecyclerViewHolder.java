@@ -10,13 +10,15 @@ import com.wray2.R;
 
 public class HomepageRecyclerViewHolder extends RecyclerView.ViewHolder {
 
-    TextView dateTime;
-    TextView address;
+    TextView time;
+    TextView sort;
+    TextView date;
 
     public HomepageRecyclerViewHolder(@NonNull View itemView){
         super(itemView);
-        dateTime = itemView.findViewById(R.id.txt_item_time);
-        address = itemView.findViewById(R.id.txt_item_address);
+        date = itemView.findViewById(R.id.txt_item_date);
+        time = itemView.findViewById(R.id.txt_item_time);
+        sort = itemView.findViewById(R.id.txt_item_sort);
     }
 
 }
