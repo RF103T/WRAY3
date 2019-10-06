@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,6 +22,7 @@ import com.wray2.FragmentsActivity;
 import com.wray2.Manager.CalendarManager;
 import com.wray2.R;
 import com.wray2.RecyclerViewAdapter.CalendarRecyclerViewAdapter;
+import com.wray2.RecyclerViewAdapter.CalendarRecyclerViewItemTouchHelperCallback;
 import com.wray2.RecyclerViewAdapter.HelpListItemTouchListener;
 import com.wray2.SettingCalendarActivity;
 
@@ -94,9 +96,10 @@ public class CalendarFragment extends Fragment
                 }
                 else
                 {
-                    intent1.putExtra("alter_date", CalendarManager.calendarManager.getRealAlertList().get(position).getDate());
-                    intent1.putExtra("alter_time", CalendarManager.calendarManager.getRealAlertList().get(position).getTime());
-                    intent1.putExtra("alter_address", CalendarManager.calendarManager.getRealAlertList().get(position).getAddress());
+                    intent1.putExtra("alter_dates", CalendarManager.calendarManager.getRealAlertList().get(position).getDates());
+                    intent1.putExtra("alter_starttime", CalendarManager.calendarManager.getRealAlertList().get(position).getStarttime());
+                    intent1.putExtra("alter_endtime", CalendarManager.calendarManager.getRealAlertList().get(position).getEndtime());
+                    intent1.putExtra("alter_sorts",CalendarManager.calendarManager.getRealAlertList().get(position).getSorts());
                     intent1.putExtra("position", position);
                     intent1.putExtra("key", 1);
                     pair = Pair.create(((View)view.findViewById(R.id.calendarItemCardView)), "constraintLayout");
@@ -105,6 +108,9 @@ public class CalendarFragment extends Fragment
             }
         });
         calendarList.addOnItemTouchListener(helpListItemTouchListener);
+        CalendarRecyclerViewItemTouchHelperCallback calendarRecyclerViewItemTouchHelperCallback = new CalendarRecyclerViewItemTouchHelperCallback(ItemTouchHelper.UP |ItemTouchHelper.DOWN,ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT,calendarAdapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(calendarRecyclerViewItemTouchHelperCallback);
+        touchHelper.attachToRecyclerView(calendarList);
 
         //todo:删除日程的选项
 

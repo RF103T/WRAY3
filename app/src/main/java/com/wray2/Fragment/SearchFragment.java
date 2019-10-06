@@ -85,7 +85,7 @@ public class SearchFragment extends Fragment
         {
             if (!searchEditText.getText().toString().isEmpty()) { //不可以getText != null,返回类型是Editable
                 String str = searchEditText.getText().toString();
-                Intent intent1 = new Intent(getActivity(), SearchResultActivity.class);
+                Intent intent1 = new Intent(activity, SearchResultActivity.class);
                 str = searchEditText.getText().toString();
                 intent1.putExtra("str", str);
                 startActivity(intent1);

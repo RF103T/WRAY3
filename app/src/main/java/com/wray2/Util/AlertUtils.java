@@ -87,12 +87,38 @@ public class AlertUtils
         editor.apply();
     }
 
+    public static void updateAllAlertList(Context context,LinkedList<Alert> alerts){
+        SharedPreferences sp = context.getSharedPreferences("SP_Alert_List", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        Gson gson = new Gson();
+        String jsonStr = gson.toJson(alerts);
+        editor.remove("Number_Of_AlertList");
+        editor.putString("Number_Of_AlertList", jsonStr);
+        editor.apply();
+    }
+
     //删除数据
-    public static void deleteAlertList(Context context)
+    public static void deleteallAlertList(Context context)
     {
         SharedPreferences sp = context.getSharedPreferences("SP_Alert_List", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.remove("Number_Of_AlertList");
+        editor.apply();
+
+    }
+
+    public static void deleteAlertList(Context context,int position)
+    {
+        LinkedList<Alert> alertList;
+        SharedPreferences sp = context.getSharedPreferences("SP_Alert_List", Context.MODE_PRIVATE);
+        String alertListJson = sp.getString("Number_Of_AlertList", "");
+        Gson gson = new Gson();
+        alertList = gson.fromJson(alertListJson, new TypeToken<LinkedList<Alert>>(){}.getType());
+        alertList.remove(position);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.remove("Number_Of_AlertList");
+        String jsonStr = gson.toJson(alertList);
+        editor.putString("Number_Of_AlertList", jsonStr);
         editor.apply();
     }
 }

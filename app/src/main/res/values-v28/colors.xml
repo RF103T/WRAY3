@@ -15,4 +15,5 @@
     <color name="homepage_linegreen">#009688</color>
     <color name="backgroundgreen">#FFDEEFDF</color>
     <color name="cardView_background_green">#FFDEEFDF</color>
+    <color name="grey_of_line">#40979797</color>
 </resources>

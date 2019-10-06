@@ -44,8 +44,9 @@ public class CalendarRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof CalendarRecyclerViewHolder) {
             CalendarRecyclerViewHolder calendarRecyclerViewHolder = (CalendarRecyclerViewHolder) holder;
-            calendarRecyclerViewHolder.calendarTime.setText(calendars.get(position).getTime());
-            calendarRecyclerViewHolder.calendarAddress.setText(calendars.get(position).getAddress());
+            calendarRecyclerViewHolder.calendarDate.setText(calendars.get(position).getDate());
+            calendarRecyclerViewHolder.calendarSorts.setText(calendars.get(position).getSort());
+            calendarRecyclerViewHolder.calendarTime.setText(calendars.get(position).getDatetime());
         }
     }
 
@@ -56,9 +57,9 @@ public class CalendarRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
 
     @Override
     public int getItemViewType(int position) {
-        if (calendars.get(position).getAddress().equals("ADD_NEW") &&
-                calendars.get(position).getDate().equals("NONE") &&
-                calendars.get(position).getTime().equals("NONE")) {
+        if (calendars.get(position).getDate().equals("ADD_NEW") &&
+                calendars.get(position).getStarttime().equals("NONE") &&
+                calendars.get(position).getEndtime().equals("NONE")) {
             return 1;
         }
         return 0;

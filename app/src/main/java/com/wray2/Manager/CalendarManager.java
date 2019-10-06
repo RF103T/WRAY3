@@ -5,9 +5,7 @@ import android.content.Context;
 import com.wray2.Class.Alert;
 import com.wray2.Util.AlertUtils;
 
-import java.util.Date;
 import java.util.LinkedList;
-import java.util.List;
 
 public class CalendarManager
 {
@@ -27,7 +25,7 @@ public class CalendarManager
         alertList = new LinkedList<Alert>();
         this.context = context.getApplicationContext();
         alertList = AlertUtils.readAlertList(context);
-        alertList.add(new Alert("NONE","NONE","ADD_NEW"));
+        alertList.add(new Alert("ADD_NEW","NONE","NONE"));
     }
 
     public LinkedList<Alert> getRealAlertList()
@@ -54,9 +52,35 @@ public class CalendarManager
         AlertUtils.upDateAlertList(context, position, alert);
     }
 
-    public void removeAlert(int position, Alert alert)
+    public void removeallAlert(int position)
+    {
+        alertList.clear();
+        AlertUtils.deleteallAlertList(context);
+    }
+
+    public void removeAlert(int position)
     {
         alertList.remove(position);
-        AlertUtils.deleteAlertList(context);
+        AlertUtils.deleteAlertList(context,position);
+    }
+
+    public void moveAlert(int fromPosition,int toPosition){
+        if (fromPosition < toPosition){
+            //分别把中间所有的item的位置重新交换
+            for (int i = fromPosition; i < toPosition; i++){
+                Alert alert = new Alert();
+                alert = alertList.get(i+1);
+                alertList.set(i+1,alertList.get(i));
+                alertList.set(i,alert);
+            }
+        }else {
+            for (int i = fromPosition; i > toPosition; i--){
+                Alert alert = new Alert();
+                alert = alertList.get(i);
+                alertList.set(i,alertList.get(i-1));
+                alertList.set(i-1,alert);
+            }
+        }
+        AlertUtils.updateAllAlertList(context,CalendarManager.calendarManager.getAlertList());
     }
 }

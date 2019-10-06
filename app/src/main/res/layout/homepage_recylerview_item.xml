@@ -8,7 +8,7 @@
     >
 
         <TextView
-            android:id="@+id/txt_item_time"
+            android:id="@+id/txt_item_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/homepage_alert_time1"
@@ -18,14 +18,26 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
             android:textStyle="italic"/>
+
         <TextView
-            android:id="@+id/txt_item_address"
+            android:id="@+id/txt_item_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/homepage_alert_address1"
+            android:text="@string/homepage_alert_time2"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@+id/txt_item_time"
-            app:layout_constraintLeft_toLeftOf="@+id/txt_item_time"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/txt_item_date"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="italic"/>
+        <TextView
+            android:id="@+id/txt_item_sort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/homepage_alert_sort1"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/txt_item_date"
+            app:layout_constraintLeft_toLeftOf="@+id/txt_item_date"
             android:layout_marginTop="6dp"
             android:textStyle="italic" />
 

@@ -49,8 +49,8 @@ public class CalendarActivity extends AppCompatActivity
             {
                 Intent intent1 = new Intent(CalendarActivity.this, SettingCalendarActivity.class);
                 intent1.putExtra("alter_date", Alertdatas.get(position).getDate());
-                intent1.putExtra("alter_time", Alertdatas.get(position).getTime());
-                intent1.putExtra("alter_address", Alertdatas.get(position).getAddress());
+                intent1.putExtra("alter_time", Alertdatas.get(position).getStarttime());
+                intent1.putExtra("alter_address", Alertdatas.get(position).getEndtime());
                 intent1.putExtra("position", position);
                 intent1.putExtra("key", 1);
                 startActivityForResult(intent1, 1);
