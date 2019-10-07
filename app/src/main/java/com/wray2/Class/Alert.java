@@ -15,6 +15,7 @@ public class Alert implements Parcelable, Serializable {
     private int[] sorts;
     private static String[] datesname = new String[]{"周日","周一","周二","周三","周四","周五","周六"};
     private static String[] sortssname = new String[]{"可回收","干垃圾","湿垃圾","有害垃圾"};
+    private int position;
 
     public Alert() {
     }
@@ -90,6 +91,14 @@ public class Alert implements Parcelable, Serializable {
 
     public void setSorts(int[] sorts) {
         this.sorts = sorts;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 
     @Override

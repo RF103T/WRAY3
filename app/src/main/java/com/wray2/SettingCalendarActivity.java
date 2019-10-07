@@ -90,7 +90,7 @@ public class SettingCalendarActivity extends AppCompatActivity implements View.O
         {
             dates = intent.getIntArrayExtra("alter_dates");
             rubbishSorts = intent.getIntArrayExtra("alter_sorts");
-            String get_starttime = intent.getStringExtra("alter_startstime");
+            String get_starttime = intent.getStringExtra("alter_starttime");
             String get_endtime = intent.getStringExtra("alter_endtime");
             endTimeText.setText(get_endtime);
             startTimeText.setText(get_starttime);
@@ -133,7 +133,10 @@ public class SettingCalendarActivity extends AppCompatActivity implements View.O
         if (id == R.id.txt_setting_of_start)
         {
             Calendar calendar = Calendar.getInstance(Locale.SIMPLIFIED_CHINESE);
-            TimePickerDialog startDialog = new TimePickerDialog(this, R.style.dialog_date, this,
+            TimePickerDialog startDialog = new TimePickerDialog(this, R.style.dialog_date, (view, hourOfDay, minute) -> {
+                String desc = String.format(Locale.CHINA, "%d:%02d", hourOfDay, minute);
+                startTimeText.setText(desc);
+            },
                     calendar.get(Calendar.HOUR_OF_DAY),
                     calendar.get(Calendar.MINUTE), true);
             startDialog.show();
@@ -198,9 +201,8 @@ public class SettingCalendarActivity extends AppCompatActivity implements View.O
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute)
     {
-        String desc = String.format(Locale.CHINA, "%d:%02d", hourOfDay, minute);
-
-        startTimeText.setText(desc);
+            String desc = String.format(Locale.CHINA, "%d:%02d", hourOfDay, minute);
+            endTimeText.setText(desc);
     }
 
     public void showSystemBar()
@@ -259,6 +261,7 @@ public class SettingCalendarActivity extends AppCompatActivity implements View.O
         for (int i =0; i<7; i++){
             if (dates[i] == 1){
                 datebuttons[i].setBackground(this.getDrawable(ic_small_choose));
+                datebuttons[i].setTextColor(Color.WHITE);
             }
         }
     }
