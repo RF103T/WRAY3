@@ -1,18 +1,16 @@
 package com.wray2;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
-import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.PermissionChecker;
 import androidx.fragment.app.FragmentActivity;
 
 import com.wray2.CustomComponent.FragmentTab.MyTabBar;
@@ -21,7 +19,6 @@ import com.wray2.Fragment.CameraFragment;
 import com.wray2.Fragment.HomepageFragment;
 import com.wray2.Fragment.SearchFragment;
 import com.wray2.Fragment.SettingFragment;
-import com.wray2.Interface.CancelDialogCallback;
 import com.wray2.Manager.PermissionManager;
 
 public class FragmentsActivity extends FragmentActivity
@@ -33,6 +30,8 @@ public class FragmentsActivity extends FragmentActivity
 {
 
     private MyTabBar tabBar;
+
+    private boolean isDealShortCutsAction = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -61,15 +60,6 @@ public class FragmentsActivity extends FragmentActivity
     protected void onStart()
     {
         super.onStart();
-        Intent intent = getIntent();
-        String actionFlag = intent.getAction();
-        if (actionFlag != null)
-        {
-            if (actionFlag.equals("intent.action.shortcuts.camera"))
-                tabBar.fakeDragToPosition(2);
-            else if (actionFlag.equals("intent.action.shortcuts.search"))
-                tabBar.fakeDragToPosition(1);
-        }
     }
 
     @Override
@@ -85,6 +75,27 @@ public class FragmentsActivity extends FragmentActivity
     {
         if (!tabBar.isTabBarInit())
             tabBar.initTabBar();
+        if(!isDealShortCutsAction)
+        {
+            Intent intent = getIntent();
+            String actionFlag = intent.getAction();
+            if (actionFlag != null)
+            {
+                switch (actionFlag)
+                {
+                    case "intent.action.shortcuts.camera":
+                        tabBar.fakeDragToPosition(2);
+                        break;
+                    case "intent.action.shortcuts.search":
+                        tabBar.fakeDragToPosition(1);
+                        break;
+                    case "intent.action.shortcuts.calendar":
+                        tabBar.fakeDragToPosition(3);
+                        break;
+                }
+            }
+            isDealShortCutsAction = true;
+        }
         super.onWindowFocusChanged(hasFocus);
     }
 
@@ -97,7 +108,7 @@ public class FragmentsActivity extends FragmentActivity
     @Override
     public void onBackPressed()
     {
-        if (tabBar.getNowSelectedFragment() > 0)
+        if (tabBar.getNowSelectedFragmentIndex() > 0)
             tabBar.fakeClick(0);
         else
             super.onBackPressed();
@@ -165,7 +176,8 @@ public class FragmentsActivity extends FragmentActivity
         this.getWindow().setStatusBarColor(Color.TRANSPARENT);
     }
 
-    protected void onRestart(){
+    protected void onRestart()
+    {
         super.onRestart();
     }
 }

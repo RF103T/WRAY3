@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -79,6 +80,7 @@ public class MyTabBar implements View.OnClickListener
         //ViewPager2和TabBar的联动切换效果
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback()
         {
+            //todo:ViewPager2似乎有bug，有些情况下调用了onPageScrollStateChanged以后还会调用一次onPageScrolled
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
             {
@@ -162,9 +164,14 @@ public class MyTabBar implements View.OnClickListener
         return isFakeDrag || viewPager.isFakeDragging();
     }
 
-    public int getNowSelectedFragment()
+    public int getNowSelectedFragmentIndex()
     {
         return nowSelectedIndex;
+    }
+
+    public Fragment getNowSelectedFragment()
+    {
+        return adapter.getNowFragment();
     }
 
     public void setSwitchListener(FragmentPagerSwitchListener callback)
@@ -237,7 +244,7 @@ public class MyTabBar implements View.OnClickListener
     @Override
     public void onClick(View v)
     {
-        if (!isAnimationPlaying && !isPageScrolling)
+        if (!isAnimationPlaying)//&& !isPageScrolling
         {
             lastSelectedIndex = nowSelectedIndex;
             switch (v.getId())

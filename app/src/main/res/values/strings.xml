@@ -100,9 +100,9 @@
     </string-array>
 
     <!--ShortCuts-->
-    <string name="shortcuts_add_calendar_short">新增日程</string>
-    <string name="shortcuts_add_calendar_long">新增垃圾倾倒日程</string>
-    <string name="shortcuts_add_calendar_disable">暂时无法新增日程</string>
+    <string name="shortcuts_manager_calendar_short">日程表</string>
+    <string name="shortcuts_manager_calendar_long">日程表</string>
+    <string name="shortcuts_manager_calendar_disable">暂时无法进入日程表</string>
     <string name="shortcuts_camera_short">拍照识别</string>
     <string name="shortcuts_camera_long">拍照识别</string>
     <string name="shortcuts_camera_disable">拍照识别不可用</string>

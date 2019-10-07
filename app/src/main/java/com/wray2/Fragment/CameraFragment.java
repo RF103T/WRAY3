@@ -223,11 +223,15 @@ public class CameraFragment extends Fragment
 
     private void initCamera()
     {
-        cameraView.setCaptureMode(CameraView.CaptureMode.IMAGE);
-        cameraView.setCameraLensFacing(CameraX.LensFacing.BACK);
-        cameraView.setPinchToZoomEnabled(false);
-        cameraView.setScaleType(CameraView.ScaleType.CENTER_CROP);
-        cameraView.bindToLifecycle((LifecycleOwner)this);
+        //拍照权限
+        if (PermissionManager.permissionManager.checkPermission("android.permission.CAMERA"))
+        {
+            cameraView.setCaptureMode(CameraView.CaptureMode.IMAGE);
+            cameraView.setCameraLensFacing(CameraX.LensFacing.BACK);
+            cameraView.setPinchToZoomEnabled(false);
+            cameraView.setScaleType(CameraView.ScaleType.CENTER_CROP);
+            cameraView.bindToLifecycle((LifecycleOwner)this);
+        }
     }
 
     /**
