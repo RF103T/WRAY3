@@ -41,16 +41,25 @@ public class CalendarRecyclerViewItemTouchHelperCallback extends ItemTouchHelper
     }
 
     @Override
+    public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder)
+    {
+        if(viewHolder.getAdapterPosition() < recyclerView.getAdapter().getItemCount() - 1)
+            return makeMovementFlags(ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT | ItemTouchHelper.UP | ItemTouchHelper.DOWN,ItemTouchHelper.START | ItemTouchHelper.END);
+        else
+            return makeMovementFlags(0,0);
+    }
+
+    @Override
     public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
         //得到拖动viewholder的position
         int fromPosition = viewHolder.getAdapterPosition();
         //得到目标viewholder的position
         int toPosition = target.getAdapterPosition();
-        if (viewHolder!= CalendarRecyclerViewAddHolder && target != CalendarRecyclerViewAddHolder){
+        int maxItemIndex = mBookShelfAdapter.getItemCount() - 1;
+        if (fromPosition < maxItemIndex && toPosition < maxItemIndex){
             CalendarManager.calendarManager.moveAlert(fromPosition,toPosition);
             mBookShelfAdapter.notifyItemMoved(fromPosition,toPosition);
         }
-        //todo:防止添加日程改变
         //todo:交换数据仍有问题
         return true;
     }
