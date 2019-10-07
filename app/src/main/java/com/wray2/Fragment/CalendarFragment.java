@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -40,6 +41,7 @@ public class CalendarFragment extends Fragment
 
     private RecyclerView calendarList;
     private CalendarRecyclerViewAdapter calendarAdapter;
+    private CoordinatorLayout coordinatorLayout;
 
     private CardView addCalendar;
 
@@ -77,6 +79,7 @@ public class CalendarFragment extends Fragment
         //布局创建
         calendarList = (RecyclerView)view.findViewById(R.id.calendar_RecycleView);
         addCalendar = (CardView)view.findViewById(R.id.calendar_addCardView);
+        coordinatorLayout = (CoordinatorLayout)view.findViewById(R.id.calendar_coordinatorLayout);
 
         calendarAdapter = new CalendarRecyclerViewAdapter(activity, CalendarManager.calendarManager.getRealAlertList(), calendarList);
         calendarList.setAdapter(calendarAdapter);
@@ -107,7 +110,7 @@ public class CalendarFragment extends Fragment
             }
         });
         calendarList.addOnItemTouchListener(helpListItemTouchListener);
-        CalendarRecyclerViewItemTouchHelperCallback calendarRecyclerViewItemTouchHelperCallback = new CalendarRecyclerViewItemTouchHelperCallback(ItemTouchHelper.UP |ItemTouchHelper.DOWN,ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT,calendarAdapter);
+        CalendarRecyclerViewItemTouchHelperCallback calendarRecyclerViewItemTouchHelperCallback = new CalendarRecyclerViewItemTouchHelperCallback(ItemTouchHelper.UP |ItemTouchHelper.DOWN,ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT,calendarAdapter,coordinatorLayout);
         ItemTouchHelper touchHelper = new ItemTouchHelper(calendarRecyclerViewItemTouchHelperCallback);
         touchHelper.attachToRecyclerView(calendarList);
 

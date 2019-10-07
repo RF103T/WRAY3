@@ -83,4 +83,26 @@ public class CalendarManager
         }
         AlertUtils.updateAllAlertList(context,CalendarManager.calendarManager.getAlertList());
     }
+
+    public void reAddAlert(int position,Alert alert){
+        int length = alertList.size();
+        if (position > length/2){
+            alertList.addLast(alertList.getLast());
+            for (int i = length-1 ; i> position; i--){
+                Alert alert1 = new Alert();
+                alert1 = alertList.get(i);
+                alertList.set(i,alertList.get(i-1));
+            }
+            alertList.set(position,alert);
+        }else {
+            alertList.addFirst(alertList.getFirst());
+            for (int i = 1 ; i< position; i++){
+                Alert alert1 = new Alert();
+                alert1 = alertList.get(i);
+                alertList.set(i,alertList.get(i+1));
+            }
+            alertList.set(position,alert);
+        }
+        AlertUtils.updateAllAlertList(context,CalendarManager.calendarManager.getAlertList());
+    }
 }
