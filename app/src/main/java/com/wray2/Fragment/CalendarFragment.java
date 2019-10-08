@@ -24,6 +24,7 @@ import com.wray2.Manager.CalendarManager;
 import com.wray2.R;
 import com.wray2.RecyclerViewAdapter.CalendarRecyclerViewAdapter;
 import com.wray2.RecyclerViewAdapter.CalendarRecyclerViewItemTouchHelperCallback;
+import com.wray2.RecyclerViewAdapter.CalendarRecylerViewLinearLayoutManagerWrap;
 import com.wray2.RecyclerViewAdapter.HelpListItemTouchListener;
 import com.wray2.SettingCalendarActivity;
 
@@ -83,7 +84,7 @@ public class CalendarFragment extends Fragment
 
         calendarAdapter = new CalendarRecyclerViewAdapter(activity, CalendarManager.calendarManager.getRealAlertList(), calendarList);
         calendarList.setAdapter(calendarAdapter);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false);
+        CalendarRecylerViewLinearLayoutManagerWrap linearLayoutManager = new CalendarRecylerViewLinearLayoutManagerWrap(activity, LinearLayoutManager.VERTICAL, false);
         calendarList.setLayoutManager(linearLayoutManager);
 
         HelpListItemTouchListener helpListItemTouchListener = new HelpListItemTouchListener(activity, new HelpListItemTouchListener.OnRecyclerItemClickListener.Builder()
@@ -113,9 +114,6 @@ public class CalendarFragment extends Fragment
         CalendarRecyclerViewItemTouchHelperCallback calendarRecyclerViewItemTouchHelperCallback = new CalendarRecyclerViewItemTouchHelperCallback(ItemTouchHelper.UP |ItemTouchHelper.DOWN,ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT,calendarAdapter,coordinatorLayout);
         ItemTouchHelper touchHelper = new ItemTouchHelper(calendarRecyclerViewItemTouchHelperCallback);
         touchHelper.attachToRecyclerView(calendarList);
-
-        //todo:删除日程的选项
-
         return view;
     }
 
@@ -132,6 +130,7 @@ public class CalendarFragment extends Fragment
                 Alert getAlert = bundle.getParcelable("Alert");
                 int positon = bundle.getInt("position");
                 CalendarManager.calendarManager.setAlert(positon, getAlert);
+                calendarAdapter.setCalendars(CalendarManager.calendarManager.getRealAlertList());
             }
             //添加日程
             if (resultCode == 3)
@@ -139,9 +138,11 @@ public class CalendarFragment extends Fragment
                 Bundle bundle = data.getExtras();
                 Alert getAlert = bundle.getParcelable("Alert");
                 CalendarManager.calendarManager.addAlert(getAlert);
+                calendarAdapter.setCalendars(CalendarManager.calendarManager.getRealAlertList());
             }
-            if (calendarList.getAdapter() != null)
+            if (calendarList.getAdapter() != null){
                 calendarList.getAdapter().notifyDataSetChanged();
+            }
         }
     }
 

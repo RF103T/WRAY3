@@ -107,9 +107,11 @@ public class SettingCalendarActivity extends AppCompatActivity implements View.O
 
         affirm.setOnClickListener(v ->
         {
-            if (endTimeText.getText().toString().isEmpty() || startTimeText.getText().toString().isEmpty() || datesIsEmpty() || sortIsEmpty())
+            if ( datesIsEmpty() || sortIsEmpty())
             {
-                Snackbar.make(coordinatorLayout, "请填写完整的信息噢~", Snackbar.LENGTH_SHORT).show();
+                Snackbar snackbar = Snackbar.make(coordinatorLayout, "请填写完整的信息噢~", Snackbar.LENGTH_SHORT);
+                snackbar.getView().setBackgroundColor(Color.parseColor("#A5D6A7"));
+                snackbar.show();
             }
             else
             {
@@ -249,7 +251,7 @@ public class SettingCalendarActivity extends AppCompatActivity implements View.O
 
     public boolean sortIsEmpty(){
         for (int i = 0; i < 4 ; i++){
-            if (rubbishSorts[i] !=0){}{
+            if (rubbishSorts[i] !=0){
                 return false;
             }
         }

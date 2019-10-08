@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/homepage_alert_time1"
-                android:textSize="20sp"
+                android:textSize="19sp"
                 android:textColor="@color/colorsettxtgreen"
                 android:textStyle="bold"
                 android:fontFamily="sans-serif"
@@ -49,7 +49,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/calendar_item_time"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 />
 
             <TextView
@@ -63,7 +63,7 @@
                 android:fontFamily="sans-serif"
                 app:layout_constraintLeft_toLeftOf="@id/calendar_item_date"
                 app:layout_constraintTop_toBottomOf="@id/calendar_item_date"
-                app:layout_constraintBottom_toTopOf="@id/calendar_item_sorts"
+
 
                 />
             <TextView
@@ -71,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/homepage_alert_sort1"
-                android:textSize="20sp"
+                android:textSize="19sp"
                 android:textColor="@color/colorsettxtgreen"
                 android:textStyle="bold"
                 android:fontFamily="sans-serif"

@@ -13,8 +13,8 @@ public class Alert implements Parcelable, Serializable {
     private String sort;
     private int[] dates;
     private int[] sorts;
-    private static String[] datesname = new String[]{"周日","周一","周二","周三","周四","周五","周六"};
-    private static String[] sortssname = new String[]{"可回收","干垃圾","湿垃圾","有害垃圾"};
+    private static String[] datesname = new String[]{"日","一","二","三","四","五","六"};
+    private static String[] sortssname = new String[]{"可回收垃圾","干垃圾","湿垃圾","有害垃圾"};
     private int position;
 
     public Alert() {
@@ -33,7 +33,7 @@ public class Alert implements Parcelable, Serializable {
         this.datetime = starttime + "-" + endtime;
         this.dates = dates;
         this.sorts = sorts;
-        this.date = getDates(dates,"");
+        this.date = getDates(dates,"周");
         this.sort = getSorts(sorts,"");
     }
 
@@ -142,6 +142,9 @@ public class Alert implements Parcelable, Serializable {
             if (dates[i] == 1){
                 s += datesname[i]+" ";
             }
+        }
+        if (s.equals("周日 一 二 三 四 五 六 ")){
+            s = "每天";
         }
         return s;
     }

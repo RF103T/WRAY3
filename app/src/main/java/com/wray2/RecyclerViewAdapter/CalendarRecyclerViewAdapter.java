@@ -17,7 +17,7 @@ import java.util.List;
 public class CalendarRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private LayoutInflater inflater;
     private Context context;
-    private List<Alert> calendars;
+    private LinkedList<Alert> calendars;
 
     private RecyclerView rv;
 
@@ -63,5 +63,9 @@ public class CalendarRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             return 1;
         }
         return 0;
+    }
+
+    public void setCalendars(LinkedList<Alert> alerts){
+        this.calendars = new LinkedList<Alert>(alerts);
     }
 }

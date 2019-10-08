@@ -41,6 +41,7 @@ public class HomepageFragment extends Fragment
     private CardView searchCard;
     private RecyclerView alterList;
     private TextView alertListEmptyText;
+    private HomepageRecyclerViewAdapter adapter;
 
     public HomepageFragment()
     {
@@ -92,8 +93,8 @@ public class HomepageFragment extends Fragment
         alterList = (RecyclerView)view.findViewById(R.id.RecylerView_homepage);
         alertListEmptyText = (TextView)view.findViewById(R.id.txt_homepage_isEmpty);
 
-        HomepageRecyclerViewAdapter alertListAdapter = new HomepageRecyclerViewAdapter(activity, CalendarManager.calendarManager.getRealAlertList());
-        alterList.setAdapter(alertListAdapter);
+        adapter = new HomepageRecyclerViewAdapter(activity, CalendarManager.calendarManager.getRealAlertList());
+        alterList.setAdapter(adapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false);
         alterList.setLayoutManager(linearLayoutManager);
         HelpListItemTouchListener helpListItemTouchListener = new HelpListItemTouchListener(activity, new HelpListItemTouchListener.OnRecyclerItemClickListener.Builder()
@@ -162,8 +163,13 @@ public class HomepageFragment extends Fragment
             alertListEmptyText.setVisibility(View.GONE);
             alertListEmptyText.setAlpha(0);
         }
-        if (alterList.getAdapter() != null)
+        if (alterList.getAdapter() != null){
+            adapter.setDataList(CalendarManager.calendarManager.getRealAlertList());
             alterList.getAdapter().notifyDataSetChanged();
+        }
+        else{
+            alterList.removeAllViews();
+        }
         super.onResume();
     }
 
