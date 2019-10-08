@@ -16,7 +16,7 @@
     <string name="recyclables_info">指废纸张、废塑料、废玻璃制品、废金属、废织物等适宜回收、可循环利用的生活废弃物。</string>
     <string name="recyclables_guide">可回收垃圾投放指导</string>
     <string name="recyclables_throw_demand">分类投放可回收物时，应尽量保持清洁干燥，避免污染。其中：废纸应保持平整;立体包装物应清空内容物，清洁后压扁投放;废玻璃制品应轻投轻放，有尖锐边角的应包裹后投放。</string>
-    <string name="harmful_waste_info">指废电池、废灯管、废药品、废油漆及其容器等对人体健康或者自然环境造成直接或者潜在危害的生活废弃物。</string>
+    <string name="harmful_waste_info">  指废电池、废灯管、废药品、废油漆及其容器等对人体健康或者自然环境造成直接或者潜在危害的生活废弃物。</string>
     <string name="harmful_waste_guide">有害垃圾投放指导</string>
     <string name="harmful_waste_throw_demand">分类投放有害垃圾时，应注意轻放。其中：废灯管等易破损的有害垃圾应连带包装或包裹后投放;废弃药品宜连带包装一并投放;杀虫剂等压力罐装容器，应排空内容物后投放;在公共场所产生有害垃圾且未发现对应收集容器时，应携带至有害垃圾投放点妥善投放。</string>
     <string name="wetWaste_info">即易腐垃圾，指食材废料、剩菜剩饭、过期食品、瓜皮果核、花卉绿植、中药药渣等易腐的生物质生活废弃物。</string>

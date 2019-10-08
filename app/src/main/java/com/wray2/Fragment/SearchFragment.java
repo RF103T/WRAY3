@@ -90,7 +90,6 @@ public class SearchFragment extends Fragment
                 intent1.putExtra("str", str);
                 startActivity(intent1);
                 mValsUtils.upDatemValsList(activity, str);
-                initData();
             } else searchEditText.setHint("查询名称不可以为空哦~");
         });
         delete.setOnClickListener(v->{
@@ -126,8 +125,8 @@ public class SearchFragment extends Fragment
 
     @Override
     public void onResume(){
-        super.onResume();
         initData();
+        super.onResume();
     }
 
     @Override
