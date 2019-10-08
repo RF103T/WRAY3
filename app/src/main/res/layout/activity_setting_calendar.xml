@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pic_background"
+    android:orientation="vertical"
     android:transitionName="constraintLayout">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/pic_background"
+        android:transitionName="background"/>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinator_setCalendar"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <!--android:layout_marginTop="150dp"-->
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -24,414 +28,354 @@
                 android:id="@+id/txt_setting_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/settingcalendar_date"
                 android:textColor="@color/colortxtgreen"
                 android:textSize="16sp"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="45dp">
-            </TextView>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btn_setting_date_sunday"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/date_selector"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                app:layout_constraintTop_toBottomOf="@id/txt_setting_date"
-                app:layout_constraintLeft_toLeftOf="@+id/txt_setting_date"
-                android:layout_marginTop="15dp"
                 android:layout_marginStart="0dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/date_selector"
+                android:fontFamily="sans-serif-condensed-light"
                 android:text="@string/date_of_sunday"
                 android:textColor="@color/colortxtgreen"
-                android:fontFamily="sans-serif-condensed-light"/>
+                app:layout_constraintLeft_toLeftOf="@+id/txt_setting_date"
+                app:layout_constraintTop_toBottomOf="@id/txt_setting_date" />
 
             <Button
                 android:id="@+id/btn_setting_date_monday"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/date_selector"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                app:layout_constraintTop_toBottomOf="@id/txt_setting_date"
-                app:layout_constraintLeft_toRightOf="@+id/btn_setting_date_sunday"
-                android:layout_marginTop="15dp"
                 android:layout_marginStart="6dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/date_selector"
+                android:fontFamily="sans-serif-condensed-light"
                 android:text="@string/date_of_monday"
                 android:textColor="@color/colortxtgreen"
-                android:fontFamily="sans-serif-condensed-light"/>
+                app:layout_constraintLeft_toRightOf="@+id/btn_setting_date_sunday"
+                app:layout_constraintTop_toBottomOf="@id/txt_setting_date" />
 
             <Button
                 android:id="@+id/btn_setting_date_tuesday"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/date_selector"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                app:layout_constraintTop_toBottomOf="@id/txt_setting_date"
-                app:layout_constraintLeft_toRightOf="@+id/btn_setting_date_monday"
-                android:layout_marginTop="15dp"
                 android:layout_marginStart="6dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/date_selector"
+                android:fontFamily="sans-serif-condensed-light"
                 android:text="@string/date_of_tuesday"
                 android:textColor="@color/colortxtgreen"
-                android:fontFamily="sans-serif-condensed-light"/>
+                app:layout_constraintLeft_toRightOf="@+id/btn_setting_date_monday"
+                app:layout_constraintTop_toBottomOf="@id/txt_setting_date" />
 
             <Button
                 android:id="@+id/btn_setting_date_wednesday"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/date_selector"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                app:layout_constraintTop_toBottomOf="@id/txt_setting_date"
-                app:layout_constraintLeft_toRightOf="@+id/btn_setting_date_tuesday"
-                android:layout_marginTop="15dp"
                 android:layout_marginStart="6dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/date_selector"
+                android:fontFamily="sans-serif-condensed-light"
                 android:text="@string/date_of_wednesday"
                 android:textColor="@color/colortxtgreen"
-                android:fontFamily="sans-serif-condensed-light"/>
+                app:layout_constraintLeft_toRightOf="@+id/btn_setting_date_tuesday"
+                app:layout_constraintTop_toBottomOf="@id/txt_setting_date" />
 
             <Button
                 android:id="@+id/btn_setting_date_thursday"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/date_selector"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                app:layout_constraintTop_toBottomOf="@id/txt_setting_date"
-                app:layout_constraintLeft_toRightOf="@+id/btn_setting_date_wednesday"
-                android:layout_marginTop="15dp"
                 android:layout_marginStart="6dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/date_selector"
+                android:fontFamily="sans-serif-condensed-light"
                 android:text="@string/date_of_thuesday"
                 android:textColor="@color/colortxtgreen"
-                android:fontFamily="sans-serif-condensed-light"/>
+                app:layout_constraintLeft_toRightOf="@+id/btn_setting_date_wednesday"
+                app:layout_constraintTop_toBottomOf="@id/txt_setting_date" />
 
             <Button
                 android:id="@+id/btn_setting_date_friday"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/date_selector"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                app:layout_constraintTop_toBottomOf="@id/txt_setting_date"
-                app:layout_constraintLeft_toRightOf="@+id/btn_setting_date_thursday"
-                android:layout_marginTop="15dp"
                 android:layout_marginStart="6dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/date_selector"
+                android:fontFamily="sans-serif-condensed-light"
                 android:text="@string/date_of_friday"
                 android:textColor="@color/colortxtgreen"
-                android:fontFamily="sans-serif-condensed-light"/>
+                app:layout_constraintLeft_toRightOf="@+id/btn_setting_date_thursday"
+                app:layout_constraintTop_toBottomOf="@id/txt_setting_date" />
 
             <Button
                 android:id="@+id/btn_setting_date_saturday"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/date_selector"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                app:layout_constraintTop_toBottomOf="@id/txt_setting_date"
-                app:layout_constraintLeft_toRightOf="@+id/btn_setting_date_friday"
-                android:layout_marginTop="15dp"
                 android:layout_marginStart="6dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/date_selector"
+                android:fontFamily="sans-serif-condensed-light"
                 android:text="@string/date_of_saturday"
                 android:textColor="@color/colortxtgreen"
-                android:fontFamily="sans-serif-condensed-light"/>
+                app:layout_constraintLeft_toRightOf="@+id/btn_setting_date_friday"
+                app:layout_constraintTop_toBottomOf="@id/txt_setting_date" />
 
             <TextView
                 android:id="@+id/line_of_date"
                 android:layout_width="315dp"
                 android:layout_height="1dp"
+                android:layout_marginTop="12dp"
                 android:background="@color/grey_of_line"
-                app:layout_constraintTop_toBottomOf="@id/btn_setting_date_sunday"
                 app:layout_constraintLeft_toLeftOf="@id/txt_setting_date"
-                android:layout_marginTop="12dp"/>
-
+                app:layout_constraintTop_toBottomOf="@id/btn_setting_date_sunday" />
 
             <TextView
                 android:id="@+id/txt_setting_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="@string/settingcalendar_time"
                 android:textColor="@color/colortxtgreen"
                 android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@+id/line_of_date"
                 app:layout_constraintLeft_toLeftOf="@+id/txt_setting_date"
-                android:layout_marginTop="10dp">
-            </TextView>
-
-
-
+                app:layout_constraintTop_toBottomOf="@+id/line_of_date" />
 
             <ImageButton
                 android:id="@+id/img_sort_recycle"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:src="@drawable/ic_recycle"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/ic_large"
-                app:layout_constraintTop_toBottomOf="@+id/txt_setting_time"
+                android:clickable="true"
+                android:padding="10dp"
+                android:src="@drawable/ic_recycle"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/img_sort_dry"
-                android:padding="10dp"
-                android:layout_marginTop="10dp"
-                android:clickable="true"
-                />
+                app:layout_constraintTop_toBottomOf="@+id/txt_setting_time" />
 
             <TextView
                 android:id="@+id/txt_name_of_recycle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/name_of_recycle"
-                android:textSize="12sp"
+                android:layout_marginTop="3dp"
                 android:fontFamily="sans-serif-thin"
+                android:text="@string/name_of_recycle"
                 android:textColor="@color/colortxtgreen"
-                app:layout_constraintTop_toBottomOf="@id/img_sort_recycle"
+                android:textSize="12sp"
                 app:layout_constraintLeft_toLeftOf="@id/img_sort_recycle"
                 app:layout_constraintRight_toRightOf="@id/img_sort_recycle"
-                android:layout_marginTop="3dp" />
+                app:layout_constraintTop_toBottomOf="@id/img_sort_recycle" />
 
             <ImageButton
                 android:id="@+id/img_sort_dry"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:src="@drawable/ic_dry"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/ic_large"
-                app:layout_constraintTop_toBottomOf="@+id/txt_setting_time"
+                android:clickable="true"
+                android:padding="10dp"
+                android:src="@drawable/ic_dry"
                 app:layout_constraintLeft_toRightOf="@+id/img_sort_recycle"
                 app:layout_constraintRight_toRightOf="parent"
-                android:padding="10dp"
-                android:layout_marginTop="10dp"
-                android:clickable="true"
-                />
+                app:layout_constraintTop_toBottomOf="@+id/txt_setting_time" />
 
             <TextView
                 android:id="@+id/txt_name_of_dry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/name_of_dry"
-                android:textSize="12sp"
+                android:layout_marginTop="3dp"
                 android:fontFamily="sans-serif-thin"
+                android:text="@string/name_of_dry"
                 android:textColor="@color/colortxtgreen"
-                app:layout_constraintTop_toBottomOf="@id/img_sort_dry"
+                android:textSize="12sp"
                 app:layout_constraintLeft_toLeftOf="@id/img_sort_dry"
                 app:layout_constraintRight_toRightOf="@id/img_sort_dry"
-                android:layout_marginTop="3dp"/>
+                app:layout_constraintTop_toBottomOf="@id/img_sort_dry" />
 
             <ImageButton
                 android:id="@+id/img_sort_wet"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:src="@drawable/ic_wet"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/ic_large"
-                app:layout_constraintTop_toBottomOf="@id/txt_name_of_recycle"
+                android:clickable="true"
+                android:padding="10dp"
+                android:src="@drawable/ic_wet"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/img_sort_harmful"
-                android:padding="10dp"
-                android:layout_marginTop="10dp"
-                android:clickable="true"
-                />
+                app:layout_constraintTop_toBottomOf="@id/txt_name_of_recycle" />
 
             <TextView
                 android:id="@+id/txt_name_of_wet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/name_of_wet"
-                android:textSize="12sp"
+                android:layout_marginTop="3dp"
                 android:fontFamily="sans-serif-thin"
+                android:text="@string/name_of_wet"
                 android:textColor="@color/colortxtgreen"
-                app:layout_constraintTop_toBottomOf="@id/img_sort_wet"
+                android:textSize="12sp"
                 app:layout_constraintLeft_toLeftOf="@id/img_sort_wet"
                 app:layout_constraintRight_toRightOf="@id/img_sort_recycle"
-                android:layout_marginTop="3dp"/>
+                app:layout_constraintTop_toBottomOf="@id/img_sort_wet" />
 
             <ImageButton
                 android:id="@+id/img_sort_harmful"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:src="@drawable/ic_harmful"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/ic_large"
-                app:layout_constraintTop_toBottomOf="@id/txt_name_of_dry"
+                android:clickable="true"
+                android:padding="10dp"
+                android:src="@drawable/ic_harmful"
                 app:layout_constraintLeft_toRightOf="@id/img_sort_wet"
                 app:layout_constraintRight_toRightOf="parent"
-                android:padding="10dp"
-                android:layout_marginTop="10dp"
-                android:clickable="true"
-                />
+                app:layout_constraintTop_toBottomOf="@id/txt_name_of_dry" />
 
             <TextView
                 android:id="@+id/txt_name_of_harmful"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/name_of_harmful"
-                android:textSize="12sp"
+                android:layout_marginTop="3dp"
                 android:fontFamily="sans-serif-thin"
+                android:text="@string/name_of_harmful"
                 android:textColor="@color/colortxtgreen"
-                app:layout_constraintTop_toBottomOf="@id/img_sort_harmful"
+                android:textSize="12sp"
                 app:layout_constraintLeft_toLeftOf="@id/img_sort_harmful"
                 app:layout_constraintRight_toRightOf="@id/img_sort_harmful"
-                android:layout_marginTop="3dp"/>
+                app:layout_constraintTop_toBottomOf="@id/img_sort_harmful" />
 
             <TextView
                 android:id="@+id/line_of_sort"
                 android:layout_width="315dp"
                 android:layout_height="1dp"
+                android:layout_marginTop="8dp"
                 android:background="@color/grey_of_line"
-                app:layout_constraintTop_toBottomOf="@+id/txt_name_of_wet"
                 app:layout_constraintLeft_toLeftOf="@id/txt_setting_date"
-                android:layout_marginTop="8dp"/>
+                app:layout_constraintTop_toBottomOf="@+id/txt_name_of_wet" />
 
             <TextView
                 android:id="@+id/txt_setting_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="@string/settingcalendar_address"
                 android:textColor="@color/colortxtgreen"
                 android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@id/line_of_sort"
                 app:layout_constraintLeft_toLeftOf="@+id/txt_setting_date"
-                android:layout_marginTop="10dp">
-            </TextView>
+                app:layout_constraintTop_toBottomOf="@id/line_of_sort" />
 
             <TextView
-            android:id="@+id/txt_time_of_start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Start"
-            android:textSize="14dp"
-            android:textColor="@color/colortxtgreen"
-            android:fontFamily="sans-serif-black"
-            app:layout_constraintTop_toBottomOf="@+id/txt_setting_address"
+                android:id="@+id/txt_time_of_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
+                android:fontFamily="sans-serif-black"
+                android:text="Start"
+                android:textColor="@color/colortxtgreen"
+                android:textSize="14sp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/txt_time_of_end"/>
+                app:layout_constraintRight_toLeftOf="@id/txt_time_of_end"
+                app:layout_constraintTop_toBottomOf="@+id/txt_setting_address" />
 
             <TextView
                 android:id="@+id/txt_time_of_end"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="End"
-                android:textSize="14dp"
-                android:textColor="@color/colortxtgreen"
-                android:fontFamily="sans-serif-black"
-                app:layout_constraintTop_toBottomOf="@+id/txt_setting_address"
                 android:layout_marginTop="15dp"
+                android:fontFamily="sans-serif-black"
+                android:text="End"
+                android:textColor="@color/colortxtgreen"
+                android:textSize="14sp"
                 app:layout_constraintLeft_toRightOf="@id/txt_time_of_start"
-                app:layout_constraintRight_toRightOf="parent"/>
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_setting_address" />
 
             <TextView
                 android:id="@+id/txt_setting_of_start"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/transparentColor"
+                android:fontFamily="sans-serif-thin"
+                android:gravity="center"
+                android:text="开始"
+                android:textColor="@color/colortxtgreen"
+                android:textSize="22sp"
                 app:layout_constraintLeft_toLeftOf="@id/txt_time_of_start"
                 app:layout_constraintRight_toRightOf="@id/txt_time_of_start"
-                app:layout_constraintTop_toBottomOf="@id/txt_time_of_start"
-                android:background="@color/transparentColor"
-                android:layout_marginTop="5dp"
-                android:text="开始"
-                android:textSize="22dp"
-                android:textColor="@color/colortxtgreen"
-                android:gravity="center"
-                android:fontFamily="sans-serif-thin"/>
+                app:layout_constraintTop_toBottomOf="@id/txt_time_of_start" />
 
             <TextView
                 android:id="@+id/txt_setting_of_end"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/transparentColor"
+                android:fontFamily="sans-serif-thin"
+                android:gravity="center"
+                android:text="结束"
+                android:textColor="@color/colortxtgreen"
+                android:textSize="22sp"
                 app:layout_constraintLeft_toLeftOf="@id/txt_time_of_end"
                 app:layout_constraintRight_toRightOf="@id/txt_time_of_end"
-                app:layout_constraintTop_toBottomOf="@id/txt_time_of_end"
-                android:background="@color/transparentColor"
-                android:layout_marginTop="5dp"
-                android:text="结束"
-                android:textSize="22dp"
-                android:textColor="@color/colortxtgreen"
-                android:gravity="center"
-                android:fontFamily="sans-serif-thin"/>
+                app:layout_constraintTop_toBottomOf="@id/txt_time_of_end" />
 
             <ImageView
                 android:id="@+id/clock"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_marginTop="12dp"
                 android:src="@drawable/ic_clock"
                 app:layout_constraintLeft_toRightOf="@id/txt_setting_of_start"
                 app:layout_constraintRight_toLeftOf="@id/txt_setting_of_end"
-                app:layout_constraintTop_toBottomOf="@id/txt_time_of_start"
-                android:layout_marginTop="12dp"/>
+                app:layout_constraintTop_toBottomOf="@id/txt_time_of_start" />
 
             <ImageView
                 android:id="@+id/line_of_starttime"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_time_line"
-                app:layout_constraintTop_toBottomOf="@id/txt_setting_of_start"
                 app:layout_constraintLeft_toLeftOf="@id/txt_setting_of_start"
-                app:layout_constraintRight_toRightOf="@id/txt_setting_of_start"/>
+                app:layout_constraintRight_toRightOf="@id/txt_setting_of_start"
+                app:layout_constraintTop_toBottomOf="@id/txt_setting_of_start" />
 
             <ImageView
                 android:id="@+id/line_of_endtime"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_time_line"
-                app:layout_constraintTop_toBottomOf="@id/txt_setting_of_end"
                 app:layout_constraintLeft_toLeftOf="@id/txt_setting_of_end"
-                app:layout_constraintRight_toRightOf="@id/txt_setting_of_end"/>
-
-<!--            <TextView-->
-<!--                android:id="@+id/txt_setTime"-->
-<!--                android:layout_width="300dp"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:visibility="invisible"-->
-<!--                android:background="@drawable/shape_corner_green"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/txt_setting_time"-->
-<!--                app:layout_constraintLeft_toLeftOf="@id/txt_setting_time"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:textSize="18sp"-->
-<!--                android:textColor="@color/colortxtgreen"-->
-<!--                android:paddingTop="7dp"-->
-<!--                android:paddingLeft="10dp"/>-->
-
-<!--            <EditText-->
-<!--                android:id="@+id/edittxt_setAddress"-->
-<!--                android:layout_width="300dp"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:background="@drawable/shape_corner_green"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/txt_setting_address"-->
-<!--                app:layout_constraintLeft_toLeftOf="@id/txt_setting_address"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:paddingLeft="10dp"-->
-<!--                android:textSize="18sp"-->
-<!--                android:textColor="@color/colortxtgreen"-->
-<!--                android:singleLine="true"/>-->
-
-
-<!--            <TextView-->
-<!--                android:id="@+id/txt_setDate"-->
-<!--                android:layout_width="300dp"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:background="@drawable/shape_corner_green"-->
-<!--                android:visibility="invisible"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/txt_setting_date"-->
-<!--                app:layout_constraintLeft_toLeftOf="parent"-->
-<!--                app:layout_constraintRight_toRightOf="parent"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:paddingTop="7dp"-->
-<!--                android:paddingLeft="10dp"-->
-<!--                android:textSize="18sp"-->
-<!--                android:textColor="@color/colortxtgreen"-->
-<!--                />-->
+                app:layout_constraintRight_toRightOf="@id/txt_setting_of_end"
+                app:layout_constraintTop_toBottomOf="@id/txt_setting_of_end" />
 
             <Button
                 android:id="@+id/but_setting_affirm"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
                 android:background="@drawable/shape_green_to_deepgreen_color2"
-                app:layout_constraintTop_toBottomOf="@id/clock"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
                 android:hint="@string/settingcalendar_affirm"
                 android:textColorHint="@color/cardview_dark_background"
-                />
-
-
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/clock" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

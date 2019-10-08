@@ -36,10 +36,11 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.wray2.Class.GlobalValue;
+import com.wray2.Fragment.CameraFragment;
 import com.wray2.Manager.LayoutDropManager;
 import com.wray2.Class.Rubbish;
 import com.wray2.RecyclerViewAdapter.HelpListAdapter;
-import com.wray2.RecyclerViewAdapter.HelpListItemTouchListener;
+import com.wray2.RecyclerViewAdapter.RecyclerViewItemTouchListener;
 import com.wray2.Thread.JsonDataObjects.ErrorData;
 import com.wray2.Thread.JsonDataObjects.FeedbackData;
 import com.wray2.Thread.FeedbackThreadRunnable;
@@ -238,7 +239,7 @@ public class ResultActivity extends AppCompatActivity
         leftback.setOnClickListener(v ->
         {
             Intent intent1 = new Intent();
-            ResultActivity.this.setResult(CameraActivity.RESULT_BACK_FLAG, intent1);
+            ResultActivity.this.setResult(CameraFragment.RESULT_BACK_FLAG, intent1);
             ResultActivity.this.finish();
         });
         resultHelpText.setOnClickListener(v ->
@@ -385,7 +386,7 @@ public class ResultActivity extends AppCompatActivity
         helpList.setAdapter(helpListAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         helpList.setLayoutManager(linearLayoutManager);
-        HelpListItemTouchListener helpListItemTouchListener = new HelpListItemTouchListener(this, new HelpListItemTouchListener.OnRecyclerItemClickListener.Builder()
+        RecyclerViewItemTouchListener helpListItemTouchListener = new RecyclerViewItemTouchListener(this, new RecyclerViewItemTouchListener.OnRecyclerItemClickListener.Builder()
         {
             @Override
             public void onItemClick(View view, int position)

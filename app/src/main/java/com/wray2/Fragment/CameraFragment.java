@@ -1,13 +1,11 @@
 package com.wray2.Fragment;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.net.Uri;
-import android.nfc.cardemulation.HostNfcFService;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -29,10 +27,8 @@ import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 
-import com.wray2.CameraActivity;
 import com.wray2.Class.GlobalValue;
 import com.wray2.FragmentsActivity;
-import com.wray2.Interface.CancelDialogCallback;
 import com.wray2.Manager.PermissionManager;
 import com.wray2.R;
 import com.wray2.ResultActivity;
@@ -61,6 +57,10 @@ public class CameraFragment extends Fragment
     //结果界面
     public static final int RESULT_ACTIVITY_WITH_CAMERA_FLAG = 4;//从相机拍摄的图片
     public static final int RESULT_ACTIVITY_WITH_ALBUM_FLAG = 5;//从相册选择的图片
+
+    //Activity的返回Flag
+    //结果界面
+    public static final int RESULT_BACK_FLAG = 3;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

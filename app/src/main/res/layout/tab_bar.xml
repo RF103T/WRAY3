@@ -31,22 +31,22 @@
         android:id="@+id/tabBar_item1_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="#FFFFFF"
-        android:translationX="-5dp"
         android:text="你是什么垃圾"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:translationX="-5dp"
+        app:layout_constraintBottom_toBottomOf="@id/tabBar_item1_image"
         app:layout_constraintLeft_toRightOf="@id/tabBar_item1_image"
         app:layout_constraintRight_toLeftOf="@id/tabBar_item2_image"
-        app:layout_constraintTop_toTopOf="@id/tabBar_item1_image"
-        app:layout_constraintBottom_toBottomOf="@id/tabBar_item1_image"/>
+        app:layout_constraintTop_toTopOf="@id/tabBar_item1_image" />
 
     <ImageView
         android:id="@+id/tabBar_item2_image"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_marginTop="30dp"
-        android:src="@drawable/ic_search"
         android:scaleType="centerInside"
+        android:src="@drawable/ic_search"
         app:layout_constraintLeft_toRightOf="@id/tabBar_item1_text"
         app:layout_constraintRight_toLeftOf="@id/tabBar_item3_image"
         app:layout_constraintTop_toTopOf="parent" />
@@ -55,20 +55,20 @@
         android:id="@+id/tabBar_item2_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="#FFFFFF"
         android:text="搜索"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/tabBar_item2_image"
         app:layout_constraintLeft_toRightOf="@id/tabBar_item2_image"
-        app:layout_constraintTop_toTopOf="@id/tabBar_item1_image"
-        app:layout_constraintBottom_toBottomOf="@id/tabBar_item2_image"/>
+        app:layout_constraintTop_toTopOf="@id/tabBar_item1_image" />
 
     <ImageView
         android:id="@+id/tabBar_item3_image"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_marginTop="30dp"
-        android:src="@drawable/ic_camera"
         android:scaleType="centerInside"
+        android:src="@drawable/ic_camera"
         app:layout_constraintLeft_toRightOf="@id/tabBar_item2_image"
         app:layout_constraintRight_toLeftOf="@id/tabBar_item4_image"
         app:layout_constraintTop_toTopOf="parent" />
@@ -77,20 +77,20 @@
         android:id="@+id/tabBar_item3_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="#FFFFFF"
         android:text="识别"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/tabBar_item3_image"
         app:layout_constraintLeft_toRightOf="@id/tabBar_item3_image"
-        app:layout_constraintTop_toTopOf="@id/tabBar_item1_image"
-        app:layout_constraintBottom_toBottomOf="@id/tabBar_item3_image"/>
+        app:layout_constraintTop_toTopOf="@id/tabBar_item1_image" />
 
     <ImageView
         android:id="@+id/tabBar_item4_image"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_marginTop="30dp"
-        android:src="@drawable/ic_calendar"
         android:scaleType="centerInside"
+        android:src="@drawable/ic_calendar"
         app:layout_constraintLeft_toRightOf="@id/tabBar_item3_image"
         app:layout_constraintRight_toLeftOf="@id/tabBar_item5_image"
         app:layout_constraintTop_toTopOf="parent" />
@@ -99,12 +99,12 @@
         android:id="@+id/tabBar_item4_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="#FFFFFF"
         android:text="日程表"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/tabBar_item4_image"
         app:layout_constraintLeft_toRightOf="@id/tabBar_item4_image"
-        app:layout_constraintTop_toTopOf="@id/tabBar_item1_image"
-        app:layout_constraintBottom_toBottomOf="@id/tabBar_item4_image"/>
+        app:layout_constraintTop_toTopOf="@id/tabBar_item1_image" />
 
     <ImageView
         android:id="@+id/tabBar_item5_image"
@@ -112,8 +112,8 @@
         android:layout_height="36dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="15dp"
-        android:src="@drawable/ic_setting"
         android:scaleType="centerInside"
+        android:src="@drawable/ic_setting"
         app:layout_constraintLeft_toRightOf="@id/tabBar_item4_image"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -122,11 +122,11 @@
         android:id="@+id/tabBar_item5_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="#FFFFFF"
         android:text="设置"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/tabBar_item5_image"
         app:layout_constraintLeft_toRightOf="@id/tabBar_item5_image"
-        app:layout_constraintTop_toTopOf="@id/tabBar_item1_image"
-        app:layout_constraintBottom_toBottomOf="@id/tabBar_item5_image"/>
+        app:layout_constraintTop_toTopOf="@id/tabBar_item1_image" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,11 +1,15 @@
 package com.wray2;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +35,9 @@ public class FragmentsActivity extends FragmentActivity
 
     private MyTabBar tabBar;
 
+    //只用来获取WindowToken，隐藏输入法而已
+    private ImageView backgroundImageView;
+
     private boolean isDealShortCutsAction = false;
 
     @Override
@@ -38,6 +45,8 @@ public class FragmentsActivity extends FragmentActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragments);
+
+        backgroundImageView = (ImageView)findViewById(R.id.backgroundImageView);
 
         PermissionManager.permissionManager = new PermissionManager(this, "android.permission.CAMERA");
 
@@ -75,7 +84,7 @@ public class FragmentsActivity extends FragmentActivity
     {
         if (!tabBar.isTabBarInit())
             tabBar.initTabBar();
-        if(!isDealShortCutsAction)
+        if (!isDealShortCutsAction)
         {
             Intent intent = getIntent();
             String actionFlag = intent.getAction();
@@ -145,6 +154,12 @@ public class FragmentsActivity extends FragmentActivity
             else if (permissions[0].equals("android.permission.READ_EXTERNAL_STORAGE") && grantResults[0] == 0)
                 PermissionManager.permissionManager.updatePermission("android.permission.READ_EXTERNAL_STORAGE");
         }
+    }
+
+    public void hideIME()
+    {
+        InputMethodManager manager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        manager.hideSoftInputFromWindow(backgroundImageView.getWindowToken(), 0);
     }
 
     public void setTabBarPosition(int position)

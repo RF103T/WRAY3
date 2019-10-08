@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -24,8 +23,8 @@ import com.wray2.Manager.CalendarManager;
 import com.wray2.R;
 import com.wray2.RecyclerViewAdapter.CalendarRecyclerViewAdapter;
 import com.wray2.RecyclerViewAdapter.CalendarRecyclerViewItemTouchHelperCallback;
-import com.wray2.RecyclerViewAdapter.CalendarRecylerViewLinearLayoutManagerWrap;
-import com.wray2.RecyclerViewAdapter.HelpListItemTouchListener;
+import com.wray2.RecyclerViewAdapter.CalendarRecyclerViewLinearLayoutManagerWrap;
+import com.wray2.RecyclerViewAdapter.RecyclerViewItemTouchListener;
 import com.wray2.SettingCalendarActivity;
 
 public class CalendarFragment extends Fragment
@@ -43,8 +42,6 @@ public class CalendarFragment extends Fragment
     private RecyclerView calendarList;
     private CalendarRecyclerViewAdapter calendarAdapter;
     private CoordinatorLayout coordinatorLayout;
-
-    private CardView addCalendar;
 
     public CalendarFragment()
     {
@@ -79,15 +76,14 @@ public class CalendarFragment extends Fragment
         View view = inflater.inflate(R.layout.fragment_calendar, container, false);
         //布局创建
         calendarList = (RecyclerView)view.findViewById(R.id.calendar_RecycleView);
-        addCalendar = (CardView)view.findViewById(R.id.calendar_addCardView);
         coordinatorLayout = (CoordinatorLayout)view.findViewById(R.id.calendar_coordinatorLayout);
 
         calendarAdapter = new CalendarRecyclerViewAdapter(activity, CalendarManager.calendarManager.getRealAlertList(), calendarList);
         calendarList.setAdapter(calendarAdapter);
-        CalendarRecylerViewLinearLayoutManagerWrap linearLayoutManager = new CalendarRecylerViewLinearLayoutManagerWrap(activity, LinearLayoutManager.VERTICAL, false);
+        CalendarRecyclerViewLinearLayoutManagerWrap linearLayoutManager = new CalendarRecyclerViewLinearLayoutManagerWrap(activity, LinearLayoutManager.VERTICAL, false);
         calendarList.setLayoutManager(linearLayoutManager);
 
-        HelpListItemTouchListener helpListItemTouchListener = new HelpListItemTouchListener(activity, new HelpListItemTouchListener.OnRecyclerItemClickListener.Builder()
+        RecyclerViewItemTouchListener helpListItemTouchListener = new RecyclerViewItemTouchListener(activity, new RecyclerViewItemTouchListener.OnRecyclerItemClickListener.Builder()
         {
             @Override
             public void onItemClick(View view, int position)
@@ -102,7 +98,7 @@ public class CalendarFragment extends Fragment
                     intent1.putExtra("alter_dates", CalendarManager.calendarManager.getRealAlertList().get(position).getDates());
                     intent1.putExtra("alter_starttime", CalendarManager.calendarManager.getRealAlertList().get(position).getStarttime());
                     intent1.putExtra("alter_endtime", CalendarManager.calendarManager.getRealAlertList().get(position).getEndtime());
-                    intent1.putExtra("alter_sorts",CalendarManager.calendarManager.getRealAlertList().get(position).getSorts());
+                    intent1.putExtra("alter_sorts", CalendarManager.calendarManager.getRealAlertList().get(position).getSorts());
                     intent1.putExtra("position", position);
                     intent1.putExtra("key", 1);
                     Pair<View, String> pair = Pair.create(((View)view.findViewById(R.id.calendarItemCardView)), "constraintLayout");
@@ -111,7 +107,7 @@ public class CalendarFragment extends Fragment
             }
         });
         calendarList.addOnItemTouchListener(helpListItemTouchListener);
-        CalendarRecyclerViewItemTouchHelperCallback calendarRecyclerViewItemTouchHelperCallback = new CalendarRecyclerViewItemTouchHelperCallback(ItemTouchHelper.UP |ItemTouchHelper.DOWN,ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT,calendarAdapter,coordinatorLayout);
+        CalendarRecyclerViewItemTouchHelperCallback calendarRecyclerViewItemTouchHelperCallback = new CalendarRecyclerViewItemTouchHelperCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, calendarAdapter, coordinatorLayout);
         ItemTouchHelper touchHelper = new ItemTouchHelper(calendarRecyclerViewItemTouchHelperCallback);
         touchHelper.attachToRecyclerView(calendarList);
         return view;
@@ -140,7 +136,8 @@ public class CalendarFragment extends Fragment
                 CalendarManager.calendarManager.addAlert(getAlert);
                 calendarAdapter.setCalendars(CalendarManager.calendarManager.getRealAlertList());
             }
-            if (calendarList.getAdapter() != null){
+            if (calendarList.getAdapter() != null)
+            {
                 calendarList.getAdapter().notifyDataSetChanged();
             }
         }

@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="110dp"
-    android:background="@color/transparentColor"
     android:layout_marginStart="50dp"
     android:layout_marginEnd="50dp"
-    android:layout_marginBottom="10dp">
+    android:layout_marginBottom="10dp"
+    android:background="@color/transparentColor"
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/calendarItemCardView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
+        android:transitionName="constraintLayout"
         app:cardCornerRadius="0dp"
         app:cardElevation="1dp"
         app:cardMaxElevation="5dp"
-        android:transitionName="constraintLayout">
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -32,67 +31,62 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:src="@drawable/ic_line"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:src="@drawable/ic_line" />
+                app:layout_constraintLeft_toLeftOf="parent" />
 
             <TextView
                 android:id="@+id/calendar_item_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/homepage_alert_time1"
-                android:textSize="19sp"
-                android:textColor="@color/colorsettxtgreen"
-                android:textStyle="bold"
-                android:fontFamily="sans-serif"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/calendar_item_time"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
-                />
+                android:fontFamily="sans-serif"
+                android:text="@string/homepage_alert_time1"
+                android:textColor="@color/colorsettxtgreen"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/calendar_item_time"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/calendar_item_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/homepage_alert_time2"
-                android:textSize="14sp"
-                android:textColor="@color/colorsettxtgreen"
-                android:textStyle="bold"
                 android:fontFamily="sans-serif"
+                android:text="@string/homepage_alert_time2"
+                android:textColor="@color/colorsettxtgreen"
+                android:textSize="14sp"
+                android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="@id/calendar_item_date"
-                app:layout_constraintTop_toBottomOf="@id/calendar_item_date"
+                app:layout_constraintTop_toBottomOf="@id/calendar_item_date" />
 
-
-                />
             <TextView
                 android:id="@+id/calendar_item_sorts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/homepage_alert_sort1"
-                android:textSize="19sp"
-                android:textColor="@color/colorsettxtgreen"
-                android:textStyle="bold"
-                android:fontFamily="sans-serif"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/calendar_item_time"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="15dp"
-                />
-
+                android:fontFamily="sans-serif"
+                android:text="@string/homepage_alert_sort1"
+                android:textColor="@color/colorsettxtgreen"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/calendar_item_time" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:src="@drawable/ic_calendar_right"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:src="@drawable/ic_calendar_right" />
-
-
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

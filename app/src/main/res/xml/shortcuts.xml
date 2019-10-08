@@ -3,7 +3,7 @@
     <shortcut
         android:shortcutId="addCalendar"
         android:enabled="true"
-        android:icon="@drawable/ic_calendar"
+        android:icon="@mipmap/ic_calendar_shortcut"
         android:shortcutShortLabel="@string/shortcuts_manager_calendar_short"
         android:shortcutLongLabel="@string/shortcuts_manager_calendar_long"
         android:shortcutDisabledMessage="@string/shortcuts_manager_calendar_disable">
@@ -17,7 +17,7 @@
     <shortcut
         android:shortcutId="camera"
         android:enabled="true"
-        android:icon="@drawable/ic_camera_black"
+        android:icon="@mipmap/ic_camera_shortcut"
         android:shortcutShortLabel="@string/shortcuts_camera_short"
         android:shortcutLongLabel="@string/shortcuts_camera_long"
         android:shortcutDisabledMessage="@string/shortcuts_camera_disable">
@@ -31,7 +31,7 @@
     <shortcut
         android:shortcutId="search"
         android:enabled="true"
-        android:icon="@drawable/ic_search_black"
+        android:icon="@mipmap/ic_search_shortcut"
         android:shortcutShortLabel="@string/shortcuts_search_short"
         android:shortcutLongLabel="@string/shortcuts_search_long"
         android:shortcutDisabledMessage="@string/shortcuts_search_disable">
