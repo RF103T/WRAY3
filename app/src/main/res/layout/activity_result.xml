@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".ResultActivity">
 
+    <ImageView
+        android:id="@+id/upload_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        tools:layout_editor_absoluteY="2dp" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/wait_view"
         android:layout_width="match_parent"
@@ -20,13 +27,6 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/upload_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            tools:layout_editor_absoluteY="2dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

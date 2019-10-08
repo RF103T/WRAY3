@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.net.Uri;
 import android.nfc.cardemulation.HostNfcFService;
@@ -11,27 +12,37 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.camera.core.CameraX;
+import androidx.camera.core.ImageCapture;
+import androidx.camera.core.ImageProxy;
 import androidx.camera.view.CameraView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 
+import com.wray2.CameraActivity;
+import com.wray2.Class.GlobalValue;
 import com.wray2.FragmentsActivity;
 import com.wray2.Interface.CancelDialogCallback;
 import com.wray2.Manager.PermissionManager;
 import com.wray2.R;
+import com.wray2.ResultActivity;
 import com.wray2.Util.ImageUtils;
 import com.wray2.Util.ScreenUtils;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.ByteBuffer;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -151,6 +162,32 @@ public class CameraFragment extends Fragment
                 openSysAlbum();
         });
 
+        takePhotoImageView.setOnClickListener(v ->
+                cameraView.takePicture(new ImageCapture.OnImageCapturedListener(){
+                    @Override
+                    public void onCaptureSuccess(ImageProxy image, int rotationDegrees)
+                    {
+                        ByteBuffer buffer = image.getPlanes()[0].getBuffer();
+                        byte[] bytes = new byte[buffer.capacity()];
+                        buffer.get(bytes);
+                        GlobalValue.savedBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, null);
+                        Log.d("bitmap", GlobalValue.savedBitmap.getHeight() + " " + GlobalValue.savedBitmap.getWidth());
+
+                        Intent intent = new Intent(activity, ResultActivity.class);
+                        intent.putExtra("isCameraPhoto", true);
+                        activity.startActivityForResult(intent, RESULT_ACTIVITY_WITH_CAMERA_FLAG);
+
+                        super.onCaptureSuccess(image, rotationDegrees);
+                    }
+
+                    @Override
+                    public void onError(@NonNull ImageCapture.ImageCaptureError imageCaptureError, @NonNull String message, @Nullable Throwable cause)
+                    {
+                        super.onError(imageCaptureError, message, cause);
+                        //todo:错误处理
+                    }
+                }));
+
         return view;
     }
 
@@ -203,6 +240,39 @@ public class CameraFragment extends Fragment
     {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    {
+        //从相册选择了照片
+        if (requestCode == ALBUM_RESULT_FLAG)
+        {
+            if (data != null)
+            {
+                Uri uri = data.getData();
+                if (uri != null)
+                    cropPhoto(uri);
+            }
+        }
+        //完成图片裁切
+        else if (requestCode == CROP_FLAG)
+        {
+            try
+            {
+                File dataFile = new File(activity.getExternalCacheDir(), "cache_cropped.jpg");
+                FileInputStream stream = new FileInputStream(dataFile);
+                GlobalValue.savedBitmap = BitmapFactory.decodeStream(stream);
+                Intent intent = new Intent(activity, ResultActivity.class);
+                intent.putExtra("isCameraPhoto", false);
+                startActivityForResult(intent, RESULT_ACTIVITY_WITH_ALBUM_FLAG);
+            }
+            catch (IOException ex)
+            {
+                //todo:错误处理，文件未找到
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     /**
