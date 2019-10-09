@@ -10,6 +10,7 @@
     <color name="transparentColor">#00000000</color>
     <color name="white">#FFFFFF</color>
     <color name="transformwhite">#CCF8F8FF</color>
+    <color name="cardtransformwhite">#D9F8F8FF</color>
     <color name="colortxtgreen">#0E3A11</color>
     <color name="colorsettxtgreen">#FF0D3B11</color>
     <color name="homepage_deepgreen">#00675B</color>
