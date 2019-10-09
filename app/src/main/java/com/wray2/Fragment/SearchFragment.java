@@ -1,28 +1,38 @@
 package com.wray2.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.wray2.Class.Rubbish;
 import com.wray2.CustomComponent.FlowLayout;
 import com.wray2.FragmentsActivity;
 import com.wray2.R;
+import com.wray2.RecyclerViewAdapter.RecyclerViewItemTouchListener;
+import com.wray2.RecyclerViewAdapter.SearchGarbageRelativeListAdapter;
 import com.wray2.SearchResultActivity;
+import com.wray2.Thread.JsonDataObjects.ErrorData;
+import com.wray2.Thread.JsonDataObjects.FeedbackData;
+import com.wray2.Thread.RelativeSearchThreadRunnable;
 import com.wray2.Util.mValsUtils;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
-
-import static android.content.Context.INPUT_METHOD_SERVICE;
 
 public class SearchFragment extends Fragment
 {
@@ -42,7 +52,14 @@ public class SearchFragment extends Fragment
     private LayoutInflater mInflater;
     private LinkedList<String> mVals = new LinkedList<>();
     private ImageView delete;
+    private RecyclerView relativeList;
 
+    //RecyclerView的数据源
+    private LinkedList<Rubbish> searchRubData = new LinkedList<>();
+    public static String feedbackId = "";
+
+    //服务器返回的数据对象
+    private FeedbackData searchfeedbackData = new FeedbackData("", "", new LinkedList<Rubbish>());
     public SearchFragment()
     {
         // Required empty public constructor
@@ -80,6 +97,7 @@ public class SearchFragment extends Fragment
         search =(ImageView)view.findViewById(R.id.img_card_search);
         mInflater = LayoutInflater.from(view.getContext());
         delete = (ImageView)view.findViewById(R.id.img_search_deletehistory);
+        relativeList = (RecyclerView) view.findViewById(R.id.search_relativeList);
         initData();
         search.setOnClickListener(v ->
         {
@@ -95,6 +113,32 @@ public class SearchFragment extends Fragment
         delete.setOnClickListener(v->{
            mValsUtils.deletemValsList(activity);
             initData();
+        });
+        searchEditText.setOnClickListener(v -> {
+            searchEditText.setHint("");
+            relativeList.setVisibility(View.GONE);
+        });
+        searchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length()==0){
+                    search.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() == 0){
+                    searchEditText.setHint("Search Garbage");
+                    relativeList.setVisibility(View.GONE);
+                }
+                else showListView();
+            }
         });
         return view;
     }
@@ -177,5 +221,43 @@ public class SearchFragment extends Fragment
             }
         }
         return false;
+    }
+
+    private void showListView(){
+        relativeList.setVisibility(View.VISIBLE);
+        String str = searchEditText.getText().toString();
+        @SuppressLint("HandlerLeak")
+        Handler handler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                if (msg.what == 1){
+                    Bundle bundle = msg.getData();
+                    searchfeedbackData = bundle.getParcelable("search_feedback_data");
+                    searchRubData.clear();
+                    searchRubData = searchfeedbackData.getResultList();
+                    SearchGarbageRelativeListAdapter searchGarbageRelativeListAdapter = new SearchGarbageRelativeListAdapter(activity,searchRubData);
+                    relativeList.setAdapter(searchGarbageRelativeListAdapter);
+                    RecyclerViewItemTouchListener recyclerViewItemTouchListener = new RecyclerViewItemTouchListener(activity,new RecyclerViewItemTouchListener.OnRecyclerItemClickListener.Builder(){
+                        @Override
+                        public void onItemClick(View view, int position) {
+                            Intent intent = new Intent(activity,SearchResultActivity.class);
+                            String rubbish_name =searchRubData.get(position).getRubbishName();
+                            int rubbish_sort =searchRubData.get(position).getRubbishSortNum();
+                            intent.putExtra("rubbish_name",rubbish_name);
+                            intent.putExtra("rubbish_sort",rubbish_sort);
+                            startActivity(intent);
+                        }
+                    });
+                    relativeList.addOnItemTouchListener(recyclerViewItemTouchListener);
+                }else if (msg.what == -1){
+                    Bundle bundle = msg.getData();
+                    ErrorData errorData = bundle.getParcelable("search_error_data");
+                }
+            }
+        };
+        RelativeSearchThreadRunnable relativeSearchThreadRunnable = new RelativeSearchThreadRunnable(handler,str);
+        Thread thread = new Thread(relativeSearchThreadRunnable);
+        thread.start();
+
     }
 }

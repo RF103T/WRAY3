@@ -5,13 +5,14 @@ import android.os.Parcelable;
 
 import com.wray2.Class.Rubbish;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class FeedbackData implements Parcelable
 {
     private String time;
     private String id;
-    private List<Rubbish> resultList;
+    private LinkedList<Rubbish> resultList;
 
     public static final Creator<FeedbackData> CREATOR = new Creator<FeedbackData>()
     {
@@ -29,7 +30,7 @@ public class FeedbackData implements Parcelable
     };
 
 
-    public FeedbackData(String time, String id, List<Rubbish> resultList)
+    public FeedbackData(String time, String id, LinkedList<Rubbish> resultList)
     {
         this.time = time;
         this.id = id;
@@ -63,12 +64,12 @@ public class FeedbackData implements Parcelable
         this.id = id;
     }
 
-    public List<Rubbish> getResultList()
+    public LinkedList<Rubbish> getResultList()
     {
         return resultList;
     }
 
-    public void setResultList(List<Rubbish> resultList)
+    public void setResultList(LinkedList<Rubbish> resultList)
     {
         this.resultList = resultList;
     }

@@ -96,7 +96,7 @@ public class ResultActivity extends AppCompatActivity
     public static String feedbackId = "";
 
     //服务器返回的数据对象
-    private FeedbackData feedbackData = new FeedbackData("", "", new ArrayList<Rubbish>());
+    private FeedbackData feedbackData = new FeedbackData("", "", new LinkedList<Rubbish>());
 
     //指示卡片是否已经初始化完成，完成后不需要初始化动画了
     private boolean isCardInit = false;

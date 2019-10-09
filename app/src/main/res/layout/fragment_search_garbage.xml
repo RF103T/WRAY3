@@ -32,6 +32,7 @@
             android:textSize="14sp"
             android:background="@drawable/shape_corner_green"
             android:textAlignment="center"
+            android:singleLine="true"
             />
         <ImageView
             android:id="@+id/img_card_search"
@@ -45,7 +46,10 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
     </androidx.cardview.widget.CardView>
+
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -90,5 +94,13 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_relativeList"
+        android:layout_width="320dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/cardview_search"
+        app:layout_constraintLeft_toLeftOf="@id/cardview_search"
+        android:background="@color/homepage_background_transfromgreen"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,11 +6,24 @@
     android:orientation="vertical"
     android:transitionName="constraintLayout">
 
+
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/pic_background"
         android:transitionName="background"/>
+
+    <ImageView
+        android:id="@+id/setting_result_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_chevron_left_black_24dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="35dp"
+        android:layout_marginStart="5dp"
+        />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinator_setCalendar"

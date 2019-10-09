@@ -10,6 +10,7 @@ import android.os.Message;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -120,7 +121,7 @@ public class ResultThreadRunnable implements Runnable
         JSONObject header = new JSONObject(feedbackJsonObj.getString("header"));
         JSONObject data = new JSONObject(feedbackJsonObj.getString("data"));
         JSONArray resultList = data.getJSONArray("result_list");
-        feedbackData = new FeedbackData(header.getString("time"), header.getString("id"), new ArrayList<Rubbish>());
+        feedbackData = new FeedbackData(header.getString("time"), header.getString("id"), new LinkedList<Rubbish>());
         for (int i = 0; i < resultList.length(); i++)
         {
             JSONObject item = resultList.getJSONObject(i);//取出数组中的JSONObject对象（这里取出的是第1个）

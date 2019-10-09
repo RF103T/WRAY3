@@ -36,6 +36,7 @@ public class SettingCalendarActivity extends AppCompatActivity implements View.O
     private static int key;
     private static int position;
     private CoordinatorLayout coordinatorLayout;
+    private ImageView pic_returnFragment;
     private Button sunday,monday,tuesday,wednesday,thursday,friday,saturday;
     private ImageButton recycle,dry,wet,harmful;
     private int[] dates = new int[]{0,0,0,0,0,0,0};
@@ -64,8 +65,7 @@ public class SettingCalendarActivity extends AppCompatActivity implements View.O
         dry = (ImageButton) findViewById(R.id.img_sort_dry);
         wet = (ImageButton) findViewById(R.id.img_sort_wet);
         harmful = (ImageButton) findViewById(R.id.img_sort_harmful);
-
-
+        pic_returnFragment = (ImageView)findViewById(R.id.setting_result_return);
 
         endTimeText.setOnClickListener(this);
         startTimeText.setOnClickListener(this);
@@ -81,7 +81,9 @@ public class SettingCalendarActivity extends AppCompatActivity implements View.O
         wet.setOnClickListener(this);
         harmful.setOnClickListener(this);
 
-
+        pic_returnFragment.setOnClickListener(v->{
+            finish();
+        });
 
         Intent intent = getIntent();
         key = intent.getIntExtra("key", 0);
