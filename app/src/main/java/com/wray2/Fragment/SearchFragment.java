@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wray2.Class.Rubbish;
@@ -27,11 +29,10 @@ import com.wray2.RecyclerViewAdapter.RecyclerViewItemTouchListener;
 import com.wray2.RecyclerViewAdapter.SearchGarbageRelativeListAdapter;
 import com.wray2.SearchResultActivity;
 import com.wray2.Thread.JsonDataObjects.ErrorData;
-import com.wray2.Thread.JsonDataObjects.FeedbackData;
+import com.wray2.Thread.JsonDataObjects.SearchbackData;
 import com.wray2.Thread.RelativeSearchThreadRunnable;
 import com.wray2.Util.mValsUtils;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class SearchFragment extends Fragment
@@ -58,8 +59,11 @@ public class SearchFragment extends Fragment
     private LinkedList<Rubbish> searchRubData = new LinkedList<>();
     public static String feedbackId = "";
 
+    private SearchGarbageRelativeListAdapter searchGarbageRelativeListAdapter;
+
     //服务器返回的数据对象
-    private FeedbackData searchfeedbackData = new FeedbackData("", "", new LinkedList<Rubbish>());
+    private SearchbackData searchfeedbackData;
+
     public SearchFragment()
     {
         // Required empty public constructor
@@ -93,53 +97,102 @@ public class SearchFragment extends Fragment
         View view = inflater.inflate(R.layout.fragment_search_garbage, container, false);
         //布局创建
         searchEditText = (EditText)view.findViewById(R.id.editxt_search_garbage);
-        mFlowLayout = (FlowLayout) view.findViewById(R.id.flowlayout_history);
-        search =(ImageView)view.findViewById(R.id.img_card_search);
+        mFlowLayout = (FlowLayout)view.findViewById(R.id.flowlayout_history);
+        search = (ImageView)view.findViewById(R.id.img_card_search);
         mInflater = LayoutInflater.from(view.getContext());
         delete = (ImageView)view.findViewById(R.id.img_search_deletehistory);
-        relativeList = (RecyclerView) view.findViewById(R.id.search_relativeList);
+        relativeList = (RecyclerView)view.findViewById(R.id.search_relativeList);
         initData();
-        search.setOnClickListener(v ->
+
+        delete.setOnClickListener(v ->
         {
-            if (!searchEditText.getText().toString().isEmpty()) { //不可以getText != null,返回类型是Editable
-                String str = searchEditText.getText().toString();
-                Intent intent1 = new Intent(activity, SearchResultActivity.class);
-                str = searchEditText.getText().toString();
-                intent1.putExtra("str", str);
-                startActivity(intent1);
-                mValsUtils.upDatemValsList(activity, str);
-            } else searchEditText.setHint("查询名称不可以为空哦~");
-        });
-        delete.setOnClickListener(v->{
-           mValsUtils.deletemValsList(activity);
+            mValsUtils.deletemValsList(activity);
             initData();
         });
-        searchEditText.setOnClickListener(v -> {
-            searchEditText.setHint("");
+
+        searchEditText.setOnKeyListener(new View.OnKeyListener()
+        {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event)
+            {
+                if (keyCode == android.view.KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_UP)
+                {
+                    String string = searchEditText.getText().toString();
+                    if (!string.isEmpty() && searchRubData.size() != 0)
+                    {
+                        Intent intent = new Intent(activity, SearchResultActivity.class);
+                        intent.putExtra("rubbishInfo", searchRubData.get(0));
+                        startActivity(intent);
+                        mValsUtils.upDatemValsList(activity, searchRubData.get(0).getRubbishName());
+                    }
+                    else if (string.isEmpty())
+                        searchEditText.setHint("查询名称不可以为空哦~");
+                    else if (searchRubData.size() == 0)
+                    {
+                        searchEditText.setText("");
+                        searchEditText.setHint("没有找到结果~");
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        searchEditText.setOnClickListener(v ->
+        {
+            //searchEditText.setHint("");
             relativeList.setVisibility(View.GONE);
         });
-        searchEditText.addTextChangedListener(new TextWatcher() {
+
+        searchEditText.addTextChangedListener(new TextWatcher()
+        {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after)
+            {
 
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length()==0){
+            public void onTextChanged(CharSequence s, int start, int before, int count)
+            {
+                if (s.length() != 0)
+                {
                     search.setVisibility(View.GONE);
                 }
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
-                if (s.length() == 0){
-                    searchEditText.setHint("Search Garbage");
+            public void afterTextChanged(Editable s)
+            {
+                if (s.length() == 0)
+                {
+                    searchEditText.setHint("搜索垃圾");
+                    clearList();
                     relativeList.setVisibility(View.GONE);
                 }
                 else showListView();
             }
         });
+
+        searchGarbageRelativeListAdapter = new SearchGarbageRelativeListAdapter(activity, searchRubData);
+        relativeList.setLayoutManager(new LinearLayoutManager(activity));
+        relativeList.setAdapter(searchGarbageRelativeListAdapter);
+        RecyclerViewItemTouchListener recyclerViewItemTouchListener = new RecyclerViewItemTouchListener(activity, new RecyclerViewItemTouchListener.OnRecyclerItemClickListener.Builder()
+        {
+            @Override
+            public void onItemClick(View view, int position)
+            {
+                Intent intent = new Intent(activity, SearchResultActivity.class);
+                String rubbish_name = searchRubData.get(position).getRubbishName();
+                int rubbish_sort = searchRubData.get(position).getRubbishSortNum();
+                intent.putExtra("rubbish_name", rubbish_name);
+                intent.putExtra("rubbish_sort", rubbish_sort);
+                startActivity(intent);
+                mValsUtils.upDatemValsList(activity, searchRubData.get(position).getRubbishName());
+            }
+        });
+        relativeList.addOnItemTouchListener(recyclerViewItemTouchListener);
+
         return view;
     }
 
@@ -168,7 +221,8 @@ public class SearchFragment extends Fragment
     }
 
     @Override
-    public void onResume(){
+    public void onResume()
+    {
         initData();
         super.onResume();
     }
@@ -185,6 +239,10 @@ public class SearchFragment extends Fragment
     {
         activity.hideIME();
         searchEditText.clearFocus();
+        searchEditText.setText("");
+        clearList();
+        relativeList.setVisibility(View.GONE);
+        search.setVisibility(View.VISIBLE);
         super.onPause();
     }
 
@@ -193,71 +251,97 @@ public class SearchFragment extends Fragment
         void onFragmentInteraction(Uri uri);
     }
 
-    public void initData(){
+    public void initData()
+    {
         mFlowLayout.removeAllViews();
         searchEditText.setText("");
         mVals = mValsUtils.readmValsList(activity);
-        for (int i = 0; i<mVals.size();i++){
-            TextView tv = (TextView) mInflater.inflate(R.layout.searched_lable_tv,mFlowLayout,false);
-            tv.setText(mVals.get(i));
-            //点击事件
-            tv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String str = tv.getText().toString();
+        @SuppressLint("HandlerLeak")
+        Handler handler = new Handler()
+        {
+            @Override
+            public void handleMessage(Message msg)
+            {
+                if (msg.what == 1)
+                {
+                    Bundle bundle = msg.getData();
+                    searchfeedbackData = bundle.getParcelable("search_data");
+                    searchRubData.clear();
+                    searchRubData = searchfeedbackData.getResultList();
                     Intent intent = new Intent(getActivity(), SearchResultActivity.class);
-                    intent.putExtra("str",str);
+                    intent.putExtra("rubbishInfo", searchRubData.get(0));
                     startActivity(intent);
                 }
+                else if (msg.what == -1)
+                {
+                    Bundle bundle = msg.getData();
+                    ErrorData errorData = bundle.getParcelable("search_error_data");
+                }
+            }
+        };
+        for (int i = 0; i < mVals.size(); i++)
+        {
+            TextView tv = (TextView)mInflater.inflate(R.layout.searched_lable_tv, mFlowLayout, false);
+            tv.setText(mVals.get(i));
+            //点击事件
+            tv.setOnClickListener(v ->
+            {
+                String str = tv.getText().toString();
+                RelativeSearchThreadRunnable relativeSearchThreadRunnable = new RelativeSearchThreadRunnable(handler, str);
+                Thread thread = new Thread(relativeSearchThreadRunnable);
+                thread.start();
             });
             mFlowLayout.addView(tv);//添加到父View
         }
     }
 
-    public boolean isRename(String str,String[] mVals){
-        for (int i = 0; i < mVals.length;i++){
-            if (str.equals(mVals[i])){
+    public boolean isRename(String str, String[] mVals)
+    {
+        for (int i = 0; i < mVals.length; i++)
+        {
+            if (str.equals(mVals[i]))
+            {
                 return true;
             }
         }
         return false;
     }
 
-    private void showListView(){
+    private void showListView()
+    {
         relativeList.setVisibility(View.VISIBLE);
         String str = searchEditText.getText().toString();
         @SuppressLint("HandlerLeak")
-        Handler handler = new Handler(){
+        Handler handler = new Handler()
+        {
             @Override
-            public void handleMessage(Message msg) {
-                if (msg.what == 1){
+            public void handleMessage(Message msg)
+            {
+                if (msg.what == 1)
+                {
                     Bundle bundle = msg.getData();
-                    searchfeedbackData = bundle.getParcelable("search_feedback_data");
+                    searchfeedbackData = bundle.getParcelable("search_data");
                     searchRubData.clear();
                     searchRubData = searchfeedbackData.getResultList();
-                    SearchGarbageRelativeListAdapter searchGarbageRelativeListAdapter = new SearchGarbageRelativeListAdapter(activity,searchRubData);
-                    relativeList.setAdapter(searchGarbageRelativeListAdapter);
-                    RecyclerViewItemTouchListener recyclerViewItemTouchListener = new RecyclerViewItemTouchListener(activity,new RecyclerViewItemTouchListener.OnRecyclerItemClickListener.Builder(){
-                        @Override
-                        public void onItemClick(View view, int position) {
-                            Intent intent = new Intent(activity,SearchResultActivity.class);
-                            String rubbish_name =searchRubData.get(position).getRubbishName();
-                            int rubbish_sort =searchRubData.get(position).getRubbishSortNum();
-                            intent.putExtra("rubbish_name",rubbish_name);
-                            intent.putExtra("rubbish_sort",rubbish_sort);
-                            startActivity(intent);
-                        }
-                    });
-                    relativeList.addOnItemTouchListener(recyclerViewItemTouchListener);
-                }else if (msg.what == -1){
+                    searchGarbageRelativeListAdapter.setList(searchRubData);
+                    relativeList.getAdapter().notifyDataSetChanged();
+                }
+                else if (msg.what == -1)
+                {
                     Bundle bundle = msg.getData();
                     ErrorData errorData = bundle.getParcelable("search_error_data");
                 }
             }
         };
-        RelativeSearchThreadRunnable relativeSearchThreadRunnable = new RelativeSearchThreadRunnable(handler,str);
+        RelativeSearchThreadRunnable relativeSearchThreadRunnable = new RelativeSearchThreadRunnable(handler, str);
         Thread thread = new Thread(relativeSearchThreadRunnable);
         thread.start();
+    }
 
+    private void clearList()
+    {
+        searchRubData.clear();
+        searchGarbageRelativeListAdapter.setList(searchRubData);
+        relativeList.getAdapter().notifyDataSetChanged();
     }
 }

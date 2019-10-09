@@ -6,9 +6,10 @@ import android.os.Parcelable;
 
 public class Rubbish implements Parcelable
 {
-    private String rubbishName;
-    private String rubbishClassifyName;
-    private String rubbishSortName;
+    private String rubbishId = "";
+    private String rubbishName = "";
+    private String rubbishClassifyName = "";
+    private String rubbishSortName = "";
     private int rubbishSortNum;
     private Bitmap rubbishPicture;
 
@@ -28,6 +29,14 @@ public class Rubbish implements Parcelable
             return new Rubbish[size];
         }
     };
+
+    public Rubbish(String rubbishName, String rubbishId, int rubbishSortNum)
+    {
+        this.rubbishName = rubbishName;
+        this.rubbishId = rubbishId;
+        this.rubbishSortNum = rubbishSortNum;
+        this.rubbishSortName = RUBBISH_CLASS[rubbishSortNum];
+    }
 
     public Rubbish(String rubbishName, String rubbishClassifyName, int rubbishSortNum, Bitmap rubbishPicture)
     {

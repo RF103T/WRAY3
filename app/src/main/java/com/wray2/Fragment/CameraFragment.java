@@ -12,6 +12,7 @@ import android.os.Message;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -163,7 +164,8 @@ public class CameraFragment extends Fragment
         });
 
         takePhotoImageView.setOnClickListener(v ->
-                cameraView.takePicture(new ImageCapture.OnImageCapturedListener(){
+                cameraView.takePicture(new ImageCapture.OnImageCapturedListener()
+                {
                     @Override
                     public void onCaptureSuccess(ImageProxy image, int rotationDegrees)
                     {
@@ -215,6 +217,11 @@ public class CameraFragment extends Fragment
     {
         if (thread.isAlive())
             thread.interrupt();
+        if (cameraView.isTorchOn())
+        {
+            cameraView.enableTorch(false);
+            flashLightImageView.setImageResource(R.drawable.ic_flash_off);
+        }
         activity.showSystemBar();
         super.onPause();
     }

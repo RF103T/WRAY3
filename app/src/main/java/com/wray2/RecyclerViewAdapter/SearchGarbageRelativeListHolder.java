@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.wray2.R;
 
 public class SearchGarbageRelativeListHolder extends RecyclerView.ViewHolder {
-    TextView rubbishId;
-    TextView rubbishsortId;
+    TextView rubbishName;
+    TextView rubbishSortName;
 
 
     public SearchGarbageRelativeListHolder(@NonNull View itemView) {
         super(itemView);
-        rubbishId = itemView.findViewById(R.id.relativeitem_txt);
-        rubbishsortId = itemView.findViewById(R.id.relativeitem_sortname);
+        rubbishName = itemView.findViewById(R.id.relativeitem_txt);
+        rubbishSortName = itemView.findViewById(R.id.relativeitem_sortname);
     }
 }

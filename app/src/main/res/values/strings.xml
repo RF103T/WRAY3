@@ -60,7 +60,7 @@
     <string name="homepage_card2_txt2">拍照识别</string>
     <string name="homepage_card3_txt2">搜索查找</string>
     <string name="calendar_card_add">添加日程</string>
-    <string name="search_card_hint">Search Garbage</string>
+    <string name="search_card_hint">搜索垃圾</string>
     <string name="search_history">最近搜索过的垃圾</string>
     <string name="searchresult_garbage">过期药品</string>
     <string name="searchresult_garbage_throw_guidance">投放建议</string>

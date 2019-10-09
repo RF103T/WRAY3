@@ -3,14 +3,14 @@ package com.wray2.Thread.JsonDataObjects;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.wray2.Class.SearchResultRubbish;
+import com.wray2.Class.Rubbish;
 
 import java.util.LinkedList;
 
 public class SearchbackData implements Parcelable {
     private String time;
     private int num;
-    private LinkedList<SearchResultRubbish> searchResultRubbishes;
+    private LinkedList<Rubbish> rubbishes;
 
     public static final Creator<SearchbackData> CREATOR = new Creator<SearchbackData>()
     {
@@ -28,18 +28,18 @@ public class SearchbackData implements Parcelable {
     };
 
 
-    public SearchbackData(String time, int num, LinkedList<SearchResultRubbish> searchResultRubbishes)
+    public SearchbackData(String time, int num, LinkedList<Rubbish> rubbishes)
     {
         this.time = time;
         this.num = num;
-        this.searchResultRubbishes = searchResultRubbishes;
+        this.rubbishes = rubbishes;
     }
 
     protected SearchbackData(Parcel in)
     {
         this.num = in.readInt();
         this.time = in.readString();
-        in.readTypedList(searchResultRubbishes, SearchResultRubbish.CREATOR);
+        in.readTypedList(rubbishes, Rubbish.CREATOR);
     }
 
     public String getTime()
@@ -62,25 +62,25 @@ public class SearchbackData implements Parcelable {
         this.num = num;
     }
 
-    public LinkedList<SearchResultRubbish> getResultList()
+    public LinkedList<Rubbish> getResultList()
     {
-        return searchResultRubbishes;
+        return rubbishes;
     }
 
-    public void setsearchResultRubbishes(LinkedList<SearchResultRubbish> searchResultRubbishes)
+    public void setsearchResultRubbishes(LinkedList<Rubbish> rubbishes)
     {
-        this.searchResultRubbishes = searchResultRubbishes;
+        this.rubbishes = rubbishes;
     }
 
-    public void addItemTosearchResultRubbishes(SearchResultRubbish searchResultRubbish)
+    public void addItemToRubbishes(Rubbish rubbish)
     {
-        searchResultRubbishes.add(searchResultRubbish);
+        rubbishes.add(rubbish);
     }
 
     public void destroy()
     {
-        searchResultRubbishes.clear();
-        searchResultRubbishes = null;
+        rubbishes.clear();
+        rubbishes = null;
     }
 
     @Override
@@ -94,6 +94,6 @@ public class SearchbackData implements Parcelable {
     {
         dest.writeInt(num);
         dest.writeString(time);
-        dest.writeTypedList(searchResultRubbishes);
+        dest.writeTypedList(rubbishes);
     }
 }

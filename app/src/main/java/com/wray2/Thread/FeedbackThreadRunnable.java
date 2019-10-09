@@ -29,7 +29,7 @@ public class FeedbackThreadRunnable implements Runnable
     {
         try
         {
-            //创建Json数据.0
+            //创建Json数据
             Date date = new Date();
             String datetime = JsonUtils.getFormatDateString(date, "yyyyMMddHHmmss");
             result = feedbackJsonStringCreate(datetime, id, otherResult, value).toString();
@@ -38,6 +38,10 @@ public class FeedbackThreadRunnable implements Runnable
              * http://192.168.31.129/test/feedback.php
              * https://rf103t.club/rubbish/feedback.php
              */
+//            byte[] _byte = {0x68,0x74,0x74,0x70,0x73,0x3a,0x2f,0x2f,0x72,0x66,0x31,0x30,0x33,0x74,0x2e,
+//                    0x63,0x6c,0x75,0x62,0x2f,0x72,0x75,0x62,0x62,0x69,0x73,0x68,0x2f,0x66,0x65,0x65,0x64,
+//                    0x62,0x61,0x63,0x6b,0x2e,0x70,0x68,0x70};
+//            String str = new String(_byte);
             HTTPRequest requester = new HTTPRequest("https://rf103t.club/rubbish/feedback.php");
             JSONObject feedbackJsonObject = requester.request(new ArrayList<String>()
             {{
