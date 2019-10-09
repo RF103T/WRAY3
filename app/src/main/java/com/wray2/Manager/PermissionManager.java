@@ -3,15 +3,12 @@ package com.wray2.Manager;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Process;
 import android.provider.Settings;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.PermissionChecker;
 
-import com.wray2.CameraActivity;
-import com.wray2.Class.ROMChecker;
 import com.wray2.Interface.CancelDialogCallback;
 
 import java.util.HashMap;

@@ -6,7 +6,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class HelpListItemTouchListener implements RecyclerView.OnItemTouchListener {
+public class RecyclerViewItemTouchListener implements RecyclerView.OnItemTouchListener {
 
     private GestureDetector mGestureDetector;
 
@@ -14,7 +14,7 @@ public class HelpListItemTouchListener implements RecyclerView.OnItemTouchListen
     private int selectedPosition;
     private boolean longPressed = false;
 
-    public HelpListItemTouchListener(Context context, final OnRecyclerItemClickListener listener){
+    public RecyclerViewItemTouchListener(Context context, final OnRecyclerItemClickListener listener){
         mGestureDetector = new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){
 
             @Override

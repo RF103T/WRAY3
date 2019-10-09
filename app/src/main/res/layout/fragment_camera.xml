@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,18 +8,18 @@
         android:id="@+id/camera_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/shooting_info_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="600dp"
-        android:background="@drawable/shape_corner"
         android:layout_marginBottom="20dp"
+        android:background="@drawable/shape_corner"
         android:paddingStart="10dp"
         android:paddingTop="5dp"
         android:paddingEnd="10dp"
@@ -28,19 +27,19 @@
         android:text="@string/camera_shooting_info"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         android:textColor="#FFFFFFFF"
+        app:layout_constraintBottom_toTopOf="@id/camera_shooting_image_view"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/camera_shooting_image_view" />
+        app:layout_constraintRight_toRightOf="parent" />
 
     <ImageView
         android:id="@+id/camera_shooting_image_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:src="@drawable/ic_circle_outline"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:src="@drawable/ic_circle_outline" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <ImageView
         android:id="@+id/flash_light_image_view"
@@ -48,12 +47,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="13dp"
-        android:src="@drawable/ic_flash_off"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/camera_shooting_image_view"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="35dp"
-        android:contentDescription="TODO" />
+        android:contentDescription="TODO"
+        android:src="@drawable/ic_flash_off"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/camera_shooting_image_view" />
 
     <ImageView
         android:id="@+id/choose_photo_image_view"
@@ -63,8 +62,8 @@
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="35dp"
         android:src="@drawable/ic_crop_original"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/camera_shooting_image_view"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,28 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/addCalendarItemConstraintLayout"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="110dp"
-    android:background="@color/transparentColor"
     android:layout_marginStart="50dp"
     android:layout_marginEnd="50dp"
-    android:layout_marginBottom="10dp">
+    android:layout_marginBottom="10dp"
+    android:background="@color/transparentColor"
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/addCalendarItemCardView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
+        android:transitionName="constraintLayout"
         app:cardCornerRadius="2dp"
         app:cardElevation="1dp"
         app:cardMaxElevation="5dp"
-        android:transitionName="constraintLayout">
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -35,46 +35,45 @@
                 android:id="@+id/txt_calendar_addCard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/calendar_card_add"
-                android:textSize="20sp"
-                android:textColor="@color/colorsettxtgreen"
-                android:textStyle="bold"
-                android:fontFamily="sans-serif"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/Img_calendar_loading"
-                app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginStart="20dp"
-
-                />
+                android:fontFamily="sans-serif"
+                android:text="@string/calendar_card_add"
+                android:textColor="@color/colorsettxtgreen"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/Img_calendar_loading"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/Img_calendar_addpic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:src="@drawable/ic_calendar_add"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:src="@drawable/ic_calendar_add" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/Img_calendar_line"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:src="@drawable/ic_line"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:src="@drawable/ic_line" />
+                app:layout_constraintLeft_toLeftOf="parent" />
 
             <ImageView
                 android:id="@+id/Img_calendar_loading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_calendar_addCard"
-                app:layout_constraintLeft_toLeftOf="@id/txt_calendar_addCard"
                 android:src="@drawable/ic_calendar_loading"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="@id/txt_calendar_addCard"
+                app:layout_constraintTop_toBottomOf="@id/txt_calendar_addCard"
                 tools:layout_editor_absoluteX="20dp" />
 
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

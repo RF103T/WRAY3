@@ -6,16 +6,16 @@ import android.util.AttributeSet;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class CalendarRecylerViewLinearLayoutManagerWrap extends LinearLayoutManager {
-    public CalendarRecylerViewLinearLayoutManagerWrap(Context context) {
+public class CalendarRecyclerViewLinearLayoutManagerWrap extends LinearLayoutManager {
+    public CalendarRecyclerViewLinearLayoutManagerWrap(Context context) {
         super(context);
     }
 
-    public CalendarRecylerViewLinearLayoutManagerWrap(Context context, int orientation, boolean reverseLayout) {
+    public CalendarRecyclerViewLinearLayoutManagerWrap(Context context, int orientation, boolean reverseLayout) {
         super(context, orientation, reverseLayout);
     }
 
-    public CalendarRecylerViewLinearLayoutManagerWrap(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public CalendarRecyclerViewLinearLayoutManagerWrap(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 

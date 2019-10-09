@@ -139,14 +139,9 @@ public class SearchFragment extends Fragment
     @Override
     public void onPause()
     {
-        hideIME();
+        activity.hideIME();
+        searchEditText.clearFocus();
         super.onPause();
-    }
-
-    public void hideIME()
-    {
-        InputMethodManager manager = (InputMethodManager)activity.getSystemService(INPUT_METHOD_SERVICE);
-        manager.hideSoftInputFromWindow(searchEditText.getWindowToken(), 0);
     }
 
     public interface OnFragmentInteractionListener

@@ -65,7 +65,6 @@
 <!--                app:layout_constraintRight_toRightOf="parent"-->
 <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.appcompat.widget.Toolbar>
@@ -259,9 +258,9 @@
                 android:text="@string/help_send_button_text"
                 android:textColor="@color/white"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/help_not_correct_title"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/help_not_correct_title" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -312,7 +311,6 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
             <androidx.cardview.widget.CardView
                 android:id="@+id/result_card1"
                 android:layout_width="match_parent"
@@ -348,7 +346,6 @@
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/ic_launcher_background" />
-
 
                     <TextView
                         android:id="@+id/result_rubbishname"
@@ -508,6 +505,5 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!--_______________________card1______________________-->
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

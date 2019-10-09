@@ -16,12 +16,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.wray2.CameraActivity;
-import com.wray2.Class.Alert;
 import com.wray2.FragmentsActivity;
 import com.wray2.Manager.CalendarManager;
 import com.wray2.R;
-import com.wray2.RecyclerViewAdapter.HelpListItemTouchListener;
+import com.wray2.RecyclerViewAdapter.RecyclerViewItemTouchListener;
 import com.wray2.RecyclerViewAdapter.HomepageRecyclerViewAdapter;
 import com.wray2.Util.ScreenUtils;
 
@@ -97,7 +95,7 @@ public class HomepageFragment extends Fragment
         alterList.setAdapter(adapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false);
         alterList.setLayoutManager(linearLayoutManager);
-        HelpListItemTouchListener helpListItemTouchListener = new HelpListItemTouchListener(activity, new HelpListItemTouchListener.OnRecyclerItemClickListener.Builder()
+        RecyclerViewItemTouchListener helpListItemTouchListener = new RecyclerViewItemTouchListener(activity, new RecyclerViewItemTouchListener.OnRecyclerItemClickListener.Builder()
         {
             @Override
             public void onItemClick(View view, int position)
