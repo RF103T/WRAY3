@@ -25,7 +25,7 @@ public class CalendarManager
         alertList = new LinkedList<Alert>();
         this.context = context.getApplicationContext();
         alertList = AlertUtils.readAlertList(context);
-        alertList.add(new Alert("ADD_NEW","NONE","NONE"));
+        alertList.add(new Alert("ADD_NEW", "NONE", "NONE"));
     }
 
     public LinkedList<Alert> getRealAlertList()
@@ -61,48 +61,42 @@ public class CalendarManager
     public void removeAlert(int position)
     {
         alertList.remove(position);
-        AlertUtils.deleteAlertList(context,position);
+        AlertUtils.deleteAlertList(context, position);
     }
 
-    public void moveAlert(int fromPosition,int toPosition){
-        if (fromPosition < toPosition){
-            //分别把中间所有的item的位置重新交换
-            for (int i = fromPosition; i < toPosition; i++){
-                Alert alert = new Alert();
-                alert = alertList.get(i+1);
-                alertList.set(i+1,alertList.get(i));
-                alertList.set(i,alert);
-            }
-        }else {
-            for (int i = fromPosition; i > toPosition; i--){
-                Alert alert = new Alert();
-                alert = alertList.get(i);
-                alertList.set(i,alertList.get(i-1));
-                alertList.set(i-1,alert);
-            }
-        }
-        AlertUtils.updateAllAlertList(context,CalendarManager.calendarManager.getAlertList());
+    public void moveAlert(int fromPosition, int toPosition)
+    {
+        Alert alert = alertList.get(fromPosition);
+        alertList.remove(fromPosition);
+        alertList.add(toPosition, alert);
+        AlertUtils.updateAllAlertList(context, CalendarManager.calendarManager.getAlertList());
     }
 
-    public void reAddAlert(int position,Alert alert){
+    public void reAddAlert(int position, Alert alert)
+    {
         int length = alertList.size();
-        if (position > length/2){
+        if (position > length / 2)
+        {
             alertList.addLast(alertList.getLast());
-            for (int i = length-1 ; i> position; i--){
+            for (int i = length - 1; i > position; i--)
+            {
                 Alert alert1 = new Alert();
                 alert1 = alertList.get(i);
-                alertList.set(i,alertList.get(i-1));
+                alertList.set(i, alertList.get(i - 1));
             }
-            alertList.set(position,alert);
-        }else {
-            alertList.addFirst(alertList.getFirst());
-            for (int i = 1 ; i< position; i++){
-                Alert alert1 = new Alert();
-                alert1 = alertList.get(i);
-                alertList.set(i,alertList.get(i+1));
-            }
-            alertList.set(position,alert);
+            alertList.set(position, alert);
         }
-        AlertUtils.updateAllAlertList(context,CalendarManager.calendarManager.getAlertList());
+        else
+        {
+            alertList.addFirst(alertList.getFirst());
+            for (int i = 1; i < position; i++)
+            {
+                Alert alert1 = new Alert();
+                alert1 = alertList.get(i);
+                alertList.set(i, alertList.get(i + 1));
+            }
+            alertList.set(position, alert);
+        }
+        AlertUtils.updateAllAlertList(context, CalendarManager.calendarManager.getAlertList());
     }
 }
