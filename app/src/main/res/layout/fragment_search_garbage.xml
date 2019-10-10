@@ -28,9 +28,10 @@
                 android:background="@drawable/shape_corner_green"
                 android:hint="@string/search_card_hint"
                 android:singleLine="true"
-                android:textAlignment="center"
+                android:paddingLeft="15dp"
                 android:textColorHint="#950E3A11"
-                android:textSize="14sp" />
+                android:textSize="18sp"
+                android:gravity="center_vertical"/>
 
             <ImageView
                 android:id="@+id/img_card_search"
@@ -95,8 +96,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_relativeList"
         android:layout_width="320dp"
-        android:layout_height="200dp"
-        android:background="@color/colorSecondary"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_downcorner"
         android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="@id/cardview_search"
         app:layout_constraintTop_toBottomOf="@id/cardview_search" />

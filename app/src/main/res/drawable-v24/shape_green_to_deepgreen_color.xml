@@ -6,6 +6,6 @@
         android:angle="0"
         android:type="linear"/>
     <corners
-        android:bottomRightRadius="15dp"
-        android:bottomLeftRadius="15dp"/>
+        android:bottomRightRadius="10dp"
+        android:bottomLeftRadius="10dp"/>
 </shape>

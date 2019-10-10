@@ -130,7 +130,7 @@ public class SearchFragment extends Fragment
                     else if (searchRubData.size() == 0)
                     {
                         searchEditText.setText("");
-                        searchEditText.setHint("没有找到结果~");
+                        searchEditText.setHint("没有找到相关结果QAQ~");
                     }
                     return true;
                 }
@@ -183,10 +183,7 @@ public class SearchFragment extends Fragment
             public void onItemClick(View view, int position)
             {
                 Intent intent = new Intent(activity, SearchResultActivity.class);
-                String rubbish_name = searchRubData.get(position).getRubbishName();
-                int rubbish_sort = searchRubData.get(position).getRubbishSortNum();
-                intent.putExtra("rubbish_name", rubbish_name);
-                intent.putExtra("rubbish_sort", rubbish_sort);
+                intent.putExtra("rubbishInfo", searchRubData.get(position));
                 startActivity(intent);
                 mValsUtils.upDatemValsList(activity, searchRubData.get(position).getRubbishName());
             }

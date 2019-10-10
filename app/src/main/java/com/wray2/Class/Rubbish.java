@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
+
 public class Rubbish implements Parcelable
 {
     private String rubbishId = "";
@@ -49,6 +51,7 @@ public class Rubbish implements Parcelable
 
     protected Rubbish(Parcel in)
     {
+        this.rubbishId = in.readString();
         this.rubbishName = in.readString();
         this.rubbishClassifyName = in.readString();
         this.rubbishSortName = in.readString();
@@ -106,6 +109,10 @@ public class Rubbish implements Parcelable
         this.rubbishPicture = rubbishPicture;
     }
 
+    public String getRubbishId() {
+        return rubbishId;
+    }
+
     @Override
     public int describeContents()
     {
@@ -115,6 +122,7 @@ public class Rubbish implements Parcelable
     @Override
     public void writeToParcel(Parcel dest, int flags)
     {
+        dest.writeString(rubbishId);
         dest.writeString(rubbishName);
         dest.writeString(rubbishClassifyName);
         dest.writeString(rubbishSortName);
