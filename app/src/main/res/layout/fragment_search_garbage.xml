@@ -96,7 +96,7 @@
         android:id="@+id/search_relativeList"
         android:layout_width="320dp"
         android:layout_height="200dp"
-        android:background="@color/homepage_background_transfromgreen"
+        android:background="@color/colorSecondary"
         android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="@id/cardview_search"
         app:layout_constraintTop_toBottomOf="@id/cardview_search" />
