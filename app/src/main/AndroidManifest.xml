@@ -45,6 +45,7 @@
                 android:resource="@xml/file_paths" />
         </provider>
     </application>
+
     <uses-feature android:name="android.hardware.screen.portrait" />
     <uses-permission android:name="android.permission.INTERNET" /><!-- 网络权限用于访问服务器获取数据 -->
     <uses-permission android:name="android.permission.CAMERA" /><!-- 相机权限用于拍摄待识别图片 -->

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -40,9 +39,9 @@
 
             <ImageView
                 android:id="@+id/img_search_result_pic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_launcher_foreground"
+                android:layout_width="320dp"
+                android:layout_height="280dp"
+                android:src="@drawable/ic_launcher_foreground"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -51,13 +50,13 @@
                 />
 
                 <ImageView
-                    android:id="@+id/img_garbage_sortname"
-                    android:layout_width="39dp"
+                    android:id="@+id/img_garbage_sort"
+                    android:layout_width="36dp"
                     android:layout_height="36dp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/img_search_result_pic"
-                    app:srcCompat="@drawable/pic_harmful_waste"
+                    android:src="@drawable/pic_harmful_waste"
                     android:layout_marginStart="12dp"
                     />
                 <TextView
@@ -100,7 +99,7 @@
                 android:id="@+id/search_result_card2_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_label"
+                android:src="@drawable/ic_label"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
@@ -112,7 +111,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginTop="2dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginEnd="10dp"
                 android:textSize="20sp"
                 android:textColor="@color/white"
                 android:textStyle="bold"/>
@@ -141,7 +140,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:srcCompat="@drawable/ic_line" />
+                android:src="@drawable/ic_line" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -172,7 +171,7 @@
                     android:id="@+id/search_result_card3_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_label"
+                    android:src="@drawable/ic_label"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
 
@@ -184,7 +183,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     android:layout_marginTop="2dp"
-                    android:layout_marginEnd="12dp"
+                    android:layout_marginEnd="10dp"
                     android:textSize="20sp"
                     android:textColor="@color/white"
                     android:textStyle="bold"/>
@@ -213,7 +212,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:srcCompat="@drawable/ic_line" />
+                    android:src="@drawable/ic_line" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

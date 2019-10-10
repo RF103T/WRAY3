@@ -2,7 +2,7 @@
     <!-- -->
     <string name="camera_shooting_info">请将物体中心对准镜头</string>
     <string name="toolbar_title">你是什么垃圾</string>
-    <string name="app_name">WhatRubbishAreYou</string>
+    <string name="app_name">分类帮</string>
     <string name="action_settings">Settings</string>
 
     <!--权限说明对话框-->

@@ -345,7 +345,7 @@ public class CameraFragment extends Fragment
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
 
         String picPath = ImageUtils.getPath(activity, uri);
-        Uri realUri = FileProvider.getUriForFile(activity, "com.wray", new File(picPath));
+        Uri realUri = FileProvider.getUriForFile(activity, "com.wray2", new File(picPath));
 
         intent.setDataAndType(realUri, "image/*");
 

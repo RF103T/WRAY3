@@ -228,7 +228,6 @@ public class ResultActivity extends AppCompatActivity
         };
 
         uploadImage = dealImage(GlobalValue.savedBitmap);
-        GlobalValue.savedBitmap.recycle();
         uploadImageView.setImageBitmap(uploadImage);
 
         ResultThreadRunnable resultThreadRunnable = new ResultThreadRunnable(uploadImage, handler);

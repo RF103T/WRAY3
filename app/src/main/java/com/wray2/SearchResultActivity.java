@@ -18,101 +18,102 @@ import com.wray2.Class.Rubbish;
 import com.wray2.Thread.JsonDataObjects.ErrorData;
 import com.wray2.Thread.SearchResultRunnable;
 
-import org.w3c.dom.Text;
-
-
-public class SearchResultActivity extends AppCompatActivity {
+public class SearchResultActivity extends AppCompatActivity
+{
     private ImageView pic_garbage_sort;
     private ImageView pic_garbage;
     private ImageView pic_returnFragment;
     private TextView txt_garbage;
     private TextView txt_garbage_sortname;
     private TextView txt_garbage_sortname_detail;
-    private TextView txt_garbagee_name_throw;
     private TextView getTxt_garbagee_name_throw_detail;
     private Rubbish rubbishInfo;
     private Bitmap resultpic;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
 
         pic_garbage = (ImageView)findViewById(R.id.img_search_result_pic);
-        pic_garbage_sort = (ImageView)findViewById(R.id.img_garbage_sortname);
+        pic_garbage_sort = (ImageView)findViewById(R.id.img_garbage_sort);
         txt_garbage = (TextView)findViewById(R.id.txt_garbage_name);
         txt_garbage_sortname = (TextView)findViewById(R.id.txt_garbage_sortname);
         txt_garbage_sortname_detail = (TextView)findViewById(R.id.txt_gatbage_sortname_introduction);
-        txt_garbagee_name_throw = (TextView)findViewById(R.id.txt_garbage_sortname_throw_remand);
         getTxt_garbagee_name_throw_detail = (TextView)findViewById(R.id.txt_garbage_sortname_throw_remand_detail);
         pic_returnFragment = (ImageView)findViewById(R.id.search_result_return);
-        Intent intent =getIntent();
-        rubbishInfo =(Rubbish)getIntent().getParcelableExtra("rubbishInfo");
+        Intent intent = getIntent();
+        rubbishInfo = (Rubbish)intent.getParcelableExtra("rubbishInfo");
         @SuppressLint("HandlerLeak")
-        Handler handler = new Handler(){
+        Handler handler = new Handler()
+        {
             @Override
-            public void handleMessage(Message msg) {
-                if (msg.what ==1){
+            public void handleMessage(Message msg)
+            {
+                if (msg.what == 1)
+                {
                     Bundle bundle = msg.getData();
                     resultpic = bundle.getParcelable("feedback_pic");
                     updateUI();
                 }
-                else if (msg.what == -1){
+                else if (msg.what == -1)
+                {
                     Bundle bundle = msg.getData();
                     ErrorData errorData = bundle.getParcelable("error_data");
                     //Intent intent1 = new Intent(this,)
                 }
             }
         };
-        SearchResultRunnable searchResultRunnable = new SearchResultRunnable(rubbishInfo.getRubbishId(),handler);
+        SearchResultRunnable searchResultRunnable = new SearchResultRunnable(rubbishInfo.getRubbishId(), handler);
         Thread thread = new Thread(searchResultRunnable);
         thread.start();
 
 
-        pic_returnFragment.setOnClickListener(v->{
+        pic_returnFragment.setOnClickListener(v ->
+        {
             finish();
         });
 
 
-
     }
 
-    private void updateUI() {
+    private void updateUI()
+    {
         txt_garbage.setText(rubbishInfo.getRubbishName());
         pic_garbage.setImageBitmap(resultpic);
-        switch (rubbishInfo.getRubbishSortNum()){
+        switch (rubbishInfo.getRubbishSortNum())
+        {
             case 0:
+                pic_garbage_sort.setImageResource(R.drawable.pic_recyclables);
                 txt_garbage_sortname.setText(this.getResources().getString(R.string.recycleName));
                 txt_garbage_sortname_detail.setText(this.getResources().getText(R.string.recyclables_info));
-                txt_garbagee_name_throw.setText(this.getResources().getText(R.string.recyclables_guide));
                 getTxt_garbagee_name_throw_detail.setText(this.getResources().getText(R.string.recyclables_throw_demand));
                 break;
             case 1:
-                //drawablePicId = R.drawable.pic_dry_waste;
+                pic_garbage_sort.setImageResource(R.drawable.pic_dry_waste);
                 txt_garbage_sortname.setText(this.getResources().getString(R.string.dryRubbishname));
                 txt_garbage_sortname_detail.setText(this.getResources().getText(R.string.dryWaste_info));
-                txt_garbagee_name_throw.setText(this.getResources().getText(R.string.dryWaste_guide));
                 getTxt_garbagee_name_throw_detail.setText(this.getResources().getText(R.string.dryWaste_throw_demand));
                 break;
             case 2:
-                //drawablePicId = R.drawable.pic_wet_waste;
+                pic_garbage_sort.setImageResource(R.drawable.pic_wet_waste);
                 txt_garbage_sortname.setText(this.getResources().getString(R.string.wetRubbishname));
                 txt_garbage_sortname_detail.setText(this.getResources().getText(R.string.wetWaste_info));
-                txt_garbagee_name_throw.setText(this.getResources().getText(R.string.wetWaste_guide));
                 getTxt_garbagee_name_throw_detail.setText(this.getResources().getText(R.string.wetWaste_throw_demand));
                 break;
             case 3:
-                //drawablePicId = R.drawable.pic_harmful_waste;
+                pic_garbage_sort.setImageResource(R.drawable.pic_harmful_waste);
                 txt_garbage_sortname.setText(this.getResources().getString(R.string.harmfulRubbishname));
                 txt_garbage_sortname_detail.setText(this.getResources().getText(R.string.harmful_waste_info));
-                txt_garbagee_name_throw.setText(this.getResources().getText(R.string.harmful_waste_guide));
                 getTxt_garbagee_name_throw_detail.setText(this.getResources().getText(R.string.harmful_waste_throw_demand));
                 break;
         }
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume()
+    {
         super.onResume();
         showSystemBar();
     }
