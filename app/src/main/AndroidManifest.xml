@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FragmentsActivity"
+        <activity
+            android:name=".FragmentsActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,8 +31,14 @@
             android:name=".SettingCalendarActivity"
             android:screenOrientation="portrait"></activity>
 
-        <activity android:name=".SearchResultActivity"
+        <activity
+            android:name=".SearchResultActivity"
             android:screenOrientation="portrait"></activity>
+
+        <service
+            android:name=".Service.NotificationDataUpdateService"
+            android:enabled="true"
+            android:exported="true"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -55,5 +62,6 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /><!-- 允许应用程序改变WIFI连接状态 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><!-- 允许应用程序访问有关的网络信息 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /><!-- 允许应用程序访问WIFI网卡的网络信息 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /><!-- 允许应用运行前台服务-->
 
 </manifest>

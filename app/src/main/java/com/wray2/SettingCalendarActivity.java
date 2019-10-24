@@ -20,7 +20,10 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import com.google.android.material.snackbar.Snackbar;
 import com.wray2.Class.Alert;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import static com.wray2.R.drawable.ic_large;
@@ -28,7 +31,7 @@ import static com.wray2.R.drawable.ic_large_choose;
 import static com.wray2.R.drawable.ic_small;
 import static com.wray2.R.drawable.ic_small_choose;
 
-public class SettingCalendarActivity extends AppCompatActivity implements View.OnClickListener, DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener
+public class SettingCalendarActivity extends AppCompatActivity implements View.OnClickListener
 {
     private TextView endTimeText, startTimeText;
     private Button affirm;
@@ -37,10 +40,10 @@ public class SettingCalendarActivity extends AppCompatActivity implements View.O
     private static int position;
     private CoordinatorLayout coordinatorLayout;
     private ImageView pic_returnFragment;
-    private Button sunday,monday,tuesday,wednesday,thursday,friday,saturday;
-    private ImageButton recycle,dry,wet,harmful;
-    private int[] dates = new int[]{0,0,0,0,0,0,0};
-    private int[] rubbishSorts = new int[]{0,0,0,0};
+    private Button sunday, monday, tuesday, wednesday, thursday, friday, saturday;
+    private ImageButton recycle, dry, wet, harmful;
+    private int[] dates = new int[]{0, 0, 0, 0, 0, 0, 0};
+    private int[] rubbishSorts = new int[]{0, 0, 0, 0};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
@@ -61,10 +64,10 @@ public class SettingCalendarActivity extends AppCompatActivity implements View.O
         thursday = (Button)findViewById(R.id.btn_setting_date_thursday);
         friday = (Button)findViewById(R.id.btn_setting_date_friday);
         saturday = (Button)findViewById(R.id.btn_setting_date_saturday);
-        recycle = (ImageButton) findViewById(R.id.img_sort_recycle);
-        dry = (ImageButton) findViewById(R.id.img_sort_dry);
-        wet = (ImageButton) findViewById(R.id.img_sort_wet);
-        harmful = (ImageButton) findViewById(R.id.img_sort_harmful);
+        recycle = (ImageButton)findViewById(R.id.img_sort_recycle);
+        dry = (ImageButton)findViewById(R.id.img_sort_dry);
+        wet = (ImageButton)findViewById(R.id.img_sort_wet);
+        harmful = (ImageButton)findViewById(R.id.img_sort_harmful);
         pic_returnFragment = (ImageView)findViewById(R.id.setting_result_return);
 
         endTimeText.setOnClickListener(this);
@@ -81,7 +84,8 @@ public class SettingCalendarActivity extends AppCompatActivity implements View.O
         wet.setOnClickListener(this);
         harmful.setOnClickListener(this);
 
-        pic_returnFragment.setOnClickListener(v->{
+        pic_returnFragment.setOnClickListener(v ->
+        {
             finish();
         });
 
@@ -109,7 +113,7 @@ public class SettingCalendarActivity extends AppCompatActivity implements View.O
 
         affirm.setOnClickListener(v ->
         {
-            if ( datesIsEmpty() || sortIsEmpty())
+            if (datesIsEmpty() || sortIsEmpty())
             {
                 Snackbar snackbar = Snackbar.make(coordinatorLayout, "请填写完整的信息噢~", Snackbar.LENGTH_SHORT);
                 snackbar.getView().setBackgroundColor(Color.parseColor("#A5D6A7"));
@@ -118,7 +122,7 @@ public class SettingCalendarActivity extends AppCompatActivity implements View.O
             else
             {
                 Intent intent1 = new Intent();
-                Alert alert = new Alert(startTimeText.getText().toString(), endTimeText.getText().toString(),dates,rubbishSorts);
+                Alert alert = new Alert(startTimeText.getText().toString(), endTimeText.getText().toString(), dates, rubbishSorts);
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("Alert", alert);
                 bundle.putInt("position", position);
@@ -134,58 +138,118 @@ public class SettingCalendarActivity extends AppCompatActivity implements View.O
     public void onClick(View v)
     {
         int id = v.getId();
-        if (id == R.id.txt_setting_of_start)
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm", Locale.CHINA);
+        switch (id)
         {
-            Calendar calendar = Calendar.getInstance(Locale.SIMPLIFIED_CHINESE);
-            TimePickerDialog startDialog = new TimePickerDialog(this, R.style.dialog_date, (view, hourOfDay, minute) -> {
-                String desc = String.format(Locale.CHINA, "%d:%02d", hourOfDay, minute);
-                startTimeText.setText(desc);
-            },
-                    calendar.get(Calendar.HOUR_OF_DAY),
-                    calendar.get(Calendar.MINUTE), true);
-            startDialog.show();
+            case R.id.txt_setting_of_start:
+            {
+                Calendar calendar = Calendar.getInstance(Locale.SIMPLIFIED_CHINESE);
+                TimePickerDialog startDialog = new TimePickerDialog(this, R.style.dialog_date,
+                        (view, hourOfDay, minute) ->
+                        {
+                            String desc = String.format(Locale.CHINA, "%02d:%02d", hourOfDay, minute);
+                            //与结束时间比较
+                            try
+                            {
+                                Date startTime = dateFormat.parse(desc);
+                                Date endTime = dateFormat.parse(endTimeText.getText().toString());
+                                if (startTime.getTime() > endTime.getTime())
+                                    endTimeText.setText(desc);
+                            }
+                            catch (ParseException ignore)
+                            {
+
+                            }
+                            startTimeText.setText(desc);
+                        },
+                        calendar.get(Calendar.HOUR_OF_DAY),
+                        calendar.get(Calendar.MINUTE), true);
+                startDialog.show();
+                break;
+            }
+            case R.id.txt_setting_of_end:
+            {
+                Calendar calendar = Calendar.getInstance(Locale.SIMPLIFIED_CHINESE);
+                TimePickerDialog endDialog = new TimePickerDialog(this, R.style.dialog_date,
+                        (view, hourOfDay, minute) ->
+                        {
+                            String desc = String.format(Locale.CHINA, "%02d:%02d", hourOfDay, minute);
+                            //与开始时间比较
+                            try
+                            {
+                                Date startTime = dateFormat.parse(startTimeText.getText().toString());
+                                Date endTime = dateFormat.parse(desc);
+                                if (startTime.getTime() > endTime.getTime())
+                                    startTimeText.setText(desc);
+                            }
+                            catch (ParseException ignore)
+                            {
+
+                            }
+                            endTimeText.setText(desc);
+                        },
+                        calendar.get(Calendar.HOUR_OF_DAY),
+                        calendar.get(Calendar.MINUTE), true);
+                endDialog.show();
+                break;
+            }
+            case R.id.btn_setting_date_sunday:
+            {
+                dateClicklisener(sunday, 0);
+                break;
+            }
+            case R.id.btn_setting_date_monday:
+            {
+                dateClicklisener(monday, 1);
+                break;
+            }
+            case R.id.btn_setting_date_tuesday:
+            {
+                dateClicklisener(tuesday, 2);
+                break;
+            }
+            case R.id.btn_setting_date_wednesday:
+            {
+                dateClicklisener(wednesday, 3);
+                break;
+            }
+            case R.id.btn_setting_date_thursday:
+            {
+                dateClicklisener(thursday, 4);
+                break;
+            }
+            case R.id.btn_setting_date_friday:
+            {
+                dateClicklisener(friday, 5);
+                break;
+            }
+            case R.id.btn_setting_date_saturday:
+            {
+                dateClicklisener(saturday, 6);
+                break;
+            }
+            case R.id.img_sort_recycle:
+            {
+                sortClickLisener(recycle, 0);
+                break;
+            }
+            case R.id.img_sort_dry:
+            {
+                sortClickLisener(dry, 1);
+                break;
+            }
+            case R.id.img_sort_wet:
+            {
+                sortClickLisener(wet, 2);
+                break;
+            }
+            case R.id.img_sort_harmful:
+            {
+                sortClickLisener(harmful, 3);
+                break;
+            }
         }
-        else if (id == R.id.txt_setting_of_end)
-        {
-            Calendar calendar = Calendar.getInstance(Locale.SIMPLIFIED_CHINESE);
-            TimePickerDialog endDialog = new TimePickerDialog(this, R.style.dialog_date, this,
-                    calendar.get(Calendar.HOUR_OF_DAY),
-                    calendar.get(Calendar.MINUTE), true);
-            endDialog.show();
-        }
-        else if (id == R.id.btn_setting_date_sunday){
-            dateClicklisener(sunday,0);
-        }
-        else if (id == R.id.btn_setting_date_monday){
-            dateClicklisener(monday,1);
-        }
-        else if (id == R.id.btn_setting_date_tuesday){
-            dateClicklisener(tuesday,2);
-        }
-        else if (id == R.id.btn_setting_date_wednesday){
-            dateClicklisener(wednesday,3);
-        }
-        else if (id == R.id.btn_setting_date_thursday){
-            dateClicklisener(thursday,4);
-        }
-        else if (id == R.id.btn_setting_date_friday){
-            dateClicklisener(friday,5);
-        }
-        else if (id == R.id.btn_setting_date_saturday){
-            dateClicklisener(saturday,6);
-        }
-        else if (id == R.id.img_sort_recycle){
-            sortClickLisener(recycle,0);
-        }
-        else if (id == R.id.img_sort_dry){
-            sortClickLisener(dry,1);
-        }
-        else if (id == R.id.img_sort_wet){
-            sortClickLisener(wet,2);
-        }
-        else if (id == R.id.img_sort_harmful){
-            sortClickLisener(harmful,3);
-        }
+
     }
 
     @Override
@@ -193,20 +257,6 @@ public class SettingCalendarActivity extends AppCompatActivity implements View.O
     {
         super.onResume();
         showSystemBar();
-    }
-
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
-    {
-        String desc = String.format(Locale.CHINA, "%d年%d月%d日", year, month + 1, dayOfMonth);
-        endTimeText.setText(desc);
-    }
-
-    @Override
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute)
-    {
-            String desc = String.format(Locale.CHINA, "%d:%02d", hourOfDay, minute);
-            endTimeText.setText(desc);
     }
 
     public void showSystemBar()
@@ -220,60 +270,80 @@ public class SettingCalendarActivity extends AppCompatActivity implements View.O
         this.getWindow().setStatusBarColor(Color.TRANSPARENT);
     }
 
-    public void dateClicklisener(Button button, int i){
-        if (dates[i] == 0){
+    public void dateClicklisener(Button button, int i)
+    {
+        if (dates[i] == 0)
+        {
             button.setBackground(this.getDrawable(ic_small_choose));
             button.setTextColor(Color.WHITE);
             dates[i] = 1;
-        }else {
+        }
+        else
+        {
             button.setBackground(this.getDrawable(ic_small));
             button.setTextColor(this.getColor(R.color.colortxtgreen));
             dates[i] = 0;
         }
     }
 
-    public void sortClickLisener(ImageButton imageButton, int i){
-        if (rubbishSorts[i] == 0){
+    public void sortClickLisener(ImageButton imageButton, int i)
+    {
+        if (rubbishSorts[i] == 0)
+        {
             imageButton.setBackground(this.getDrawable(ic_large_choose));
             rubbishSorts[i] = 1;
-        }else {
+        }
+        else
+        {
             imageButton.setBackground(this.getDrawable(ic_large));
             rubbishSorts[i] = 0;
         }
     }
 
-    public boolean datesIsEmpty(){
-        for (int i = 0 ;i<7;i++){
-            if (dates[i] != 0){
+    public boolean datesIsEmpty()
+    {
+        for (int i = 0; i < 7; i++)
+        {
+            if (dates[i] != 0)
+            {
                 return false;
             }
         }
         return true;
     }
 
-    public boolean sortIsEmpty(){
-        for (int i = 0; i < 4 ; i++){
-            if (rubbishSorts[i] !=0){
+    public boolean sortIsEmpty()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (rubbishSorts[i] != 0)
+            {
                 return false;
             }
         }
         return true;
     }
 
-    public void initDates(int[] dates){
-        Button[] datebuttons = new Button[]{sunday,monday,tuesday,wednesday,thursday,friday,saturday};
-        for (int i =0; i<7; i++){
-            if (dates[i] == 1){
+    public void initDates(int[] dates)
+    {
+        Button[] datebuttons = new Button[]{sunday, monday, tuesday, wednesday, thursday, friday, saturday};
+        for (int i = 0; i < 7; i++)
+        {
+            if (dates[i] == 1)
+            {
                 datebuttons[i].setBackground(this.getDrawable(ic_small_choose));
                 datebuttons[i].setTextColor(Color.WHITE);
             }
         }
     }
 
-    public void initSorts(int[] rubbishSorts){
-        ImageButton[] rubbishImageViews = new ImageButton[]{recycle,dry,wet,harmful};
-        for (int i = 0; i<4;i++){
-            if (rubbishSorts[i] == 1){
+    public void initSorts(int[] rubbishSorts)
+    {
+        ImageButton[] rubbishImageViews = new ImageButton[]{recycle, dry, wet, harmful};
+        for (int i = 0; i < 4; i++)
+        {
+            if (rubbishSorts[i] == 1)
+            {
                 rubbishImageViews[i].setBackground(this.getDrawable(ic_large_choose));
             }
         }

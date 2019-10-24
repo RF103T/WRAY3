@@ -5,11 +5,16 @@ import android.content.Context;
 import com.wray2.Class.Alert;
 import com.wray2.Util.AlertUtils;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class CalendarManager
 {
     private LinkedList<Alert> alertList;
+
+    //用于保存一周内发生的日程，按照日期排序，同一天按照发生时间排序
+    private ArrayList<Alert> willComingAlertQueue;
 
     private Context context;
 

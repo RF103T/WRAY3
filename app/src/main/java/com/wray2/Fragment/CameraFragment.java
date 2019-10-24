@@ -12,7 +12,6 @@ import android.os.Message;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -40,6 +39,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.util.concurrent.Executor;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -164,7 +164,7 @@ public class CameraFragment extends Fragment
         });
 
         takePhotoImageView.setOnClickListener(v ->
-                cameraView.takePicture(new ImageCapture.OnImageCapturedListener()
+                cameraView.takePicture(command -> new Thread(command).start(), new ImageCapture.OnImageCapturedListener()
                 {
                     @Override
                     public void onCaptureSuccess(ImageProxy image, int rotationDegrees)

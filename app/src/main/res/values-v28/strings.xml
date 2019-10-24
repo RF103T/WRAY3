@@ -73,11 +73,11 @@
 
     <!--设置界面-->
     <string-array name="day_entries">
-        <item>1天</item>
-        <item>2天</item>
-        <item>3天</item>
-        <item>4天</item>
-        <item>5天</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
     </string-array>
     <string-array name="day_entries_values">
         <item>1</item>

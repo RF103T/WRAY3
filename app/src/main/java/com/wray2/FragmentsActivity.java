@@ -1,12 +1,15 @@
 package com.wray2;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
+import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
@@ -23,7 +26,9 @@ import com.wray2.Fragment.CameraFragment;
 import com.wray2.Fragment.HomepageFragment;
 import com.wray2.Fragment.SearchFragment;
 import com.wray2.Fragment.SettingFragment;
+import com.wray2.Manager.NotificationChannelsManager;
 import com.wray2.Manager.PermissionManager;
+import com.wray2.Service.NotificationDataUpdateService;
 
 public class FragmentsActivity extends FragmentActivity
         implements HomepageFragment.OnFragmentInteractionListener,
@@ -39,6 +44,8 @@ public class FragmentsActivity extends FragmentActivity
     private ImageView backgroundImageView;
 
     private boolean isDealShortCutsAction = false;
+
+    private NotificationServiceConnection serviceConnection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -60,6 +67,18 @@ public class FragmentsActivity extends FragmentActivity
                     .setCancelable(false)
                     .create();
             permissionsInfoDialog.show();
+        }
+
+        //注册通知通道
+        NotificationChannelsManager.createAllNotificationChannels(this);
+
+        //获取通知更新服务
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (sharedPreferences.getBoolean("show_calendar", false))
+        {
+            Intent intent = new Intent(FragmentsActivity.this, NotificationDataUpdateService.class);
+            serviceConnection = new NotificationServiceConnection();
+            bindService(intent, serviceConnection, BIND_AUTO_CREATE);
         }
 
         tabBar = new MyTabBar(this);
@@ -191,8 +210,20 @@ public class FragmentsActivity extends FragmentActivity
         this.getWindow().setStatusBarColor(Color.TRANSPARENT);
     }
 
-    protected void onRestart()
+    class NotificationServiceConnection implements ServiceConnection
     {
-        super.onRestart();
+        public NotificationDataUpdateService.NotificationDataBinder binder;
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service)
+        {
+            binder = (NotificationDataUpdateService.NotificationDataBinder)service;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name)
+        {
+
+        }
     }
 }

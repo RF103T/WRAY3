@@ -6,7 +6,7 @@
         android:title="功能">
 
         <SwitchPreference
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:key="show_calendar"
             android:summary="在通知栏显示最近日程"
             android:title="启用通知" />
@@ -14,14 +14,14 @@
         <ListPreference
             android:defaultValue="3"
             android:key="show_calendar_num"
-            android:summary="预先显示3天的日程"
-            android:title="预先显示日程的天数"
+            android:summary="预先显示3条日程"
+            android:title="预先显示日程的条数"
             android:entries="@array/day_entries"
             android:entryValues="@array/day_entries_values"/>
 
         <Preference
             android:key="how_calendar_background"
-            android:summary="怎么让APP尽可能在后台更新通知"
+            android:summary="让APP尽可能地在后台更新通知"
             android:title="如何保留通知" />
 
     </PreferenceCategory>
@@ -37,6 +37,7 @@
             android:title="显示启动页" />
 
         <SwitchPreference
+            android:defaultValue="false"
             android:key="dark_mode"
             android:summary="使用暗色主题"
             android:title="黑暗模式" />

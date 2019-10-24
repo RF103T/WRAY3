@@ -39,7 +39,7 @@
         <item name="android:windowNoTitle">true</item>
         <!--除去title，如果在代码里面有其他设置会没效果的不过完全没效果-->
         <item name="android:windowContentOverlay">@null</item>
-        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:backgroundDimEnabled">true</item>
         <!--<!–背景色  如果除去背景色 @null –>-->
         <!--<item name="android:windowBackground">@color/red_F1</item>-->
         <!--按钮字体的颜色-->
