@@ -3,20 +3,23 @@ package com.wray2.Class;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import java.io.Serializable;
 
 public class Alert implements Parcelable, Serializable
 {
-    private String date;
-    private String starttime;
-    private String endtime;
-    private String datetime;
-    private String sort;
-    private int[] dates;
-    private int[] sorts;
+    private String date;//日期
+    private String starttime;//开始收垃圾的时间
+    private String endtime;//结束收垃圾的时间
+    private String time;//仅用于在首页日程列表中显示完整时间段
+    private String sort;//显示垃圾种类的文本信息
+    private int[] dates;//用于记录选择的日期
+    private int[] sorts;//记录选择的垃圾种类
     private static String[] datesname = new String[]{"日", "一", "二", "三", "四", "五", "六"};
     private static String[] sortssname = new String[]{"可回收垃圾", "干垃圾", "湿垃圾", "有害垃圾"};
-    private int position;
+    private int position;//记录从CalerdarList里点进修改的日程位置
 
     public Alert()
     {
@@ -27,14 +30,14 @@ public class Alert implements Parcelable, Serializable
         this.date = date;
         this.starttime = starttime;
         this.endtime = endtime;
-        this.datetime = starttime + "-" + endtime;
+        this.time = starttime + "-" + endtime;
     }
 
     public Alert(String starttime, String endtime, int[] dates, int[] sorts)
     {
         this.starttime = starttime;
         this.endtime = endtime;
-        this.datetime = starttime + "-" + endtime;
+        this.time = starttime + "-" + endtime;
         this.dates = dates;
         this.sorts = sorts;
         this.date = getDates(dates, "周");
@@ -66,9 +69,9 @@ public class Alert implements Parcelable, Serializable
         return date;
     }
 
-    public String getDatetime()
+    public String getTime()
     {
-        return datetime;
+        return time;
     }
 
     public void setDate(String date)
@@ -76,9 +79,9 @@ public class Alert implements Parcelable, Serializable
         this.date = date;
     }
 
-    public void setDatetime(String datetime)
+    public void setTime(String time)
     {
-        this.datetime = datetime;
+        this.time = time;
     }
 
     public void setSort(String sort)
@@ -127,7 +130,7 @@ public class Alert implements Parcelable, Serializable
         dest.writeString(date);
         dest.writeString(starttime);
         dest.writeString(endtime);
-        dest.writeString(datetime);
+        dest.writeString(time);
         dest.writeString(sort);
         dest.writeIntArray(sorts);
         dest.writeIntArray(dates);
@@ -148,7 +151,7 @@ public class Alert implements Parcelable, Serializable
             alert.date = parcel.readString();
             alert.starttime = parcel.readString();
             alert.endtime = parcel.readString();
-            alert.datetime = parcel.readString();
+            alert.time = parcel.readString();
             alert.sort = parcel.readString();
             alert.sorts = parcel.createIntArray();
             alert.dates = parcel.createIntArray();

@@ -26,9 +26,11 @@ import com.wray2.Fragment.CameraFragment;
 import com.wray2.Fragment.HomepageFragment;
 import com.wray2.Fragment.SearchFragment;
 import com.wray2.Fragment.SettingFragment;
+import com.wray2.Manager.CalendarManager;
 import com.wray2.Manager.NotificationChannelsManager;
 import com.wray2.Manager.PermissionManager;
 import com.wray2.Service.NotificationDataUpdateService;
+import com.wray2.Util.AlertUtils;
 
 public class FragmentsActivity extends FragmentActivity
         implements HomepageFragment.OnFragmentInteractionListener,
@@ -208,6 +210,12 @@ public class FragmentsActivity extends FragmentActivity
                 | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
         decorView.setSystemUiVisibility(option);
         this.getWindow().setStatusBarColor(Color.TRANSPARENT);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AlertUtils.updateAllAlertList(this.getApplicationContext(), CalendarManager.calendarManager.getAlertList());
     }
 
     class NotificationServiceConnection implements ServiceConnection

@@ -46,7 +46,7 @@ public class HomepageRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
         if(position != alerts.size() - 1)
         {
             HomepageRecyclerViewHolder homepageRecyclerViewHolder = (HomepageRecyclerViewHolder)holder;
-            homepageRecyclerViewHolder.time.setText(alerts.get(position).getDatetime());
+            homepageRecyclerViewHolder.time.setText(alerts.get(position).getTime());
             homepageRecyclerViewHolder.sort.setText(alerts.get(position).getSort());
             homepageRecyclerViewHolder.date.setText(alerts.get(position).getDate());
         }

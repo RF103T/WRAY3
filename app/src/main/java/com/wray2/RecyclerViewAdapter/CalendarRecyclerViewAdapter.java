@@ -12,7 +12,6 @@ import com.wray2.Class.Alert;
 import com.wray2.R;
 
 import java.util.LinkedList;
-import java.util.List;
 
 public class CalendarRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private LayoutInflater inflater;
@@ -46,7 +45,7 @@ public class CalendarRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             CalendarRecyclerViewHolder calendarRecyclerViewHolder = (CalendarRecyclerViewHolder) holder;
             calendarRecyclerViewHolder.calendarDate.setText(calendars.get(position).getDate());
             calendarRecyclerViewHolder.calendarSorts.setText(calendars.get(position).getSort());
-            calendarRecyclerViewHolder.calendarTime.setText(calendars.get(position).getDatetime());
+            calendarRecyclerViewHolder.calendarTime.setText(calendars.get(position).getTime());
         }
     }
 

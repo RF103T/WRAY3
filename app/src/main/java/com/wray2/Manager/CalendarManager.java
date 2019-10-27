@@ -11,7 +11,7 @@ import java.util.Queue;
 
 public class CalendarManager
 {
-    private LinkedList<Alert> alertList;
+    private static LinkedList<Alert> alertList = new LinkedList<Alert>();
 
     //用于保存一周内发生的日程，按照日期排序，同一天按照发生时间排序
     private ArrayList<Alert> willComingAlertQueue;
@@ -27,10 +27,12 @@ public class CalendarManager
 
     private CalendarManager(Context context)
     {
-        alertList = new LinkedList<Alert>();
-        this.context = context.getApplicationContext();
-        alertList = AlertUtils.readAlertList(context);
-        alertList.add(new Alert("ADD_NEW", "NONE", "NONE"));
+        if (alertList.isEmpty()){
+            //alertList = new LinkedList<Alert>();
+            this.context = context.getApplicationContext();
+            alertList = AlertUtils.readAlertList(context);
+            alertList.add(new Alert("ADD_NEW", "NONE", "NONE"));
+        }
     }
 
     public LinkedList<Alert> getRealAlertList()
@@ -48,25 +50,25 @@ public class CalendarManager
     public void addAlert(Alert alert)
     {
         alertList.addFirst(alert);
-        AlertUtils.addAlterToAlterList(context, alert);
+        //AlertUtils.addAlterToAlterList(context, alert);
     }
 
     public void setAlert(int position, Alert alert)
     {
         alertList.set(position, alert);
-        AlertUtils.upDateAlertList(context, position, alert);
+        //AlertUtils.upDateAlertList(context, position, alert);
     }
 
     public void removeallAlert(int position)
     {
         alertList.clear();
-        AlertUtils.deleteallAlertList(context);
+        //AlertUtils.deleteallAlertList(context);
     }
 
     public void removeAlert(int position)
     {
         alertList.remove(position);
-        AlertUtils.deleteAlertList(context, position);
+        //AlertUtils.deleteAlertList(context, position);
     }
 
     public void moveAlert(int fromPosition, int toPosition)
@@ -74,7 +76,7 @@ public class CalendarManager
         Alert alert = alertList.get(fromPosition);
         alertList.remove(fromPosition);
         alertList.add(toPosition, alert);
-        AlertUtils.updateAllAlertList(context, CalendarManager.calendarManager.getAlertList());
+        //AlertUtils.updateAllAlertList(context, CalendarManager.calendarManager.getAlertList());
     }
 
     public void reAddAlert(int position, Alert alert)
@@ -102,6 +104,6 @@ public class CalendarManager
             }
             alertList.set(position, alert);
         }
-        AlertUtils.updateAllAlertList(context, CalendarManager.calendarManager.getAlertList());
+        //AlertUtils.updateAllAlertList(context, CalendarManager.calendarManager.getAlertList());
     }
 }
