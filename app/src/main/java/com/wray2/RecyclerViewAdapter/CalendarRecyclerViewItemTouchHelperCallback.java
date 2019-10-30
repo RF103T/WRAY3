@@ -20,9 +20,12 @@ import com.wray2.R;
 
 
 import java.lang.reflect.Array;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.Objects;
+import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -102,9 +105,9 @@ public class CalendarRecyclerViewItemTouchHelperCallback extends ItemTouchHelper
         super.clearView(recyclerView, viewHolder);
         if (!queue.isEmpty()){
             //如果队列中有数据，说明刚才有删掉一些item
-             Snackbar snackbar = Snackbar.make(coordinatorLayout,"已为您删除该日程",Snackbar.LENGTH_LONG);
+             Snackbar snackbar = Snackbar.make(coordinatorLayout,"已删除该日程",Snackbar.LENGTH_LONG);
              snackbar.getView().setBackgroundColor(Color.parseColor("#A5D6A7"));
-             snackbar.setAction("撤销删除", v -> {
+             snackbar.setAction("撤销", v -> {
                 //SnackBar的撤销按钮被点击，队列中取出刚被删掉的数据，然后再添加到数据集合
                 final Alert bookShelfResponse = (Alert)queue.remove();
                 CalendarManager.calendarManager.reAddAlert(bookShelfResponse.getPosition(),bookShelfResponse);
@@ -127,9 +130,7 @@ public class CalendarRecyclerViewItemTouchHelperCallback extends ItemTouchHelper
                  }
              });
              snackbar.show();
-
         }
-        //todo:上下移动也会提示删除，快速删除snackbar多次弹出影响美观
     }
 
 

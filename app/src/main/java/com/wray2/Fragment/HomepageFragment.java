@@ -82,9 +82,6 @@ public class HomepageFragment extends Fragment
         ScreenUtils.screenWidth = point.x;
         ScreenUtils.screenHeight = point.y;
 
-        //初始化日程管理器
-        CalendarManager.initCalendarManager(activity);
-
         //布局创建
         cameraCard = (CardView)view.findViewById(R.id.cardview2_homepage);
         searchCard = (CardView)view.findViewById(R.id.cardview3_homepage);

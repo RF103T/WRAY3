@@ -101,8 +101,7 @@ public class CalendarFragment extends Fragment
                     intent1.putExtra("alter_sorts", CalendarManager.calendarManager.getRealAlertList().get(position).getSorts());
                     intent1.putExtra("position", position);
                     intent1.putExtra("key", 1);
-                    Pair<View, String> pair = Pair.create(((View)view.findViewById(R.id.calendarItemCardView)), "constraintLayout");
-                    startActivityForResult(intent1, 1, ActivityOptions.makeSceneTransitionAnimation(activity, pair).toBundle());
+                    startActivityForResult(intent1, 1);
                 }
             }
         });
