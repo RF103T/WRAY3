@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Pair;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ import com.wray2.RecyclerViewAdapter.CalendarRecyclerViewItemTouchHelperCallback
 import com.wray2.RecyclerViewAdapter.CalendarRecyclerViewLinearLayoutManagerWrap;
 import com.wray2.RecyclerViewAdapter.RecyclerViewItemTouchListener;
 import com.wray2.SettingCalendarActivity;
+import com.wray2.Util.ThemeUtils;
 
 public class CalendarFragment extends Fragment
 {
@@ -73,7 +75,9 @@ public class CalendarFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_calendar, container, false);
+        final Context contextThemeWrapper = new ContextThemeWrapper(getActivity(), ThemeUtils.getThemeId(activity));
+        LayoutInflater localInflater = inflater.cloneInContext(contextThemeWrapper);
+        View view = localInflater.inflate(R.layout.fragment_calendar, container, false);
         //布局创建
         calendarList = (RecyclerView)view.findViewById(R.id.calendar_RecycleView);
         coordinatorLayout = (CoordinatorLayout)view.findViewById(R.id.calendar_coordinatorLayout);

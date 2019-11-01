@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.wray2.R;
 import com.wray2.RecyclerViewAdapter.RecyclerViewItemTouchListener;
 import com.wray2.RecyclerViewAdapter.HomepageRecyclerViewAdapter;
 import com.wray2.Util.ScreenUtils;
+import com.wray2.Util.ThemeUtils;
 
 public class HomepageFragment extends Fragment
 {
@@ -71,7 +73,9 @@ public class HomepageFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_wray_homepage, container, false);
+        final Context contextThemeWrapper = new ContextThemeWrapper(getActivity(), ThemeUtils.getThemeId(activity));
+        LayoutInflater localInflater = inflater.cloneInContext(contextThemeWrapper);
+        View view = localInflater.inflate(R.layout.fragment_wray_homepage,container,false);
 
         //初始化ScreenUtils的一些参数
         ScreenUtils.context = activity.getApplicationContext();

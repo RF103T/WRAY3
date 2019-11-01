@@ -15,7 +15,8 @@
         android:text="@string/homepage_alert_time1"
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="?attr/homepage_light_textcolor"/>
 
     <TextView
         android:id="@+id/txt_item_time"
@@ -26,7 +27,8 @@
         android:text="@string/homepage_alert_time2"
         android:textSize="16sp"
         app:layout_constraintLeft_toRightOf="@id/txt_item_date"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="?attr/homepage_light_textcolor"/>
 
     <TextView
         android:id="@+id/txt_item_sort"
@@ -36,6 +38,7 @@
         android:text="@string/homepage_alert_sort1"
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="@+id/txt_item_date"
-        app:layout_constraintTop_toBottomOf="@+id/txt_item_date" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_item_date"
+        android:textColor="?attr/homepage_light_textcolor"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="fragment_background" format="color"/>
+    <attr name="homepage_pic_background" format="reference"/>
+    <attr name="homepage_light_textcolor" format="color"/>
+    <attr name="cards_background" format="color"/>
+    <attr name="homepage_title" format="color"/>
+    <attr name="homepage_title_background_color" format="color"/>
+    <attr name="homepage_line" format="reference"/>
+    <attr name="homepage_title_item_background_color" format="color"/>
+    <attr name="search_edittxt_color" format="color"/>
+    <attr name="search_edittxt_hint_color" format="color"/>
+    <attr name="search_pic_color" format="color"/>
+    <attr name="search_item_txt_color" format="color"/>
+    <attr name="search_item_background_color" format="color"/>
+    <attr name="searchresult_txt_color" format="color"/>
+    <attr name="searchresult_cardview_background_color" format="color"/>
+    <attr name="calandarsetting_txt_color" format="color"/>
+    <attr name="cameraresult_txt_color" format="color"/>
+    <attr name="cameraresult_card_background_color" format="reference"/>
+</resources>

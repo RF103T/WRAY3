@@ -8,6 +8,7 @@
     <color name="colorSecondaryLight">#D7FFD9</color>
 
     <color name="transparentColor">#00000000</color>
+    <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="transformwhite">#CCF8F8FF</color>
     <color name="cardtransformwhite">#D9F8F8FF</color>
@@ -18,7 +19,7 @@
     <color name="homepage_background_transfromgreen">#43A3D7A6</color>
     <color name="homepage_lightgreen">#228B22</color>
     <color name="homepage_linegreen">#009688</color>
-    <color name="backgroundgreen">#FFDEEFDF</color>
+    <color name="backgroundgreen">#CCDEEFDF</color>
     <color name="cardView_background_green">#FFDEEFDF</color>
     <color name="grey_of_line">#40979797</color>
 </resources>

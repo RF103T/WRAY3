@@ -31,6 +31,7 @@ import com.wray2.Manager.NotificationChannelsManager;
 import com.wray2.Manager.PermissionManager;
 import com.wray2.Service.NotificationDataUpdateService;
 import com.wray2.Util.AlertUtils;
+import com.wray2.Util.ThemeUtils;
 
 public class FragmentsActivity extends FragmentActivity
         implements HomepageFragment.OnFragmentInteractionListener,
@@ -53,7 +54,9 @@ public class FragmentsActivity extends FragmentActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setTheme(ThemeUtils.getThemeId(this));
         setContentView(R.layout.activity_fragments);
+
 
         backgroundImageView = (ImageView)findViewById(R.id.backgroundImageView);
 

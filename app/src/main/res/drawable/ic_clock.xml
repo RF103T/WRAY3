@@ -6,13 +6,13 @@
   <path
       android:pathData="M36,0C16.15,0 0,16.15 0,36C0,55.85 16.15,72 36,72C55.85,72 72,55.85 72,36C72,16.15 55.85,0 36,0ZM36,67.5C18.6306,67.5 4.5,53.3694 4.5,36C4.5,18.6306 18.6306,4.5 36,4.5C53.3694,4.5 67.5,18.6306 67.5,36C67.5,53.3694 53.3694,67.5 36,67.5Z"
       android:strokeWidth="1"
-      android:fillColor="#0E3A11"
+      android:fillColor="?attr/calandarsetting_txt_color"
       android:fillType="nonZero"
       android:strokeColor="#00000000"/>
   <path
       android:pathData="M38.4116,13l-4.4116,0l0,23.6867l13.8809,14.3133l3.1191,-3.2163l-12.5884,-12.9806z"
       android:strokeWidth="1"
-      android:fillColor="#0E3A11"
+      android:fillColor="?attr/calandarsetting_txt_color"
       android:fillType="nonZero"
       android:strokeColor="#00000000"/>
 </vector>

@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +32,7 @@ import com.wray2.SearchResultActivity;
 import com.wray2.Thread.JsonDataObjects.ErrorData;
 import com.wray2.Thread.JsonDataObjects.SearchbackData;
 import com.wray2.Thread.RelativeSearchThreadRunnable;
+import com.wray2.Util.ThemeUtils;
 import com.wray2.Util.mValsUtils;
 
 import java.util.LinkedList;
@@ -94,7 +96,9 @@ public class SearchFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_search_garbage, container, false);
+        final Context contextThemeWrapper = new ContextThemeWrapper(getActivity(), ThemeUtils.getThemeId(activity));
+        LayoutInflater localInflater = inflater.cloneInContext(contextThemeWrapper);
+        View view = localInflater.inflate(R.layout.fragment_search_garbage, container, false);
         //布局创建
         searchEditText = (EditText)view.findViewById(R.id.editxt_search_garbage);
         mFlowLayout = (FlowLayout)view.findViewById(R.id.flowlayout_history);

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="45dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="?attr/homepage_title_background_color">
 
     <TextView
         android:id="@+id/relativeitem_txt"
@@ -11,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:text="@string/homepage_alert_time2"
-        android:textColor="@color/colortxtgreen"
+        android:textColor="?attr/search_item_txt_color"
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"
         android:text="@string/homepage_alert_time2"
-        android:textColor="@color/colortxtgreen"
+        android:textColor="?attr/search_item_txt_color"
         android:textSize="16sp"
         android:textStyle="italic"
         app:layout_constraintRight_toRightOf="parent"

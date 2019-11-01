@@ -46,6 +46,7 @@ import com.wray2.Thread.JsonDataObjects.FeedbackData;
 import com.wray2.Thread.FeedbackThreadRunnable;
 import com.wray2.Util.ScreenUtils;
 import com.wray2.Thread.ResultThreadRunnable;
+import com.wray2.Util.ThemeUtils;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -107,6 +108,7 @@ public class ResultActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setTheme(ThemeUtils.getThemeId(this));
         setContentView(R.layout.activity_result);
 
         //获取数据

@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ import com.wray2.R;
 import com.wray2.ResultActivity;
 import com.wray2.Util.ImageUtils;
 import com.wray2.Util.ScreenUtils;
+import com.wray2.Util.ThemeUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -133,7 +135,9 @@ public class CameraFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_camera, container, false);
+        final Context contextThemeWrapper = new ContextThemeWrapper(getActivity(), ThemeUtils.getThemeId(activity));
+        LayoutInflater localInflater = inflater.cloneInContext(contextThemeWrapper);
+        View view = localInflater.inflate(R.layout.fragment_camera, container, false);
         //布局创建
         cameraView = (CameraView)view.findViewById(R.id.camera_view);
         flashLightImageView = (ImageView)view.findViewById(R.id.flash_light_image_view);

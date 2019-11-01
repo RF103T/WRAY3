@@ -26,7 +26,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="?attr/searchresult_cardview_background_color">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -43,7 +44,7 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif"
                 android:text="@string/homepage_alert_time1"
-                android:textColor="@color/colorsettxtgreen"
+                android:textColor="?attr/calandarsetting_txt_color"
                 android:textSize="19sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/calendar_item_time"
@@ -56,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:text="@string/homepage_alert_time2"
-                android:textColor="@color/colorsettxtgreen"
+                android:textColor="?attr/calandarsetting_txt_color"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="@id/calendar_item_date"
@@ -71,7 +72,7 @@
                 android:layout_marginBottom="15dp"
                 android:fontFamily="sans-serif"
                 android:text="@string/homepage_alert_sort1"
-                android:textColor="@color/colorsettxtgreen"
+                android:textColor="?attr/calandarsetting_txt_color"
                 android:textSize="19sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"

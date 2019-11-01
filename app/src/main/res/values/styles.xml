@@ -8,8 +8,59 @@
         <item name="android:colorSecondary">@color/colorSecondary</item>
         <item name="toolbarStyle">@style/ClubToolbar</item>
         <item name="android:windowLightStatusBar">true</item>
-
         <item name="android:windowAnimationStyle">@style/WindowAnimation</item>
+        <item name="cards_background">@color/white</item>
+        <!--主页部分 -->
+        <item name="homepage_light_textcolor">@color/homepage_lightgreen</item>
+        <item name="homepage_pic_background">@drawable/pic_card_background</item>
+        <item name="homepage_title">@color/colorAccent</item>
+        <item name="homepage_title_background_color">@color/white</item>
+        <item name="homepage_line">@drawable/ic_homepage_light_line</item>
+        <item name="homepage_title_item_background_color">@color/homepage_background_transfromgreen</item>
+        <!--搜索部分 -->
+        <item name="search_edittxt_color">@color/backgroundgreen</item>
+        <item name="search_edittxt_hint_color">@color/hintcolortxtgreen</item>
+        <item name="search_pic_color">#00675B</item>
+        <item name="search_item_txt_color">@color/homepage_deepgreen</item>
+        <item name="search_item_background_color">@color/cardView_background_green</item>
+        <item name="searchresult_cardview_background_color">@color/white</item>
+        <!--日程表部分 -->
+        <item name="calandarsetting_txt_color">@color/colorsettxtgreen</item>
+        <!--相机部分 -->
+        <item name="cameraresult_txt_color">@color/black</item>
+        <item name="cameraresult_card_background_color">@drawable/shape_corner_up</item>
+    </style>
+
+    <style name="darkTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:colorPrimary">@color/colorPrimary</item>
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:colorAccent">@color/white</item>
+        <item name="android:colorSecondary">@color/colorSecondary</item>
+        <item name="toolbarStyle">@style/ClubToolbar</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimation</item>
+        <item name="cards_background">@color/dark_Theme_Fragment_Background</item>
+        <!--主页部分 -->
+        <item name="homepage_light_textcolor">@color/white</item>
+        <item name="homepage_pic_background">@drawable/ic_homepage_dark_picture</item>
+        <item name="homepage_title">@color/white</item>
+        <item name="homepage_title_background_color">@color/dark_homepage_title_background_color</item>
+        <item name="homepage_line">@drawable/ic_homepage_dark_line</item>
+        <item name="homepage_title_item_background_color">@color/dark_homepage_title_item_background_color</item>
+        <!--搜索部分 -->
+        <item name="search_edittxt_color">@color/search_edittxt_background_color</item>
+        <item name="search_edittxt_hint_color">@color/dark_colorAccent</item>
+        <item name="search_pic_color">@color/dark_colorAccent</item>
+        <item name="search_item_txt_color">@color/dark_colorAccent</item>
+        <item name="search_item_background_color">@color/dark_homepage_title_item_background_color</item>
+        <item name="searchresult_cardview_background_color">@color/dark_homepage_title_item_background_color</item>
+        <!--日程表部分 -->
+        <item name="calandarsetting_txt_color">@color/white</item>
+        <!--相机部分 -->
+        <item name="cameraresult_txt_color">@color/white</item>
+        <item name="cameraresult_card_background_color">@drawable/dark_camerresult_card_background</item>
+
+
     </style>
 
     <style name="WindowAnimation">

@@ -3,6 +3,7 @@ package com.wray2.Fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.wray2.FragmentsActivity;
 import com.wray2.R;
+import com.wray2.Util.ThemeUtils;
 
 public class SettingFragment extends Fragment
 {
@@ -56,7 +58,9 @@ public class SettingFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_setting, container, false);
+        final Context contextThemeWrapper = new ContextThemeWrapper(getActivity(), ThemeUtils.getThemeId(activity));
+        LayoutInflater localInflater = inflater.cloneInContext(contextThemeWrapper);
+        View view = localInflater.inflate(R.layout.fragment_setting, container, false);
         //布局创建
         preferenceFragment = (PreferenceFragment)activity.getSupportFragmentManager().findFragmentById(R.id.setting_fragment);
         return view;

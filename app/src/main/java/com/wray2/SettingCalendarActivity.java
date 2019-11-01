@@ -19,6 +19,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.wray2.Class.Alert;
+import com.wray2.Util.ThemeUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -49,6 +50,7 @@ public class SettingCalendarActivity extends AppCompatActivity implements View.O
     protected void onCreate(@Nullable Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setTheme(ThemeUtils.getThemeId(this));
         setContentView(R.layout.activity_setting_calendar);
         showSystemBar();
 

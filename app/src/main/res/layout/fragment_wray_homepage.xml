@@ -12,7 +12,6 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="80dp"
         android:layout_marginRight="30dp"
-        android:background="@color/transformwhite"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
@@ -21,12 +20,13 @@
         app:cardMaxElevation="6dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardBackgroundColor="?attr/homepage_title_background_color">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#00FFFFFF">
+            >
 
             <TextView
                 android:id="@+id/txt_homepage_card1"
@@ -36,8 +36,8 @@
                 android:layout_marginTop="30dp"
                 android:fontFamily="sans-serif-black"
                 android:text="@string/homepage_alert"
-                android:textColor="@color/homepage_deepgreen"
-                android:textSize="30dp"
+                android:textColor="?attr/homepage_title"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -53,7 +53,7 @@
                     android:id="@+id/RecylerView_homepage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/homepage_background_transfromgreen"
+                    android:background="?attr/homepage_title_item_background_color"
                     android:orientation="horizontal" />
 
                 <TextView
@@ -91,12 +91,13 @@
         app:cardMaxElevation="6dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardview2_homepage">
+        app:layout_constraintTop_toBottomOf="@+id/cardview2_homepage"
+        app:cardBackgroundColor="?attr/cards_background">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/pic_card_background">
+            android:background="?attr/homepage_pic_background">
 
             <TextView
                 android:id="@+id/txt_homepage_card3"
@@ -106,7 +107,7 @@
                 android:layout_marginTop="40dp"
                 android:fontFamily="sans-serif-light"
                 android:text="@string/homepage_card2_txt1"
-                android:textColor="@color/homepage_lightgreen"
+                android:textColor="?attr/homepage_light_textcolor"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -118,7 +119,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="4dp"
                 android:text="@string/homepage_card3_txt2"
-                android:textColor="@color/homepage_lightgreen"
+                android:textColor="?attr/homepage_light_textcolor"
                 android:textSize="26sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -143,7 +144,7 @@
         android:layout_width="120dp"
         android:layout_height="2dp"
         android:layout_marginTop="40dp"
-        android:background="@color/homepage_linegreen"
+        android:background="?attr/homepage_line"
         app:layout_constraintBottom_toTopOf="@id/cardview2_homepage"
         app:layout_constraintLeft_toLeftOf="@id/cardview2_homepage"
         app:layout_constraintTop_toBottomOf="@+id/cardview1_homepage" />
@@ -163,12 +164,13 @@
         app:cardMaxElevation="6dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homepage_line">
+        app:layout_constraintTop_toBottomOf="@+id/homepage_line"
+        app:cardBackgroundColor="?attr/cards_background">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/pic_card_background">
+            android:background="?attr/homepage_pic_background">
 
             <TextView
                 android:id="@+id/txt_homepage_card2"
@@ -178,7 +180,7 @@
                 android:layout_marginTop="40dp"
                 android:fontFamily="sans-serif-light"
                 android:text="@string/homepage_card2_txt1"
-                android:textColor="@color/homepage_lightgreen"
+                android:textColor="?attr/homepage_light_textcolor"
                 android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -192,7 +194,7 @@
                 android:layout_marginTop="4dp"
                 android:fontFamily="sans-serif-black"
                 android:text="@string/homepage_card2_txt2"
-                android:textColor="@color/homepage_lightgreen"
+                android:textColor="?attr/homepage_light_textcolor"
                 android:textSize="26sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"

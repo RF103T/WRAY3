@@ -86,6 +86,28 @@ public class PreferenceFragment extends PreferenceFragmentCompat implements Pref
                 infoDialog.show();
                 break;
             }
+            case "dark_mode":
+                {
+//                    SharedPreferences.Editor editor = sharedPreferences.edit();
+//                    editor.remove("dark_mode");
+//                    if (sharedPreferences.getBoolean("dark_mode", false)){
+//                        editor.putBoolean("dark_mode",false);
+//
+////                        final Intent intent=activity.getIntent();
+////                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+////                        startActivity(intent);
+////                        activity.overridePendingTransition(0,0);
+////                        activity.finish();
+//                    }else {
+//                        editor.putBoolean("dark_mode",true);
+//                    }
+////                    activity.overridePendingTransition(0,0);
+//                    editor.commit();
+                    activity.recreate();
+
+                break;
+
+            }
         }
         return true;
     }

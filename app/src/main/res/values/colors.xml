@@ -7,10 +7,23 @@
     <color name="colorSecondaryDark">#75A478</color>
     <color name="colorSecondaryLight">#D7FFD9</color>
 
+    <!-- 主页 -->
+    <color name="dark_colorAccent">#E4F0E6</color>
+    <color name="dark_Theme_Fragment_Background">#0B3028</color>
+    <color name="homepage_pic">#578172</color>
+    <color name="dark_homepage_pic">#578172</color>
+    <color name="dark_homepage_title_background_color">#CC0A4838</color>
+    <color name="dark_homepage_title_item_background_color">#0A4838</color>
+
+    <!-- 搜索 -->
+    <color name="search_edittxt_background_color">#CC1B473D</color>
+
+
     <color name="transparentColor">#00000000</color>
     <color name="white">#FFFFFF</color>
     <color name="transformwhite">#CCF8F8FF</color>
     <color name="colortxtgreen">#0E3A11</color>
+    <color name="hintcolortxtgreen">#950E3A11</color>
     <color name="colorsettxtgreen">#FF0D3B11</color>
     <color name="homepage_deepgreen">#00675B</color>
     <color name="homepage_background_green">#B3A3D7A6</color>
@@ -20,4 +33,9 @@
     <color name="backgroundgreen">#FFDEEFDF</color>
     <color name="cardView_background_green">#FFDEEFDF</color>
     <color name="grey_of_line">#40979797</color>
+
+
+
+
+
 </resources>

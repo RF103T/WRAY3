@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -11,11 +12,12 @@
         android:layout_width="320dp"
         android:layout_height="40dp"
         android:layout_marginTop="80dp"
-        android:background="#FFDEEFDF"
         app:cardCornerRadius="2dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardBackgroundColor="#CCFFFFFF"
+        android:alpha="0.9">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -26,12 +28,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/shape_corner_green"
+                android:gravity="center_vertical"
                 android:hint="@string/search_card_hint"
-                android:singleLine="true"
                 android:paddingLeft="15dp"
-                android:textColorHint="#950E3A11"
+                android:singleLine="true"
+                android:textColorHint="?attr/search_edittxt_hint_color"
                 android:textSize="18sp"
-                android:gravity="center_vertical"/>
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="-2dp"
+                android:textColor="?attr/search_item_txt_color"/>
 
             <ImageView
                 android:id="@+id/img_card_search"
@@ -53,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="150dp"
-        android:background="@color/white">
+        android:background="?attr/cards_background">
 
         <TextView
             android:id="@+id/txt_searched_garbage"
@@ -63,7 +68,7 @@
             android:layout_marginTop="15dp"
             android:fontFamily="sans-serif-condensed-light"
             android:text="@string/search_history"
-            android:textColor="@color/colortxtgreen"
+            android:textColor="?attr/homepage_title"
             android:textSize="18sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

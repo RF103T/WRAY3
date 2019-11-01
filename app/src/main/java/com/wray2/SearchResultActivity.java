@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.wray2.Class.Rubbish;
 import com.wray2.Thread.JsonDataObjects.ErrorData;
 import com.wray2.Thread.SearchResultRunnable;
+import com.wray2.Util.ThemeUtils;
 
 public class SearchResultActivity extends AppCompatActivity
 {
@@ -34,6 +35,7 @@ public class SearchResultActivity extends AppCompatActivity
     protected void onCreate(@Nullable Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setTheme(ThemeUtils.getThemeId(this));
         setContentView(R.layout.activity_search_result);
 
         pic_garbage = (ImageView)findViewById(R.id.img_search_result_pic);
