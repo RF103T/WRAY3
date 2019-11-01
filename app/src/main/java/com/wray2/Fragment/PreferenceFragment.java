@@ -1,7 +1,6 @@
 package com.wray2.Fragment;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import androidx.preference.SwitchPreference;
 
 import com.wray2.FragmentsActivity;
 import com.wray2.Manager.CalendarManager;
-import com.wray2.Manager.NotificationChannelsManager;
 import com.wray2.R;
 import com.wray2.Service.NotificationDataUpdateService;
 
@@ -57,7 +55,11 @@ public class PreferenceFragment extends PreferenceFragmentCompat implements Pref
                     {
                         infoDialog.setMessage("您还没有添加日程，真的要开启通知吗？").setTitle("尚未添加日程")
                                 .setPositiveButton("确定", (dialog, which) -> activity.startForegroundService(new Intent(activity, NotificationDataUpdateService.class)))
-                                .setNeutralButton("添加日程", ((dialog, which) -> {((SwitchPreference)preference).setChecked(false);activity.setTabBarPosition(3);}))
+                                .setNeutralButton("添加日程", ((dialog, which) ->
+                                {
+                                    ((SwitchPreference)preference).setChecked(false);
+                                    activity.setTabBarPosition(3);
+                                }))
                                 .setNegativeButton("算了", ((dialog, which) -> ((SwitchPreference)preference).setChecked(false)))
                                 .show();
                     }
@@ -65,7 +67,9 @@ public class PreferenceFragment extends PreferenceFragmentCompat implements Pref
                         activity.startForegroundService(new Intent(activity, NotificationDataUpdateService.class));
                 }
                 else
+                {
                     activity.stopService(new Intent(activity, NotificationDataUpdateService.class));
+                }
                 break;
             }
             case "how_calendar_background":
@@ -116,7 +120,16 @@ public class PreferenceFragment extends PreferenceFragmentCompat implements Pref
     public boolean onPreferenceChange(Preference preference, Object newValue)
     {
         if (preference.getKey().contentEquals("show_calendar_num"))
+        {
             showCalendarNum.setSummary("预先显示" + (String)newValue + "条日程");
+            activity.bindServiceConnection();
+            if (activity.getServiceConnection().isConnected())
+            {
+                activity.getServiceConnection().getBinder().setShowAlertNum(Integer.parseInt((String)newValue));
+                activity.getServiceConnection().getBinder().updateData();
+                activity.unBindServiceConnection();
+            }
+        }
         return true;
     }
 }

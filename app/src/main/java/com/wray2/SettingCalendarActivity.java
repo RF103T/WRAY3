@@ -109,8 +109,8 @@ public class SettingCalendarActivity extends AppCompatActivity implements View.O
         else if (key == 0)
         {
             Calendar calendar = Calendar.getInstance();
-            endTimeText.setText(String.format(Locale.CHINA, "%d:%02d", calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE)));
-            startTimeText.setText(String.format(Locale.CHINA, "%d:%02d", calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE)));
+            endTimeText.setText(String.format(Locale.CHINA, "%02d:%02d", calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE)));
+            startTimeText.setText(String.format(Locale.CHINA, "%02d:%02d", calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE)));
         }
 
         affirm.setOnClickListener(v ->

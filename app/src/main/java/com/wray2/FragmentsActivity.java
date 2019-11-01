@@ -48,7 +48,7 @@ public class FragmentsActivity extends FragmentActivity
 
     private boolean isDealShortCutsAction = false;
 
-    private NotificationServiceConnection serviceConnection;
+    private NotificationServiceConnection serviceConnection = new NotificationServiceConnection();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -57,6 +57,8 @@ public class FragmentsActivity extends FragmentActivity
         setTheme(ThemeUtils.getThemeId(this));
         setContentView(R.layout.activity_fragments);
 
+        //初始化日程管理器
+        CalendarManager.initCalendarManager(this);
 
         backgroundImageView = (ImageView)findViewById(R.id.backgroundImageView);
 
@@ -77,15 +79,6 @@ public class FragmentsActivity extends FragmentActivity
         //注册通知通道
         NotificationChannelsManager.createAllNotificationChannels(this);
 
-        //获取通知更新服务
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (sharedPreferences.getBoolean("show_calendar", false))
-        {
-            Intent intent = new Intent(FragmentsActivity.this, NotificationDataUpdateService.class);
-            serviceConnection = new NotificationServiceConnection();
-            bindService(intent, serviceConnection, BIND_AUTO_CREATE);
-        }
-
         tabBar = new MyTabBar(this);
     }
 
@@ -99,7 +92,12 @@ public class FragmentsActivity extends FragmentActivity
     protected void onResume()
     {
         super.onResume();
-
+        bindServiceConnection();
+        if (serviceConnection.isConnected())
+        {
+            serviceConnection.getBinder().updateData();
+            unBindServiceConnection();
+        }
         showSystemBar();
     }
 
@@ -186,6 +184,11 @@ public class FragmentsActivity extends FragmentActivity
         manager.hideSoftInputFromWindow(backgroundImageView.getWindowToken(), 0);
     }
 
+    public NotificationServiceConnection getServiceConnection()
+    {
+        return serviceConnection;
+    }
+
     public void setTabBarPosition(int position)
     {
         //tabBar.setCurrentPosition(position);
@@ -216,25 +219,54 @@ public class FragmentsActivity extends FragmentActivity
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onPause()
+    {
+        super.onPause();
         AlertUtils.updateAllAlertList(this.getApplicationContext(), CalendarManager.calendarManager.getAlertList());
     }
 
-    class NotificationServiceConnection implements ServiceConnection
+    public void bindServiceConnection()
     {
-        public NotificationDataUpdateService.NotificationDataBinder binder;
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (sharedPreferences.getBoolean("show_calendar", false))
+        {
+            Intent intent = new Intent(FragmentsActivity.this, NotificationDataUpdateService.class);
+            bindService(intent, serviceConnection, BIND_AUTO_CREATE);
+        }
+    }
+
+    public void unBindServiceConnection()
+    {
+        if (serviceConnection.isConnected())
+            unbindService(serviceConnection);
+    }
+
+    public class NotificationServiceConnection implements ServiceConnection
+    {
+        private boolean isConnected = false;
+        private NotificationDataUpdateService.NotificationDataBinder binder;
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service)
         {
             binder = (NotificationDataUpdateService.NotificationDataBinder)service;
+            isConnected = true;
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name)
         {
+            isConnected = false;
+        }
 
+        public boolean isConnected()
+        {
+            return isConnected;
+        }
+
+        public NotificationDataUpdateService.NotificationDataBinder getBinder()
+        {
+            return binder;
         }
     }
 }
