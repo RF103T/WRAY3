@@ -6,6 +6,7 @@
         <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="android:colorAccent">@color/colorAccent</item>
         <item name="android:colorSecondary">@color/colorSecondary</item>
+        <item name="android:textColorPrimary">@color/black</item>
         <item name="toolbarStyle">@style/ClubToolbar</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimation</item>
@@ -36,6 +37,8 @@
         <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="android:colorAccent">@color/white</item>
         <item name="android:colorSecondary">@color/colorSecondary</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/colorSecondary</item>
         <item name="toolbarStyle">@style/ClubToolbar</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimation</item>

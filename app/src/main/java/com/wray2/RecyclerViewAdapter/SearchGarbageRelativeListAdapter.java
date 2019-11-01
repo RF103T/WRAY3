@@ -46,25 +46,25 @@ public class SearchGarbageRelativeListAdapter extends RecyclerView.Adapter<Recyc
             case 0:
             {
                 //蓝
-                searchGarbageRelativeListHolder.rubbishSortName.setTextColor(Color.rgb(84, 96, 170));
+                searchGarbageRelativeListHolder.rubbishSortName.setTextColor(Color.rgb(104, 106, 200));
                 break;
             }
             case 1:
             {
                 //灰
-                searchGarbageRelativeListHolder.rubbishSortName.setTextColor(Color.rgb(136, 136, 136));
+                searchGarbageRelativeListHolder.rubbishSortName.setTextColor(Color.rgb(156, 156, 156));
                 break;
             }
             case 2:
             {
                 //棕
-                searchGarbageRelativeListHolder.rubbishSortName.setTextColor(Color.rgb(101, 63, 50));
+                searchGarbageRelativeListHolder.rubbishSortName.setTextColor(Color.rgb(121, 63, 50));
                 break;
             }
             case 3:
             {
                 //红
-                searchGarbageRelativeListHolder.rubbishSortName.setTextColor(Color.rgb(221, 6, 22));
+                searchGarbageRelativeListHolder.rubbishSortName.setTextColor(Color.rgb(241, 6, 22));
                 break;
             }
         }
