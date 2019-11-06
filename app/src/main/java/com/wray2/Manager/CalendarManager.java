@@ -1,10 +1,12 @@
 package com.wray2.Manager;
 
+import android.app.Activity;
 import android.content.Context;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.wray2.Class.Alert;
+import com.wray2.FragmentsActivity;
 import com.wray2.Util.AlertUtils;
 
 import java.text.ParseException;
@@ -33,7 +35,7 @@ public class CalendarManager
     }
 
     private Context context;
-
+    private FragmentsActivity activity;
     private SimpleDateFormat format = new SimpleDateFormat("HH:mm", Locale.CHINA);
 
     public static CalendarManager calendarManager;
@@ -48,6 +50,7 @@ public class CalendarManager
         if (alertList.isEmpty())
         {
             this.context = context.getApplicationContext();
+            this.activity = (FragmentsActivity) context;
             alertList = AlertUtils.readAlertList(context);
             for(Alert alert:alertList)
                 addAlertToSortList(alert);
@@ -109,6 +112,7 @@ public class CalendarManager
     {
         alertList.addFirst(alert);
         addAlertToSortList(alert);
+        updateService();
         //AlertUtils.addAlterToAlterList(context, alert);
     }
 
@@ -150,6 +154,7 @@ public class CalendarManager
             if (alert.getDates()[i] == 1)
                 addAlertToSortList(alert);
         }
+        updateService();
         //AlertUtils.upDateAlertList(context, position, alert);
     }
 
@@ -158,6 +163,7 @@ public class CalendarManager
         alertList.clear();
         for (LinkedList<Alert> linkedList : willComingAlertList)
             linkedList.clear();
+        updateService();
         //AlertUtils.deleteallAlertList(context);
     }
 
@@ -168,6 +174,7 @@ public class CalendarManager
         for (int i = 0; i < 7; i++)
             if (oldData.getDates()[i] == 1)
                 willComingAlertList.get(i).remove(oldData);
+        updateService();
         //AlertUtils.deleteAlertList(context, position);
     }
 
@@ -183,6 +190,7 @@ public class CalendarManager
     {
         alertList.add(position,alert);
         addAlertToSortList(alert);
+        updateService();
 //        int length = alertList.size();
 //        if (position > length / 2)
 //        {
@@ -207,5 +215,14 @@ public class CalendarManager
 //            alertList.set(position, alert);
 //        }
         //AlertUtils.updateAllAlertList(context, CalendarManager.calendarManager.getAlertList());
+    }
+
+    public void updateService(){
+        activity.bindServiceConnection();
+        if (activity.getServiceConnection().isConnected())
+        {
+            activity.getServiceConnection().getBinder().updateData();
+            activity.unBindServiceConnection();
+        }
     }
 }

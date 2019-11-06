@@ -73,6 +73,7 @@ public class NotificationDataUpdateService extends Service
                 }
             }
         }
+        NotificationChannelsManager.notificationManager.cancel(1);
     };
 
     @Override
@@ -115,8 +116,8 @@ public class NotificationDataUpdateService extends Service
             synchronized (lock)
             {
                 loopFlag = false;
-                lock.notify();
                 thread.interrupt();
+                lock.notify();
             }
         }
         stopForeground(true);

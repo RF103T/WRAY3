@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
+import androidx.preference.SwitchPreference;
 
 import com.wray2.CustomComponent.FragmentTab.MyTabBar;
 import com.wray2.Fragment.CalendarFragment;
@@ -30,6 +31,7 @@ import com.wray2.Manager.CalendarManager;
 import com.wray2.Manager.NotificationChannelsManager;
 import com.wray2.Manager.PermissionManager;
 import com.wray2.Service.NotificationDataUpdateService;
+import com.wray2.Thread.SearchResultRunnable;
 import com.wray2.Util.AlertUtils;
 import com.wray2.Util.ThemeUtils;
 
@@ -80,6 +82,13 @@ public class FragmentsActivity extends FragmentActivity
         NotificationChannelsManager.createAllNotificationChannels(this);
 
         tabBar = new MyTabBar(this);
+
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (sharedPreferences.getBoolean("show_calendar", false))
+        {
+            this.startForegroundService(new Intent(this, NotificationDataUpdateService.class));
+        }
     }
 
     @Override
