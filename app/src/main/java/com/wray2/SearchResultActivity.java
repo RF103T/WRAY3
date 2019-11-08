@@ -62,7 +62,6 @@ public class SearchResultActivity extends AppCompatActivity
                 {
                     Bundle bundle = msg.getData();
                     ErrorData errorData = bundle.getParcelable("error_data");
-                    //Intent intent1 = new Intent(this,)
                 }
             }
         };

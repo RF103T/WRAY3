@@ -52,7 +52,7 @@ public class NotificationDataUpdateService extends Service
                 Notification notification = new NotificationCompat.Builder(this, NotificationChannelsManager.MIN)
                         .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, FragmentsActivity.class), 0))
                         .setSmallIcon(R.drawable.ic_bean)
-                        .setContentTitle("分类帮日程提醒")
+                        .setContentTitle("识圾日程提醒")
                         .setShowWhen(false)
                         .setAutoCancel(false)
                         .setColor(0xFFD7FFD9)
@@ -90,7 +90,7 @@ public class NotificationDataUpdateService extends Service
         Notification notification = new NotificationCompat.Builder(this, NotificationChannelsManager.MIN)
                 .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, FragmentsActivity.class), 0))
                 .setSmallIcon(R.drawable.ic_bean)
-                .setContentTitle("分类帮日程提醒")
+                .setContentTitle("识圾日程提醒")
                 .setShowWhen(false)
                 .setAutoCancel(false)
                 .setColor(0xFFD7FFD9)
@@ -114,7 +114,6 @@ public class NotificationDataUpdateService extends Service
     @Override
     public void onDestroy()
     {
-        //NotificationChannelsManager.notificationManager.cancel(1);
         if (thread != null)
         {
             synchronized (lock)
@@ -126,6 +125,7 @@ public class NotificationDataUpdateService extends Service
         }
         stopForeground(true);
         isServiceRunning = false;
+        NotificationChannelsManager.notificationManager.cancel(1);
         super.onDestroy();
     }
 

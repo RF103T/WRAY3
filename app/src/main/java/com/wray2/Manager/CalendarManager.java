@@ -50,9 +50,9 @@ public class CalendarManager
         if (alertList.isEmpty())
         {
             this.context = context.getApplicationContext();
-            this.activity = (FragmentsActivity) context;
+            this.activity = (FragmentsActivity)context;
             alertList = AlertUtils.readAlertList(context);
-            for(Alert alert:alertList)
+            for (Alert alert : alertList)
                 addAlertToSortList(alert);
             alertList.add(new Alert("ADD_NEW", "NONE", "NONE"));
         }
@@ -73,11 +73,11 @@ public class CalendarManager
     public LinkedList<Alert> getWillComingAlertList(int alertNum) throws ParseException
     {
         LinkedList<Alert> linkedList = new LinkedList<Alert>();
-        int i = alertNum,dayIndex;
+        int i = alertNum, dayIndex;
         boolean loopFlag = true;
         //获得当天星期和日期
         Calendar now = Calendar.getInstance();
-        int weeksDayIndex = dayIndex =  now.get(Calendar.DAY_OF_WEEK) - 1;
+        int weeksDayIndex = dayIndex = now.get(Calendar.DAY_OF_WEEK) - 1;
         Date time = format.parse(now.get(Calendar.HOUR_OF_DAY) + ":" + now.get(Calendar.MINUTE));
         while (loopFlag)
         {
@@ -87,9 +87,9 @@ public class CalendarManager
                 Date temp = format.parse(alert.getStarttime());
                 if (dayIndex != weeksDayIndex || temp.getTime() >= time.getTime())
                 {
-                    int[] weeksDay = {0,0,0,0,0,0,0};
+                    int[] weeksDay = {0, 0, 0, 0, 0, 0, 0};
                     weeksDay[dayIndex] = 1;
-                    linkedList.add(new Alert(alert.getStarttime(),alert.getEndtime(),weeksDay,alert.getSorts()));
+                    linkedList.add(new Alert(alert.getStarttime(), alert.getEndtime(), weeksDay, alert.getSorts()));
                     i--;
                 }
                 if (i < 1)
@@ -102,7 +102,7 @@ public class CalendarManager
                 dayIndex = 0;
             else
                 dayIndex++;
-            if(dayIndex == weeksDayIndex)
+            if (dayIndex == weeksDayIndex)
                 loopFlag = false;
         }
         return linkedList;
@@ -188,7 +188,7 @@ public class CalendarManager
 
     public void reAddAlert(int position, Alert alert)
     {
-        alertList.add(position,alert);
+        alertList.add(position, alert);
         addAlertToSortList(alert);
         updateService();
 //        int length = alertList.size();
@@ -217,12 +217,12 @@ public class CalendarManager
         //AlertUtils.updateAllAlertList(context, CalendarManager.calendarManager.getAlertList());
     }
 
-    public void updateService(){
-        activity.bindServiceConnection();
-        if (activity.getServiceConnection().isConnected())
+    private void updateService()
+    {
+        activity.bindServiceConnection(() ->
         {
             activity.getServiceConnection().getBinder().updateData();
             activity.unBindServiceConnection();
-        }
+        });
     }
 }

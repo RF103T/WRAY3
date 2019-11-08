@@ -1,14 +1,11 @@
 package com.wray2;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -19,7 +16,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
-import androidx.preference.SwitchPreference;
 
 import com.wray2.CustomComponent.FragmentTab.MyTabBar;
 import com.wray2.Fragment.CalendarFragment;
@@ -31,8 +27,8 @@ import com.wray2.Manager.CalendarManager;
 import com.wray2.Manager.NotificationChannelsManager;
 import com.wray2.Manager.PermissionManager;
 import com.wray2.Service.NotificationDataUpdateService;
-import com.wray2.Thread.SearchResultRunnable;
 import com.wray2.Util.AlertUtils;
+import com.wray2.Util.NotificationServiceUtil;
 import com.wray2.Util.ThemeUtils;
 
 public class FragmentsActivity extends FragmentActivity
@@ -50,7 +46,7 @@ public class FragmentsActivity extends FragmentActivity
 
     private boolean isDealShortCutsAction = false;
 
-    private NotificationServiceConnection serviceConnection;
+    private NotificationServiceUtil.NotificationServiceConnection serviceConnection = new NotificationServiceUtil.NotificationServiceConnection();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -86,9 +82,7 @@ public class FragmentsActivity extends FragmentActivity
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         if (sharedPreferences.getBoolean("show_calendar", false))
-        {
-            this.startForegroundService(new Intent(this, NotificationDataUpdateService.class));
-        }
+            NotificationServiceUtil.startNotificationService(this);
     }
 
     @Override
@@ -101,12 +95,11 @@ public class FragmentsActivity extends FragmentActivity
     protected void onResume()
     {
         super.onResume();
-        bindServiceConnection();
-        if (serviceConnection.isConnected())
-        {
-            serviceConnection.getBinder().updateData();
-            unBindServiceConnection();
-        }
+//        bindServiceConnection(() ->
+//        {
+//            serviceConnection.getBinder().updateData();
+//            unBindServiceConnection();
+//        });
         showSystemBar();
     }
 
@@ -187,13 +180,20 @@ public class FragmentsActivity extends FragmentActivity
         }
     }
 
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        AlertUtils.updateAllAlertList(this.getApplicationContext(), CalendarManager.calendarManager.getAlertList());
+    }
+
     public void hideIME()
     {
         InputMethodManager manager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         manager.hideSoftInputFromWindow(backgroundImageView.getWindowToken(), 0);
     }
 
-    public NotificationServiceConnection getServiceConnection()
+    public NotificationServiceUtil.NotificationServiceConnection getServiceConnection()
     {
         return serviceConnection;
     }
@@ -212,7 +212,7 @@ public class FragmentsActivity extends FragmentActivity
                 | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         if (!sharedPreferences.getBoolean("dark_mode", false))
-            option |=  View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+            option |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
         decorView.setSystemUiVisibility(option);
         this.getWindow().setStatusBarColor(Color.TRANSPARENT);
     }
@@ -229,18 +229,11 @@ public class FragmentsActivity extends FragmentActivity
         this.getWindow().setStatusBarColor(Color.TRANSPARENT);
     }
 
-    @Override
-    protected void onPause()
+    public void bindServiceConnection(NotificationServiceUtil.ServiceConnectCallback callback)
     {
-        super.onPause();
-        AlertUtils.updateAllAlertList(this.getApplicationContext(), CalendarManager.calendarManager.getAlertList());
-    }
-
-    public void bindServiceConnection()
-    {
-        serviceConnection = new NotificationServiceConnection();
-        //SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (NotificationDataUpdateService.isServiceRunning)
+        serviceConnection.setCallback(callback);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (sharedPreferences.getBoolean("show_calendar", false))
         {
             Intent intent = new Intent(FragmentsActivity.this, NotificationDataUpdateService.class);
             bindService(intent, serviceConnection, BIND_AUTO_CREATE);
@@ -249,42 +242,7 @@ public class FragmentsActivity extends FragmentActivity
 
     public void unBindServiceConnection()
     {
-        if (serviceConnection.isConnected())
+        if (getServiceConnection().isConnected())
             unbindService(serviceConnection);
-    }
-
-    public class NotificationServiceConnection implements ServiceConnection
-    {
-        private boolean isConnected = false;
-        private NotificationDataUpdateService.NotificationDataBinder binder;
-
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service)
-        {
-            binder = (NotificationDataUpdateService.NotificationDataBinder)service;
-            isConnected = true;
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name)
-        {
-            isConnected = false;
-        }
-
-        @Override
-        public void onBindingDied(ComponentName name)
-        {
-            isConnected = false;
-        }
-
-        public boolean isConnected()
-        {
-            return isConnected;
-        }
-
-        public NotificationDataUpdateService.NotificationDataBinder getBinder()
-        {
-            return binder;
-        }
     }
 }

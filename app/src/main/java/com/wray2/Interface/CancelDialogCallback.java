@@ -5,5 +5,5 @@ import android.content.DialogInterface;
 
 public interface CancelDialogCallback
 {
-    public abstract void onCancelDialog(DialogInterface dialog, int which);
+    public void onCancelDialog(DialogInterface dialog, int which);
 }

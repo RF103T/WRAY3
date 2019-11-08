@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -16,6 +17,7 @@ import com.wray2.FragmentsActivity;
 import com.wray2.Manager.CalendarManager;
 import com.wray2.R;
 import com.wray2.Service.NotificationDataUpdateService;
+import com.wray2.Util.NotificationServiceUtil;
 
 public class PreferenceFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceChangeListener
 {
@@ -54,7 +56,7 @@ public class PreferenceFragment extends PreferenceFragmentCompat implements Pref
                     if (CalendarManager.calendarManager.getAlertList().size() < 1)
                     {
                         infoDialog.setMessage("您还没有添加日程，真的要开启通知吗？").setTitle("尚未添加日程")
-                                .setPositiveButton("确定", (dialog, which) -> activity.startForegroundService(new Intent(activity, NotificationDataUpdateService.class)))
+                                .setPositiveButton("确定", (dialog, which) -> NotificationServiceUtil.startNotificationService(activity))
                                 .setNeutralButton("添加日程", ((dialog, which) ->
                                 {
                                     ((SwitchPreference)preference).setChecked(false);
@@ -64,7 +66,7 @@ public class PreferenceFragment extends PreferenceFragmentCompat implements Pref
                                 .show();
                     }
                     else
-                        activity.startForegroundService(new Intent(activity, NotificationDataUpdateService.class));
+                        NotificationServiceUtil.startNotificationService(activity);
                 }
                 else
                 {
@@ -106,13 +108,12 @@ public class PreferenceFragment extends PreferenceFragmentCompat implements Pref
         if (preference.getKey().contentEquals("show_calendar_num"))
         {
             showCalendarNum.setSummary("预先显示" + (String)newValue + "条日程");
-            activity.bindServiceConnection();
-            if (activity.getServiceConnection().isConnected())
+            activity.bindServiceConnection(() ->
             {
                 activity.getServiceConnection().getBinder().setShowAlertNum(Integer.parseInt((String)newValue));
                 activity.getServiceConnection().getBinder().updateData();
                 activity.unBindServiceConnection();
-            }
+            });
         }
         return true;
     }
