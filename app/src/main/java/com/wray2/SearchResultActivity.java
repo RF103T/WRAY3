@@ -56,8 +56,7 @@ public class SearchResultActivity extends AppCompatActivity
                 if (msg.what == 1)
                 {
                     Bundle bundle = msg.getData();
-                    resultpic = bundle.getParcelable("feedback_pic");
-                    updateUI();
+                    pic_garbage.setImageBitmap(bundle.getParcelable("feedback_pic"));
                 }
                 else if (msg.what == -1)
                 {
@@ -71,6 +70,7 @@ public class SearchResultActivity extends AppCompatActivity
         Thread thread = new Thread(searchResultRunnable);
         thread.start();
 
+        updateUI();
 
         pic_returnFragment.setOnClickListener(v ->
         {
@@ -83,7 +83,6 @@ public class SearchResultActivity extends AppCompatActivity
     private void updateUI()
     {
         txt_garbage.setText(rubbishInfo.getRubbishName());
-        pic_garbage.setImageBitmap(resultpic);
         switch (rubbishInfo.getRubbishSortNum())
         {
             case 0:

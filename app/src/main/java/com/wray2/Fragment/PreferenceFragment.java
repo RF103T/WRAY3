@@ -86,31 +86,15 @@ public class PreferenceFragment extends PreferenceFragmentCompat implements Pref
             }
             case "show_app_info":
             {
-                infoDialog.setMessage("分类帮 V1.6.0\nBy.juggier RF103T Elmo").setTitle("关于").setPositiveButton("我知道啦", null).create();
+                infoDialog.setMessage("识圾 V2.0.0\nBy.juggier RF103T Elmo").setTitle("关于").setPositiveButton("我知道啦", null).create();
                 infoDialog.show();
                 break;
             }
             case "dark_mode":
-                {
-//                    SharedPreferences.Editor editor = sharedPreferences.edit();
-//                    editor.remove("dark_mode");
-//                    if (sharedPreferences.getBoolean("dark_mode", false)){
-//                        editor.putBoolean("dark_mode",false);
-//
-////                        final Intent intent=activity.getIntent();
-////                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-////                        startActivity(intent);
-////                        activity.overridePendingTransition(0,0);
-////                        activity.finish();
-//                    }else {
-//                        editor.putBoolean("dark_mode",true);
-//                    }
-////                    activity.overridePendingTransition(0,0);
-//                    editor.commit();
-                    activity.recreate();
-
+            {
+                activity.setTabBarPosition(0);
+                activity.recreate();
                 break;
-
             }
         }
         return true;

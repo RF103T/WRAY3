@@ -3,8 +3,10 @@ package com.wray2;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -283,7 +285,10 @@ public class SettingCalendarActivity extends AppCompatActivity implements View.O
         else
         {
             button.setBackground(this.getDrawable(ic_small));
-            button.setTextColor(this.getColor(R.color.colortxtgreen));
+            //根据主题确定文本颜色
+            TypedValue typedValue = new TypedValue();
+            getTheme().resolveAttribute(R.attr.calandarsetting_txt_color, typedValue, true);
+            button.setTextColor(getColor(typedValue.resourceId));
             dates[i] = 0;
         }
     }

@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application theme. -->
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:colorPrimary">@color/colorPrimary</item>
@@ -7,7 +8,6 @@
         <item name="android:colorAccent">@color/colorAccent</item>
         <item name="android:colorSecondary">@color/colorSecondary</item>
         <item name="android:textColorPrimary">@color/black</item>
-
         <item name="toolbarStyle">@style/ClubToolbar</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:navigationBarColor">#00000000</item>
@@ -20,7 +20,9 @@
         <item name="homepage_title">@color/colorAccent</item>
         <item name="homepage_title_background_color">@color/white</item>
         <item name="homepage_line">@drawable/ic_homepage_light_line</item>
-        <item name="homepage_title_item_background_color">@color/homepage_background_transfromgreen</item>
+        <item name="homepage_title_item_background_color">
+            @color/homepage_background_transfromgreen
+        </item>
         <!--搜索部分 -->
         <item name="search_edittxt_color">@color/backgroundgreen</item>
         <item name="search_edittxt_hint_color">@color/hintcolortxtgreen</item>
@@ -44,6 +46,8 @@
         <item name="android:textColorSecondary">@color/colorSecondary</item>
         <item name="toolbarStyle">@style/ClubToolbar</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">#00000000</item>
+        <item name="android:windowLightNavigationBar">false</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimation</item>
         <item name="cards_background">@color/dark_Theme_Fragment_Background</item>
         <!--主页部分 -->
@@ -65,6 +69,7 @@
         <!--相机部分 -->
         <item name="cameraresult_txt_color">@color/white</item>
         <item name="cameraresult_card_background_color">@drawable/dark_camerresult_card_background</item>
+
 
     </style>
 

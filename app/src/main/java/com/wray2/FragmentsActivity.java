@@ -50,7 +50,7 @@ public class FragmentsActivity extends FragmentActivity
 
     private boolean isDealShortCutsAction = false;
 
-    private NotificationServiceConnection serviceConnection = new NotificationServiceConnection();
+    private NotificationServiceConnection serviceConnection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -209,8 +209,10 @@ public class FragmentsActivity extends FragmentActivity
         View decorView = this.getWindow().getDecorView();
         int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
                 | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (!sharedPreferences.getBoolean("dark_mode", false))
+            option |=  View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
         decorView.setSystemUiVisibility(option);
         this.getWindow().setStatusBarColor(Color.TRANSPARENT);
     }
@@ -236,8 +238,9 @@ public class FragmentsActivity extends FragmentActivity
 
     public void bindServiceConnection()
     {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (sharedPreferences.getBoolean("show_calendar", false))
+        serviceConnection = new NotificationServiceConnection();
+        //SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (NotificationDataUpdateService.isServiceRunning)
         {
             Intent intent = new Intent(FragmentsActivity.this, NotificationDataUpdateService.class);
             bindService(intent, serviceConnection, BIND_AUTO_CREATE);
@@ -264,6 +267,12 @@ public class FragmentsActivity extends FragmentActivity
 
         @Override
         public void onServiceDisconnected(ComponentName name)
+        {
+            isConnected = false;
+        }
+
+        @Override
+        public void onBindingDied(ComponentName name)
         {
             isConnected = false;
         }

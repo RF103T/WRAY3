@@ -77,6 +77,8 @@ public class MyTabBar implements View.OnClickListener
         viewPager = activity.findViewById(R.id.tabBar_viewPager);
         viewPager.setAdapter(adapter);
 
+        viewPager.setCurrentItem(0);
+
         //ViewPager2和TabBar的联动切换效果
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback()
         {
@@ -141,6 +143,8 @@ public class MyTabBar implements View.OnClickListener
                             viewPager.setUserInputEnabled(true);
                         }
                         isPageScrolling = false;
+                        //组件归位
+
                     }
                 }
             }
